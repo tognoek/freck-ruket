@@ -6,7 +6,7 @@ from ENV import JSON_CHARCTERS, PATH_CHARCTERS
 class Image:
 
     def __init__(self):
-        with open("data/images.json") as file:
+        with open("data/Json/images.json") as file:
             self.file_json = json.load(file)
     
     def load(self, filename):
@@ -20,6 +20,7 @@ class Image:
         for i in range(frame):
             temp = pygame.Surface(size)
             temp.blit(image, (0, 0), (i * size[0], 0, size[0], size[1]))
+            temp.set_colorkey((0, 0, 0))
             res.append(temp.convert_alpha())
         return res
     def load_images_main_character(self, name):

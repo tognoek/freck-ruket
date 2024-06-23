@@ -1,0 +1,9 @@
+{
+   "map": {
+      "6:9": {
+         "name": "block",
+         "type": 1,
+         "flip": true
+      }
+   }
+}

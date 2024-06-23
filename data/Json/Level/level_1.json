@@ -1,0 +1,213 @@
+{
+   "start": {
+      "x": 110,
+      "y": 110
+   },
+   "map": {
+      "4:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "6:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "9:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "12:11": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "15:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "12:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "13:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "10:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "8:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "5:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "7:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "11:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "14:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "16:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "17:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "18:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "19:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "20:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "21:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "23:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "24:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "25:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "27:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "28:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "26:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "22:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "8:9": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "8:8": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "13:7": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "15:7": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "18:7": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "14:7": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "16:7": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "17:7": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "3:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "1:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "0:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "-2:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "-3:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "2:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "-1:10": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      }
+   }
+}
