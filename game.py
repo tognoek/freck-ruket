@@ -25,7 +25,10 @@ class Level:
     def __init__(self, level = 1):
         
         block = pygame.Surface((32, 32))
+        block_q = pygame.Surface((28, 28))
+        block_q.fill((5, 5, 5))
         block.fill((255, 255, 255))
+        block.blit(block_q, (2, 2))
 
         img = [block]
 
@@ -54,7 +57,7 @@ class Level:
     
     def draw(self, surface : pygame.Surface, offset = (0, 0)):
         for entity_map in self.data_maps: 
-            surface.blit(pygame.transform.flip(entity_map.get_mask(), entity_map.flip, False), entity_map.get_pos())
+            surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip, False), entity_map.get_pos())
 
     def start_pos_player(self):
         with open(f"data/Json/Level/level_{self.level}.json") as file:
@@ -71,34 +74,29 @@ class Game:
 
         self.start_player = self.Level.start_pos_player()
 
-        self.speed = (0, 5)
-        self.offset = (0, 0)
 
     def run(self):
 
 
-        x, y = Image.load_images_main_character("Mask Dude")
-        Player = Character("Player", self.start_player, x, None, False, 0.5, 0, 4, 0)
-        Player.set_action("Idle")
+        x, y = Image.load_images_main_character("Pink Man")
+        Player = Character("Player", self.start_player, x, None, False, 0.5, 0, 8, 0)
+        Player.set_action("Run")
         running = True
 
         while running:
 
-            display.fill((0, 0, 0))
+            display.fill((10, 10, 100))
 
             self.Level.draw(display)
 
-            speed_y = self.speed[1] + 0.5
-            if speed_y > 5:
-                speed_y = 5
-
-            self.speed = (self.speed[0], speed_y)
-
             clock.tick(60)
 
-            Player.update(self.Level.get_full_map(), self.speed)
+            Player.update_speed()
 
-            display.blit(Player.get_mask(), Player.pos)
+            Player.update(self.Level.get_full_map())
+
+
+            Player.render(display, (0, 0))
 
 
             screen.fill((255, 255, 255))
@@ -113,22 +111,21 @@ class Game:
                         running = False
                         pygame.quit()
                         sys.exit()
-
                     if event.key == pygame.K_LEFT:
-                        self.speed = (-3, 0)
+                        Player.speed_x(-3)
 
                     if event.key == pygame.K_RIGHT:
-                        self.speed = (3, 0)
+                        Player.speed_x(3)
 
                     if event.key == pygame.K_UP:
-                        self.speed = (0, -11)
+                        Player.speed_y(-8)
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
-                        self.speed = (0, 0)
+                        Player.reset_speed(True)
 
                     if event.key == pygame.K_RIGHT:
-                        self.speed = (0, 0)
+                        Player.reset_speed(True)
 
 
             screen.blit(pygame.transform.scale(display, WINDOWS_SCREEN), (0, 0))

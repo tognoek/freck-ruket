@@ -1,2 +1,2 @@
-+ offset[1]  
-            # surface.blit(self.data_map[value["name"]], (x, y))
+
+            display.fill((10, 10, 100))
