@@ -208,6 +208,46 @@
          "name": "block",
          "type": 1,
          "flip": false
+      },
+      "11:5": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "10:5": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "10:4": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "9:4": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "9:3": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "8:3": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "8:2": {
+         "name": "block",
+         "type": 1,
+         "flip": false
+      },
+      "7:2": {
+         "name": "block",
+         "type": 1,
+         "flip": false
       }
    }
 }

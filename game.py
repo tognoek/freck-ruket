@@ -31,10 +31,12 @@ class Level:
         block.blit(block_q, (2, 2))
 
         img = [block]
+        im = [block_q]
 
         self.data_images = {}
 
         self.data_images["block"] = {"Idle" : img}
+        self.data_images["block1"] = {"Idle" : im}
 
         self.data_json = {}
         self.data_maps = []
@@ -52,8 +54,7 @@ class Level:
             self.data_maps.append(entity_map)
 
     def get_full_map(self):
-        return self.data_maps
-        
+        return self.data_maps   
     
     def draw(self, surface : pygame.Surface, offset = (0, 0)):
         for entity_map in self.data_maps: 
@@ -64,7 +65,6 @@ class Level:
             data = json.load(file)
         result = (int(data["start"]["x"]), int(data["start"]["y"]))
         return result
-        
 
 class Game:
     def __init__(self):
@@ -74,12 +74,13 @@ class Game:
 
         self.start_player = self.Level.start_pos_player()
 
-
     def run(self):
 
+        Name = "Virtual Guy"
 
-        x, y = Image.load_images_main_character("Pink Man")
-        Player = Character("Player", self.start_player, x, None, False, 0.5, 0, 8, 0)
+        x, y = Image.load_images_main_character(Name)
+        data_character = Image.load_data_charactre(Name)
+        Player = Character("Player", self.start_player, x, None, False, 0.5, 0, data_character, 8, 0)
         Player.set_action("Run")
         running = True
 
@@ -95,9 +96,7 @@ class Game:
 
             Player.update(self.Level.get_full_map())
 
-
             Player.render(display, (0, 0))
-
 
             screen.fill((255, 255, 255))
 
@@ -126,7 +125,6 @@ class Game:
 
                     if event.key == pygame.K_RIGHT:
                         Player.reset_speed(True)
-
 
             screen.blit(pygame.transform.scale(display, WINDOWS_SCREEN), (0, 0))
             pygame.display.update()

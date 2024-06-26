@@ -35,4 +35,9 @@ class Image:
             # print(x, y)
 
         return images, frames
+    
+    def load_data_charactre(self, name):
+        with open("data/Json/data_characters.json", "r") as file:
+            data = json.load(file)
+        return data["Points Collision"]["Main Characters"][name] 
 
