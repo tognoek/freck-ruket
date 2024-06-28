@@ -1,6 +1,7 @@
 import pygame
 import json
-from ENV import JSON_CHARCTERS, PATH_CHARCTERS
+import os
+from ENV import JSON_CHARCTERS, PATH_CHARCTERS, PATH_MAPS, PATH_BACKGROUND
 
 
 class Image:
@@ -41,3 +42,34 @@ class Image:
             data = json.load(file)
         return data["Points Collision"]["Main Characters"][name] 
 
+    def load_data_maps(self):
+        images = {}
+        for filename in os.listdir(PATH_MAPS):
+            file_path = os.path.join(PATH_MAPS, filename)
+            if os.path.isfile(file_path) and filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+
+                image = pygame.image.load(file_path)
+                key = os.path.splitext(filename)[0]
+                images[key] = image
+        
+        return images
+
+    def convert_action_maps(self):
+        data = self.load_data_maps()
+        names = list(data.keys())
+        result = {}
+        for i in names:
+            result[i] = {"Idle" : [data[i]]}
+        return result
+
+    def load_background(self):
+        images = {}
+        for filename in os.listdir(PATH_BACKGROUND):
+            file_path = os.path.join(PATH_BACKGROUND, filename)
+            if os.path.isfile(file_path) and filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+
+                image = pygame.image.load(file_path)
+                key = os.path.splitext(filename)[0]
+                images[key] = image
+        
+        return images

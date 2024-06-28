@@ -2,8 +2,7 @@ import pygame, sys
 import json
 
 from scripts.utils import Image
-from ENV import WINDOWS_SCREEN, DISPLAY_SIZE, IMAGE_SIZE
-
+from ENV import WINDOWS_SCREEN, DISPLAY_SIZE
 from scripts.entities import *
 
 pygame.init()
@@ -30,13 +29,8 @@ class Level:
         block.fill((255, 255, 255))
         block.blit(block_q, (2, 2))
 
-        img = [block]
-        im = [block_q]
 
-        self.data_images = {}
-
-        self.data_images["block"] = {"Idle" : img}
-        self.data_images["block1"] = {"Idle" : im}
+        self.data_images = Image.convert_action_maps()
 
         self.data_json = {}
         self.data_maps = []
@@ -50,7 +44,7 @@ class Level:
     def convert(self):
         for key, value in self.data_json["map"].items():
             x, y = map(int, key.split(":"))
-            entity_map = Map(value["name"], (x * IMAGE_SIZE[0], y * IMAGE_SIZE[1]), self.data_images[value["name"]], None, False, 0, 0, 5, 1)
+            entity_map = Map(value["name"], (x, y), self.data_images[value["name"]], None, False, 0, 0, 5, 1)
             self.data_maps.append(entity_map)
 
     def get_full_map(self):
@@ -68,15 +62,21 @@ class Level:
 
 class Game:
     def __init__(self):
+
+        self.Background = Background(Image.load_background())
+        self.Background.create("Blue", (display.get_width(), display.get_height()))
+
         self.Level = Level(1)
         self.Level.load_map()
         self.Level.convert()
+
+        self.String = String(display)
 
         self.start_player = self.Level.start_pos_player()
 
     def run(self):
 
-        Name = "Virtual Guy"
+        Name = "Mask Dude"
 
         x, y = Image.load_images_main_character(Name)
         data_character = Image.load_data_charactre(Name)
@@ -87,6 +87,7 @@ class Game:
         while running:
 
             display.fill((10, 10, 100))
+            self.Background.render(display)
 
             self.Level.draw(display)
 
@@ -98,7 +99,9 @@ class Game:
 
             Player.render(display, (0, 0))
 
-            screen.fill((255, 255, 255))
+            # screen.fill((255, 255, 255))
+
+            self.String.render(str(int(clock.get_fps())), pos=(100, 100))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
