@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, random
 import json
 from scripts.utils import *
 from scripts.entities import *
@@ -62,10 +62,55 @@ def save_map(data):
 
 action = {"up": False, "down": False, "left": False, "right": False}
 
-Button = Button("Theo X", (255, 0, 0), (0, 0, 255), (500, 20), (10, 5))
+button_left = Button("Left", "X", (255, 0, 0), (0, 0, 255), (800, 35), (10, 5))
+button_right = Button("Right", "X", (255, 0, 0), (0, 0, 255), (900, 35), (10, 5))
+button_top = Button("Top", "X", (255, 0, 0), (0, 0, 255), (850, 5), (10, 5))
+button_buttom = Button("Bottom", "X", (255, 0, 0), (0, 0, 255), (850, 65), (10, 5))
+button_xy = Button("xy", "X-axis", (255, 0, 0), (0, 0 , 255), (650, 35), (10, 5))
+button_centr = Button("center", "center", (255, 0, 0), (0, 0 , 255), (730, 35), (10, 5))
+rect_status = pygame.Surface((60, 30))
+rect_status.fill((0, 0, 0))
+pygame.draw.rect(rect_status, (255, 255, 255), (1, 1, 58, 28))
 
+buttons = [button_left, button_right, button_top, button_buttom, button_xy, button_centr]
 
+status_button = {}
+for i in buttons:
+    status_button[i.name] = False
+
+old_data = []
+
+pos_rect_mini = None
+rect_mini = pygame.Surface((8, 8))
+x_random = [33, 47]
 while True:
+
+    pos_rect_mini = None
+    if status_button["Left"]:
+        if status_button["Right"]:
+            pos_rect_mini = (854, 33)
+        else:
+            pos_rect_mini = (831, 33)
+    else:
+        if status_button["Right"]:
+            pos_rect_mini = (881, 33)
+    
+    if status_button["Top"]:
+        if pos_rect_mini == None:
+            pos_rect_mini = (835, 19)
+        if status_button["Bottom"]:
+            pos_rect_mini = (pos_rect_mini[0], 39)
+        else:
+            pos_rect_mini = (pos_rect_mini[0], 31)
+    else:
+        if status_button["Bottom"]:
+            if pos_rect_mini == None:
+                pos_rect_mini = (835, 19)
+            pos_rect_mini = (pos_rect_mini[0], 51)
+
+    if status_button["center"]:
+        pos_rect_mini = (854, 39)
+
 
     if action["up"]:
         offset = (offset[0], offset[1] + speed_offset)
@@ -106,14 +151,18 @@ while True:
     screen.blit(image_show, (int((SIZE_SHOW[0] - image_show.get_width()) / 2), int((SIZE_SHOW[1] - image_show.get_height()) / 2)))
     screen.blit(image_real, (int((SIZE_SHOW[0] - image_real.get_width()) / 2 + SIZE_SHOW[0]), int((SIZE_SHOW[1] - image_real.get_height()) / 2)))
 
+    screen.blit(rect_status, (830, 30))
+
+    if pos_rect_mini != None:
+        screen.blit(rect_mini, pos_rect_mini)
+
     for key, value in data.items():
         x, y = map(int, key.split(":"))
         x, y = x + offset[0], y + offset[1]  
         display.blit(data_maps[value["name"]], (x, y))
 
-    Button.set_type(mouse)
-
-    Button.render(screen)
+    for i in buttons:
+        i.render(screen)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -122,7 +171,25 @@ while True:
             pygame.quit()
             sys.exit()
 
+        keys = pygame.key.get_pressed()
+
+        if event.type == pygame.KEYDOWN:
+            if keys[pygame.K_z] and keys[pygame.K_LCTRL]:
+                if len(old_data) > 0:
+                    data = old_data[-1]
+                    old_data.pop()
+
+
         if event.type == pygame.MOUSEBUTTONDOWN:
+            for i in buttons:
+                if i.set_type(mouse, event.button):
+                    status_button[i.name] = not status_button[i.name]
+                    if i.name == "xy":
+                        if status_button[i.name]:
+                            i.set_name("Y-axis")
+                        else:
+                            i.set_name("X-axis")
+
             if event.button == 1:
                 key = str(pos[0]) + ":" + str(pos[1])
                 value = {
@@ -130,8 +197,10 @@ while True:
                          "type" : 1,
                          "flip" : False
                          }
-            data[key] = value
-            keys = pygame.key.get_pressed()
+                old_data.append(data.copy())
+                if len(old_data) > 30:
+                    old_data.pop(0)
+                data[key] = value
             if event.button == 4:
                 if keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]:
                     index_entity_data_map = 0
@@ -158,6 +227,9 @@ while True:
             if event.button == 3:
                 key = str(pos[0]) + ":" + str(pos[1])
                 if key in data:
+                    old_data.append(data)
+                    if len(old_data) > 4:
+                        old_data.pop(0)
                     data.pop(key)
 
         if event.type == pygame.KEYDOWN:
