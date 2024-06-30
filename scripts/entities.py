@@ -339,12 +339,15 @@ class Button:
 
     def set_type(self, pos = (0, 0), type_click = -1):
         if self.pos[0] <= pos[0] and self.pos[0] + self.size_button[0] >= pos[0]:
-            if self.pos[1] <= pos[1] and self.pos[1] + self.size_button[1] >= pos[1]:
-                self.type = not self.type
+            if self.pos[1] <= pos[1] and self.pos[1] + self.size_button[1] >= pos[1]:  
                 if type_click == 1:
+                    self.type = not self.type
                     return True
                 else:
                     return False
+
+    def on_off(self):
+        self.type = not self.type
 
     def render(self, surface : pygame.Surface):
         font = pygame.font.Font(None, 18)

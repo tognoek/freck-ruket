@@ -1,0 +1,14 @@
+## NOTE
+- ### EDIT MAP
+  - Có Left - Right - Top - Bottom
+  - Cái này là nó sẽ căn theo hướng mà được chọn
+  - Ví dụ là Left - Top thì Block mới sẽ đi tìm một Block theo tung độ hoặc hành độ, tìm được thì nó sẽ đứng làm sao cho Block mới sẽ ở ên Trái của Block vừa đặt và sẽ căn theo bên Trên
+  - Thử là biết
+  - 1 - Left
+  - 2 - Right
+  - 3 - Top
+  - 4 - Bottom
+  - 5 - Center
+  - Alt + C để vào|ra trạng thái thái chọn vùng
+  - Alt + D để xóa các Block được chọn
+  - Ctr + Z để quay lại bước bước bộ nhớ 30 
