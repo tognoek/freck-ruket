@@ -27,16 +27,28 @@ data_maps = Image().load_data_maps()
 name_data_maps = list(data_maps.keys())
 name_key_maps = []
 data_maps_convert = {}
-for i in name_data_maps:
+#  mảng 2 chiều chứa ảnh phân theo tên
+
+data_images_x = {}
+# danh sách các ảnh hiển thị ngang
+
+data_images_y = {}
+# danh sách các ảnh hiển thị dọc
+
+for i in name_data_maps: # lọc ra các ảnh theo tiền tố của tên
     key = i.split('_')[0]
     if key not in data_maps_convert:
         data_maps_convert[key] = {}
         name_key_maps.append(key)
-    else:
-        data_maps_convert[key][i] = data_maps[i]
+        data_images_x[key] = data_maps[i]
+    
+    data_maps_convert[key][i] = data_maps[i]
 index_name_data_map = 0
 index_entity_data_map = 0
 list_name_maps_in_data_convert = list(data_maps_convert[name_key_maps[0]].keys())
+
+for i in data_maps_convert[name_key_maps[0]].keys():
+    data_images_y[i] = data_maps[i]
 
 data = {}
 
@@ -44,7 +56,6 @@ with open("data/Json/Level/level_1.json", "r") as file:
     data_json = json.load(file)
 
 data = data_json["map"]
-
 
 clock = pygame.time.Clock()
 
@@ -59,6 +70,22 @@ pos = (0, 0)
 alt_c = False
 pos_begin_select = None
 update_map = True
+
+def render(surface : pygame.Surface, image : pygame.Surface, size = (0, 0), pos = (0, 0), rect = False):
+    scale_x = size[0] / image.get_width()
+    scale_y = size[1] / image.get_height()
+    if scale_x > scale_y:
+        image = pygame.transform.scale(image, (scale_y * image.get_width() - 4, scale_y * image.get_height() - 4))
+    else:
+        image = pygame.transform.scale(image, (scale_x * image.get_width() - 4, scale_x * image.get_height() - 4))
+
+    size_x = image.get_width()
+    size_y = image.get_height()
+    
+    surface.blit(image, (pos[0] + int((size[0] - size_x) / 2), pos[1] + int((size[1] - size_y) / 2)))
+    if rect:
+        pygame.draw.rect(surface, (255, 0, 0), (pos[0], pos[1], size[0], size[1]), 1)
+
 
 def save_map(data):
     with open("data/Json/Level/level_1.json", "w") as file:
@@ -91,10 +118,18 @@ x_random = [33, 47]
 tool_ponit_map = [-2, -2, 1]
 vector_tool = False
 entity_maps = []
+begin_select = False
+
+list_select = []
+minimap_select = None
+key_select = None
 
 class MiniMap:
-    def __init__(self, surface : pygame.Surface, x, y, select = False):
+    def __init__(self, surface : pygame.Surface, name, e_type, flip, x, y, select = False):
         self.surface = surface
+        self.name = name
+        self.e_type = e_type
+        self.flip = flip
         self.x = x
         self.y = y
         self.select = select
@@ -425,7 +460,7 @@ while True:
         entity_maps = []
         for key, value in data.items():
             x, y = map(int, key.split(":"))
-            entity_maps.append(MiniMap(data_maps[value["name"]], x, y, False))
+            entity_maps.append(MiniMap(data_maps[value["name"]], value["name"], value["type"], value["flip"], x, y, False))
             # x, y = x + offset[0], y + offset[1]  
             # display.blit(data_maps[value["name"]], (x, y))
         update_map = False
@@ -455,6 +490,7 @@ while True:
                 end = (end[0], mouse[1])
             size = ((end[0] - begin[0]), (end[1] - begin[1]))
 
+
             for i in entity_maps:
                 if i.x + offset[0] >= begin[0] - SIZE_SHOW[0] and i.x + offset[0] <= end[0] - SIZE_SHOW[0]:
                     if i.y + offset[1] >= begin[1] - SIZE_SHOW[1] and i.y + offset[1] <= end[1] - SIZE_SHOW[1]:
@@ -469,20 +505,50 @@ while True:
 
                     if i.bottom() + offset[1] >= begin[1] - SIZE_SHOW[1] and i.bottom() + offset[1] <= end[1] - SIZE_SHOW[1]:
                         i.select = True
+                if begin_select:
+                    if begin[0] - SIZE_SHOW[0] >= i.x + offset[0] and end[0] - SIZE_SHOW[0] <= i.right() + offset[0]:
+                        if begin[1] - SIZE_SHOW[1] >= i.y and end[1] - SIZE_SHOW[1] <= i.bottom() + offset[1]:
+                            i.select = not i.select
+                            begin_select = False
+                
+        for i in entity_maps:
+            if key_select != None:
+                if i.x == key_select[0] and i.y == key_select[1]:
+                    i.select = True
+                    key_select = None
                 
    
 
     if pos_rect_mini != None:
         screen.blit(rect_mini, pos_rect_mini)
     
+    list_select = []
     for i in entity_maps:
         i.render(display, offset)
+        if i.select:
+            list_select.append(i)
+
+    if len(list_select) == 1:
+        minimap_select = list_select[0]
+    else:
+        minimap_select = None
 
     if alt_c:
         if pos_begin_select != None:
             pygame.draw.rect(display, (255, 0, 0), (begin[0] - SIZE_SHOW[0], begin[1] - SIZE_SHOW[1], size[0], size[1]), 1)
     else:
         pygame.draw.rect(display, (25, 125, 0), (pos_tool_show[0], pos_tool_show[1], image_real.get_width(), image_real.get_height()))
+
+    for index, (key, value) in enumerate(data_images_x.items()):
+        i = int(index / 2)
+        r = index % 2
+        pos_x = SIZE_SHOW[0] * 2 + i * int(SIZE_SHOW[0] / 2)
+        pos_y = int(SIZE_SHOW[1] / 2) * r
+        size_image = (int(SIZE_SHOW[0] / 2), int(SIZE_SHOW[1] / 2))
+        if key == name_key_maps[index_name_data_map]:
+            render(screen, value, size_image, (pos_x, pos_y), True)
+        else:
+            render(screen, value, size_image, (pos_x, pos_y), False)
 
 
     for i in buttons:
@@ -556,6 +622,65 @@ while True:
             if keys[pygame.K_l]:
                 update_map = True
                 alt_c = not alt_c
+            
+            if minimap_select != None:
+
+                if keys[pygame.K_w] and alt_c:
+                    old_data.append(data.copy())
+                    key = str(minimap_select.x) + ":" + str(minimap_select.y)
+                    key_new = str(minimap_select.x) + ":" + str(minimap_select.y - 1)
+                    key_select = (minimap_select.x, minimap_select.y - 1)
+                    data.pop(key)
+                    values = {
+                                "name" : minimap_select.name,
+                                "type" : minimap_select.e_type,
+                                "flip" : minimap_select.flip
+                            }
+                    data[key_new] = values
+                    update_map = True
+                
+                if keys[pygame.K_s] and alt_c:
+                    old_data.append(data.copy())
+                    key = str(minimap_select.x) + ":" + str(minimap_select.y)
+                    key_new = str(minimap_select.x) + ":" + str(minimap_select.y + 1)
+                    key_select = (minimap_select.x, minimap_select.y + 1)
+                    data.pop(key)
+                    values = {
+                                "name" : minimap_select.name,
+                                "type" : minimap_select.e_type,
+                                "flip" : minimap_select.flip
+                            }
+                    data[key_new] = values
+                    update_map = True
+                
+                if keys[pygame.K_a] and alt_c:
+                    old_data.append(data.copy())
+                    key = str(minimap_select.x) + ":" + str(minimap_select.y)
+                    key_new = str(minimap_select.x - 1) + ":" + str(minimap_select.y)
+                    key_select = (minimap_select.x - 1, minimap_select.y)
+                    data.pop(key)
+                    values = {
+                                "name" : minimap_select.name,
+                                "type" : minimap_select.e_type,
+                                "flip" : minimap_select.flip
+                            }
+                    data[key_new] = values
+                    update_map = True
+                
+                if keys[pygame.K_d] and alt_c and not keys[pygame.K_LALT] and not keys[pygame.K_RALT]:
+                    old_data.append(data.copy())
+                    key = str(minimap_select.x) + ":" + str(minimap_select.y)
+                    key_new = str(minimap_select.x + 1) + ":" + str(minimap_select.y)
+                    key_select = (minimap_select.x + 1, minimap_select.y)
+                    data.pop(key)
+                    values = {
+                                "name" : minimap_select.name,
+                                "type" : minimap_select.e_type,
+                                "flip" : minimap_select.flip
+                            }
+                    data[key_new] = values
+                    update_map = True
+
 
 
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -573,14 +698,15 @@ while True:
             if alt_c:
                 if event.button == 1 and mouse[0] > SIZE_SHOW[0] and mouse[1] > SIZE_SHOW[1]:
                     pos_begin_select = mouse
+                    begin_select = True
             else:
                 pos_begin_select = None
                 if event.button == 1 and mouse[0] > SIZE_SHOW[0] and mouse[1] > SIZE_SHOW[1]:
                     key = str(pos_tool[0]) + ":" + str(pos_tool[1])
                     value = {
-                            "name" : list_name_maps_in_data_convert[index_entity_data_map],
-                            "type" : 1,
-                            "flip" : False
+                                "name" : list_name_maps_in_data_convert[index_entity_data_map],
+                                "type" : 1,
+                                "flip" : False
                             }
                     old_data.append(data.copy())
                     if len(old_data) > 30:

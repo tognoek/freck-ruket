@@ -4,153 +4,78 @@
       "y": 110
    },
    "map": {
-      "110:310": {
-         "name": "land_1",
+      "69:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "154:310": {
-         "name": "land_1",
+      "113:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "198:310": {
-         "name": "land_1",
+      "157:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "242:310": {
-         "name": "land_1",
+      "201:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "286:310": {
-         "name": "land_1",
+      "245:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "330:310": {
-         "name": "land_1",
+      "289:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "374:310": {
-         "name": "land_1",
+      "333:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "418:310": {
-         "name": "land_1",
+      "377:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "462:310": {
-         "name": "land_1",
+      "421:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "506:310": {
-         "name": "land_1",
+      "465:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "550:310": {
-         "name": "land_1",
+      "509:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "594:310": {
-         "name": "land_1",
+      "553:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "638:310": {
-         "name": "land_1",
+      "597:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "390:266": {
-         "name": "land_1",
+      "641:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       },
-      "434:222": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "473:178": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "515:134": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "372:103": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "328:103": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "284:103": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "240:103": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "196:103": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "152:103": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "108:103": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "66:310": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "22:310": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "-22:310": {
-         "name": "land_1",
-         "type": 1,
-         "flip": false
-      },
-      "122:116": {
-         "name": "land_7",
-         "type": 1,
-         "flip": false
-      },
-      "124:323": {
-         "name": "land_7",
-         "type": 1,
-         "flip": false
-      },
-      "168:323": {
-         "name": "land_7",
+      "685:257": {
+         "name": "land_0",
          "type": 1,
          "flip": false
       }
