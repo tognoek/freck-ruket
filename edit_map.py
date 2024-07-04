@@ -97,13 +97,17 @@ button_left = Button("Left", "X", (255, 0, 0), (0, 0, 255), (800, 35), (10, 5))
 button_right = Button("Right", "X", (255, 0, 0), (0, 0, 255), (900, 35), (10, 5))
 button_top = Button("Top", "X", (255, 0, 0), (0, 0, 255), (850, 5), (10, 5))
 button_buttom = Button("Bottom", "X", (255, 0, 0), (0, 0, 255), (850, 65), (10, 5))
-button_xy = Button("xy", "X-axis", (25, 30 , 10), (25, 30 , 10), (650, 35), (10, 5))
-button_center = Button("center", "center", (255, 0, 0), (0, 0 , 255), (720, 35), (10, 5))
+button_xy = Button("xy", "X-axis", (25, 30 , 10), (25, 30 , 10), (650, 15), (10, 5))
+button_center = Button("center", "center", (255, 0, 0), (0, 0 , 255), (720, 15), (10, 5))
+button_type_1 = Button("type_1", "1", (255, 0, 0), (0, 0, 255), (650, 55), (10, 5))
+button_type_2 = Button("type_2", "2", (255, 0, 0), (0, 0, 255), (700, 55), (10, 5))
+button_type_3 = Button("type_3", "3", (255, 0, 0), (0, 0, 255), (750, 55), (10, 5))
 rect_status = pygame.Surface((60, 30))
 rect_status.fill((0, 0, 0))
 pygame.draw.rect(rect_status, (255, 255, 255), (1, 1, 58, 28))
 
-buttons = [button_left, button_right, button_top, button_buttom, button_xy, button_center]
+buttons = [button_left, button_right, button_top, button_buttom, button_xy, button_center, button_type_1, button_type_2, button_type_3]
+buttons[6].on_off()
 
 status_button = {}
 for i in buttons:
@@ -155,8 +159,13 @@ class MiniMap:
     
     def render(self, surface : pygame.Surface, offset = (0, 0)):
         surface.blit(self.surface, (self.x + offset[0], self.y + offset[1]))
+        if self.e_type == 2:
+            pygame.draw.rect(surface, (0, 0, 255), (self.x + offset[0], self.y + offset[1], self.surface.get_width(), self.surface.get_height()), 2)
+        if self.e_type == 3:
+            pygame.draw.rect(surface, (0, 255, 0), (self.x + offset[0], self.y + offset[1], self.surface.get_width(), self.surface.get_height()), 2)
         if self.select:
             pygame.draw.rect(surface, (255, 0, 0), (self.x + offset[0], self.y + offset[1], self.surface.get_width(), self.surface.get_height()), 1)
+
         
 def x_axis(surface : pygame.Surface, pos = (0, 0), vector = False):
     if vector:
@@ -500,14 +509,14 @@ while True:
                         i.select = True
 
                 if i.right() + offset[0] >= begin[0] - SIZE_SHOW[0] and i.right() + offset[0] <= end[0] - SIZE_SHOW[0]:
-                    if i.y >= begin[1] - SIZE_SHOW[1] and i.y <= end[1] - SIZE_SHOW[1]:
+                    if i.y + offset[1] >= begin[1] - SIZE_SHOW[1] and i.y + offset[1] <= end[1] - SIZE_SHOW[1]:
                         i.select = True
 
                     if i.bottom() + offset[1] >= begin[1] - SIZE_SHOW[1] and i.bottom() + offset[1] <= end[1] - SIZE_SHOW[1]:
                         i.select = True
                 if begin_select:
                     if begin[0] - SIZE_SHOW[0] >= i.x + offset[0] and end[0] - SIZE_SHOW[0] <= i.right() + offset[0]:
-                        if begin[1] - SIZE_SHOW[1] >= i.y and end[1] - SIZE_SHOW[1] <= i.bottom() + offset[1]:
+                        if begin[1] - SIZE_SHOW[1] >= i.y + offset[1] and end[1] - SIZE_SHOW[1] <= i.bottom() + offset[1]:
                             i.select = not i.select
                             begin_select = False
                 
@@ -550,9 +559,39 @@ while True:
         else:
             render(screen, value, size_image, (pos_x, pos_y), False)
 
+    print(name_key_maps[index_name_data_map])
+
+    for index, (key, value) in enumerate(data_images_y.items()):
+        i = int(index / 2)
+        r = index % 2
+        pos_x = int(SIZE_SHOW[0] / 2) * r
+        pos_y = SIZE_SHOW[1] + i * int(SIZE_SHOW[1] / 2)
+        size_image = (int(SIZE_SHOW[0] / 2), int(SIZE_SHOW[1] / 2))
+        if key == list_name_maps_in_data_convert[index_entity_data_map]:
+            render(screen, value, size_image, (pos_x, pos_y), True)
+        else:
+            render(screen, value, size_image, (pos_x, pos_y), False)
+
 
     for i in buttons:
         i.render(screen)
+
+    type_map = 1
+    for i in range(3):
+        if buttons[i + 6].type:
+            type_map = i + 1
+        
+    if len(list_select) > 0:
+        type_map = int(list_select[0].e_type)
+        for i in list_select:
+            if int(i.e_type) != type_map:
+                type_map = -1
+                break
+
+        for i in range(3):
+            buttons[6 + i].type = False
+        if type_map != -1:
+            buttons[6 + type_map - 1].on_off()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -694,6 +733,21 @@ while True:
                         else:
                             i.set_name("X-axis")
                             vector_tool = False
+
+                    if i.name.split('_')[0] == "type":
+                        for t in range(3):
+                            buttons[t+6].type = False
+                        i.on_off()
+                        if len(list_select) > 0:
+                            print(i.name.split('_')[1])
+                            old_data.append(data.copy())
+                            if len(old_data) > 30:
+                                old_data.pop(0)
+                            for ir in entity_maps:
+                                if ir.select:
+                                    key = str(ir.x) + ":" + str(ir.y)
+                                    data[key]["type"] = int(i.name.split('_')[1])
+                            update_map = True
             
             if alt_c:
                 if event.button == 1 and mouse[0] > SIZE_SHOW[0] and mouse[1] > SIZE_SHOW[1]:
@@ -705,7 +759,7 @@ while True:
                     key = str(pos_tool[0]) + ":" + str(pos_tool[1])
                     value = {
                                 "name" : list_name_maps_in_data_convert[index_entity_data_map],
-                                "type" : 1,
+                                "type" : type_map,
                                 "flip" : False
                             }
                     old_data.append(data.copy())
@@ -720,6 +774,9 @@ while True:
                         if index_name_data_map < 0:
                             index_name_data_map = len(name_key_maps) - 1
                         list_name_maps_in_data_convert = list(data_maps_convert[name_key_maps[index_name_data_map]].keys())
+                        data_images_y = {}
+                        for i in data_maps_convert[name_key_maps[index_name_data_map]].keys():
+                            data_images_y[i] = data_maps[i]
                     else:
                         index_entity_data_map -= 1
                         if index_entity_data_map < 0:
@@ -731,6 +788,9 @@ while True:
                         if index_name_data_map >= len(name_key_maps):
                             index_name_data_map = 0
                         list_name_maps_in_data_convert = list(data_maps_convert[name_key_maps[index_name_data_map]].keys())
+                        data_images_y = {}
+                        for i in data_maps_convert[name_key_maps[index_name_data_map]].keys():
+                            data_images_y[i] = data_maps[i]
                     else:
                         index_entity_data_map += 1
                         if index_entity_data_map >= len(list_name_maps_in_data_convert):

@@ -35,6 +35,8 @@ class Level:
         self.data_json = {}
         self.data_maps = []
         self.level = level
+        self.left_top = (0, 0)
+        self.bottom_right = (0, 0)
 
     def load_map(self):
         with open(f"data/Json/Level/level_{self.level}.json") as file:
@@ -42,23 +44,62 @@ class Level:
         self.data_json = data
 
     def convert(self):
+        self.bottom_right = None
+        self.left_top = None
         for key, value in self.data_json["map"].items():
             x, y = map(int, key.split(":"))
-            entity_map = Map(value["name"], (x, y), self.data_images[value["name"]], None, False, 0, 0, 5, 1)
+            entity_map = Map(value["name"], (x, y), self.data_images[value["name"]], None, value["flip"], 0, 0, 5, int(value["type"]))
             self.data_maps.append(entity_map)
+            if self.left_top == None:
+                self.left_top = (x, y)
+            elif self.left_top[0] > x:
+                self.left_top = (x, self.left_top[1])
+            elif self.left_top[1] > y:
+                self.left_top = (self.left_top[0], y)
+            if self.bottom_right == None:
+                self.bottom_right = (x, y)
+            elif self.bottom_right[0] < entity_map.rect().right:
+                self.bottom_right = (entity_map.rect().right, self.bottom_right[1])
+            elif self.bottom_right[1] < entity_map.rect().bottom:
+                self.bottom_right = (self.bottom_right[0], entity_map.rect().bottom)
+
+    def get_left_top(self):
+        return self.left_top
+    
+    def get_bottom_right(self):
+        return self.bottom_right
 
     def get_full_map(self):
         return self.data_maps   
     
     def draw(self, surface : pygame.Surface, offset = (0, 0)):
         for entity_map in self.data_maps: 
-            surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip, False), entity_map.get_pos())
+            surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip, False), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
 
     def start_pos_player(self):
         with open(f"data/Json/Level/level_{self.level}.json") as file:
             data = json.load(file)
         result = (int(data["start"]["x"]), int(data["start"]["y"]))
         return result
+    
+class Camera:
+    def __init__(self, left_top, bottom_right, size_scroll):
+        self.left_top = left_top
+        self.bottom_right = bottom_right
+        self.size_scroll = size_scroll
+        self.scroll = [0, 0]
+
+    def update(self, pos = (0, 0), rate = 30):
+        self.scroll[0] += (self.size_scroll[0] / 2 - pos[0] - self.scroll[0]) / rate
+        self.scroll[1] += (self.size_scroll[1] / 2 - pos[1] - self.scroll[1]) / rate
+        self.scroll[0] = min(self.scroll[0], -1 * self.left_top[0])
+        self.scroll[0] = max(self.scroll[0], -1 * (self.bottom_right[0] - self.size_scroll[0]))
+        self.scroll[1] = min(self.scroll[1], -1 * self.left_top[1])
+        self.scroll[1] = max(self.scroll[1], -1 * (self.bottom_right[1] - self.size_scroll[1]))
+        print(self.scroll)
+
+    def get_scroll(self):
+        return (int(self.scroll[0]), int(self.scroll[1]))
 
 class Game:
     def __init__(self):
@@ -74,14 +115,19 @@ class Game:
 
         self.start_player = self.Level.start_pos_player()
 
-    def run(self):
+        self.Camera = Camera(self.Level.get_left_top(), self.Level.get_bottom_right(), (display.get_width(), display.get_height()))
 
+        print(self.Level.get_left_top(), self.Level.get_bottom_right())
+        
         Name = "Mask Dude"
 
-        x, y = Image.load_images_main_character(Name)
+        images, y = Image.load_images_main_character(Name)
         data_character = Image.load_data_charactre(Name)
-        Player = Character("Player", self.start_player, x, None, False, 0.5, 0, data_character, 8, 0)
-        Player.set_action("Run")
+        self.Player = Character("Player", self.start_player, images, None, False, 0.5, 0, data_character, 8, 0)
+        self.Player.set_action("Run")
+
+    def run(self):
+
         running = True
 
         while running:
@@ -89,15 +135,16 @@ class Game:
             display.fill((10, 10, 100))
             self.Background.render(display)
 
-            self.Level.draw(display)
-
+            self.Level.draw(display, self.Camera.get_scroll())
             clock.tick(60)
 
-            Player.update_speed()
+            self.Player.update_speed()
 
-            Player.update(self.Level.get_full_map())
+            self.Player.update(self.Level.get_full_map())
 
-            Player.render(display, (0, 0))
+            self.Camera.update(self.Player.get_pos())
+
+            self.Player.render(display, self.Camera.get_scroll(), False)
 
             # screen.fill((255, 255, 255))
 
@@ -114,20 +161,20 @@ class Game:
                         pygame.quit()
                         sys.exit()
                     if event.key == pygame.K_LEFT:
-                        Player.speed_x(-3)
+                        self.Player.speed_x(-3)
 
                     if event.key == pygame.K_RIGHT:
-                        Player.speed_x(3)
+                        self.Player.speed_x(3)
 
                     if event.key == pygame.K_UP:
-                        Player.speed_y(-5)
+                        self.Player.speed_y(-5)
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
-                        Player.reset_speed(True)
+                        self.Player.reset_speed(True)
 
                     if event.key == pygame.K_RIGHT:
-                        Player.reset_speed(True)
+                        self.Player.reset_speed(True)
 
             screen.blit(pygame.transform.scale(display, WINDOWS_SCREEN), (0, 0))
             pygame.display.update()
