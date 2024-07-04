@@ -95,8 +95,9 @@ class Entity:
     
 
 class Map(Entity):
-    def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1):
+    def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1, z_index = 1):
         super().__init__(name, pos, images, sound, flip, volume, frame, size_frame, type_entity)
+        self.z_index = z_index
 
 class Block(Entity):
     def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1):
@@ -115,9 +116,9 @@ class Character(Entity):
     def render(self, surface, offset=(0, 0), point = True):
         super().render(surface, offset)
         if point:
-            pygame.draw.circle(surface, (255, 0, 0), (self.rect().x, self.rect().y), 1)
+            pygame.draw.circle(surface, (255, 0, 0), (self.rect().x + offset[0], self.rect().y + offset[1]), 1)
             for i in self.data[self.action]:
-                pygame.draw.circle(surface, (255, 0, 0), (self.rect().x + i[0], self.rect().y + i[1]), 1)
+                pygame.draw.circle(surface, (255, 0, 0), (self.rect().x + i[0] + offset[0], self.rect().y + i[1] + offset[1]), 1)
 
     def hit(self):
         print("Hit")
@@ -300,7 +301,6 @@ class Character(Entity):
                 self.speed = (x, -5)
                 self.wall_jump = False
                 self.count_jump = 1
-                print("Wall Jump x ", random.randint(0,10))
 
     def speed_y(self, y):
         self.count_jump = self.count_jump + 1
@@ -313,95 +313,6 @@ class Character(Entity):
         else:
             self.speed_y(0)
 
-class String:
-    def __init__(self, surface : pygame.Surface) -> None:
-        self.surface = surface
-
-    def create_text(self, text, color =(255, 255, 255), font = 18):
-        font = pygame.font.Font(None, font)
-        self.text = font.render(text, True, color)
-    
-    def render_edit(self, center = False):
-        if center:
-            pos = (self.surface.get_width() // 2 - self.text.get_width() // 2, self.surface.get_height() // 2 - self.text.get_height() // 2)
-        self.surface.blit(self.text, pos)
-
-    def render(self, text, pos = (0, 0), color =(255, 255, 255), font = 18, center = False):
-        font = pygame.font.Font(None, font)
-        text = font.render(text, True, color)
-        if center:
-            pos = (self.surface.get_width() // 2 - text.get_width() // 2, self.surface.get_height() // 2 - text.get_height() // 2)
-        self.surface.blit(text, pos)
-
-class Background:
-    def __init__(self, images, frame_size = 2):
-        self.frame_size = frame_size
-        self.fram = 0
-        self.images = images
-        self.pos = (0, 0)
-
-    def update(self):
-        self.fram = self.fram + 1
-        if self.fram > self.frame_size:
-            self.fram = 0
-            self.pos = (self.pos[0] - 1, 0)
-            if self.pos[0] < -1 * self.images[self.name].get_width():
-                self.pos = (0, 0)
-
-    def create(self, name, size = (0, 0)):
-        self.name = name
-        self.image = pygame.Surface((size[0] + self.images[self.name].get_width() * 3,size[1] + self.images[self.name].get_height() * 3))
-        for i in range(int(size[1] / self.images[name].get_width()) + 3):
-            for t in range(int(size[0] / self.images[name].get_height()) + 3):
-                self.image.blit(self.images[name], (t * self.images[name].get_height(), i * self.images[name].get_width()))
-
-    def render(self, surface : pygame.Surface):
-        self.update()
-        surface.blit(self.image, self.pos)
-
-class Button:
-    def __init__(self, name, text, color_on, color_off, pos, size, image = None) -> None:
-        self.name = name
-        self.text_show = text
-        self.color_on = color_on
-        self.color_off = color_off
-        self.pos = pos
-        self.size = size
-        self.type = False
-        self.image = image
-        self.name_render = self.text_show
-
-    def set_name(self, name_acction = None):
-        if name_acction is not None:
-            self.name_render = name_acction
-        else:
-            self.name_render = self.text_show
-
-    def set_type(self, pos = (0, 0), type_click = -1):
-        if self.pos[0] <= pos[0] and self.pos[0] + self.size_button[0] >= pos[0]:
-            if self.pos[1] <= pos[1] and self.pos[1] + self.size_button[1] >= pos[1]:  
-                if type_click == 1:
-                    self.type = not self.type
-                    return True
-                else:
-                    return False
-
-    def on_off(self):
-        self.type = not self.type
-
-    def render(self, surface : pygame.Surface):
-        font = pygame.font.Font(None, 18)
-        if self.type:
-            self.text = font.render(self.name_render, True, self.color_on)
-        else:
-            self.text = font.render(self.name_render, True, self.color_off)
-        self.size_button = (self.text.get_width() + self.size[0] + 2, self.text.get_height() + self.size[1] + 2)
-        background = pygame.Surface(self.size_button)
-        background.fill((0, 0, 0))
-        pygame.draw.rect(background, (255, 255, 255), (1, 1, self.size_button[0] - 2, self.size_button[1] - 2))
-        pos_text = (background.get_width() // 2 - self.text.get_width() // 2, background.get_height() // 2 - self.text.get_height() // 2)
-        background.blit(self.text, pos_text)
-        surface.blit(background, self.pos)
 
 
 
