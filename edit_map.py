@@ -183,7 +183,7 @@ class MiniMap:
             pygame.draw.rect(surface, (255, 0, 0), (self.x + offset[0], self.y + offset[1], self.surface.get_width(), self.surface.get_height()), 1)
 
         
-def x_axis(surface : pygame.Surface, pos = (0, 0), vector = False):
+def x_axis(surface :   pygame.Surface, pos = (0, 0), vector = False):
     if vector:
         x = (pos[0], pos[0] + 200)
     else:
