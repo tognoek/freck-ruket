@@ -1,9 +1,9 @@
 import pygame, sys, random, copy
 import json
-from scripts.utils import *
-from scripts.entities import *
-from scripts.Objects.Button import Button
-from scripts.Objects.String import String
+from models.utils import *
+from models.entities import *
+from models.ui_components.button import Button
+from models.ui_components.string import String
 
 from ENV import WINDOWS_SCREEN_EDIT, EDIT_SIZE, DISPLAY_SIZE
 

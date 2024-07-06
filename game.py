@@ -1,13 +1,13 @@
 import pygame, sys
 import json
 
-from scripts.utils import Image
+from models.utils import Image
 from ENV import WINDOWS_SCREEN, DISPLAY_SIZE
-from scripts.entities import *
-from scripts.Objects.Button import Button
-from scripts.Objects.String import String
+from models.entities import *
+from models.ui_components.button import Button
+from models.ui_components.string import String
 
-from scripts.Objects.BackGround import Background
+from models.game_scenes.gackground import Background
 
 pygame.init()
 
@@ -22,7 +22,7 @@ pygame.display.set_caption("Tog")
 
 display = pygame.Surface(DISPLAY_SIZE)
 
-Image = Image()
+image = Image()
 
 class Level:
     def __init__(self, level = 1):
@@ -34,7 +34,7 @@ class Level:
         block.blit(block_q, (2, 2))
 
 
-        self.data_images = Image.convert_action_maps()
+        self.data_images = image.convert_action_maps()
 
         self.data_json = {}
         self.data_maps = []
@@ -53,17 +53,17 @@ class Level:
         for dict_key, dict_value in self.data_json.items():
             for key, value in dict_value.items():
                 if value["name"] != "player":
-                    x, y = map(int, key.split(":"))
-                    entity_map = Map(value["name"], (x, y), self.data_images[value["name"]], None, value["flip"], 0, 0, 5, int(value["type"]), int(value["z-index"]))
+                    pos = list(map(int, key.split(":")))
+                    entity_map = Map(value["name"], (pos[0], pos[1]), self.data_images[value["name"]], None, value["flip"], 0, 0, 5, int(value["type"]), int(value["z-index"]))
                     self.data_maps.append(entity_map)
                     if self.left_top == None:
-                        self.left_top = (x, y)
-                    elif self.left_top[0] > x:
-                        self.left_top = (x, self.left_top[1])
-                    elif self.left_top[1] > y:
-                        self.left_top = (self.left_top[0], y)
+                        self.left_top = (entity_map.pos[0], entity_map.pos[1])
+                    elif self.left_top[0] > entity_map.pos[0]:
+                        self.left_top = (entity_map.pos[0], self.left_top[1])
+                    elif self.left_top[1] >  entity_map.pos[1]:
+                        self.left_top = (self.left_top[0],  entity_map.pos[1])
                     if self.bottom_right == None:
-                        self.bottom_right = (x, y)
+                        self.bottom_right = (entity_map.pos[0],  entity_map.pos[1])
                     elif self.bottom_right[0] < entity_map.rect().right:
                         self.bottom_right = (entity_map.rect().right, self.bottom_right[1])
                     elif self.bottom_right[1] < entity_map.rect().bottom:
@@ -114,12 +114,12 @@ class Camera:
 class Game:
     def __init__(self):
 
-        self.Background = Background(Image.load_background())
+        self.Background = Background(image.load_background())
         self.Background.create("Blue", (display.get_width(), display.get_height()))
 
         self.Level = Level(1)
         self.Level.load_map()
-        self.Level.convert()
+        self.Level.convert()z
 
         self.String = String(display)
 
@@ -129,8 +129,8 @@ class Game:
         
         Name = "Mask Dude"
 
-        images, y = Image.load_images_main_character(Name)
-        data_character = Image.load_data_charactre(Name)
+        images, y = image.load_images_main_character(Name)
+        data_character = image.load_data_charactre(Name)
         self.Player = Character("Player", self.start_player, images, None, False, 0.5, 0, data_character, 8, 0)
         self.Player.set_action("Run")
 
@@ -152,7 +152,7 @@ class Game:
 
             self.Camera.update(self.Player.get_pos())
 
-            self.Player.render(display, self.Camera.get_scroll(), True)
+            self.Player.render(display, self.Camera.get_scroll(), False)
 
             # screen.fill((255, 255, 255))
 

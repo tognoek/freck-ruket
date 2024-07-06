@@ -219,7 +219,7 @@
       }
    },
    "player": {
-      "622:93": {
+      "1143:-40": {
          "name": "player",
          "type": 1,
          "flip": false,
@@ -1569,7 +1569,7 @@
       },
       "1128:93": {
          "name": "metal_0",
-         "type": 1,
+         "type": 3,
          "flip": false,
          "z-index": 1
       },
