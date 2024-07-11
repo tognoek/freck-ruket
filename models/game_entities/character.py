@@ -35,7 +35,7 @@ class Character(Entity):
         self.pos = (self.pos[0] + self.speed[0], self.pos[1] + self.speed[1])
 
     def isDie(self):
-        return self.action == "Hit" and self.loop_frame > 1
+        return self.action == "Hit" and self.loop_frame > 10
 
     def isHit(self):
         return self.action == "Hit"
@@ -60,10 +60,10 @@ class Character(Entity):
                 if i.type_entity == 1:
                     if self.speed[0] > 0:
                         if self.collision_tognoek(i, self.data[self.action][2]):
-                            entity_rect.right = other_rect.left + (entity_rect.width - self.data[self.action][2][0]) - 1
+                            entity_rect.right = other_rect.left + (entity_rect.width - self.data[self.action][2][0])
                             self.collisions["right"] = True
                         if self.collision_tognoek(i, self.data[self.action][3]):
-                            entity_rect.right = other_rect.left + (entity_rect.width - self.data[self.action][2][0]) - 1
+                            entity_rect.right = other_rect.left + (entity_rect.width - self.data[self.action][2][0])
                             self.collisions["right"] = True
                     if self.speed[0] < 0:
                         if self.collision_tognoek(i, self.data[self.action][6]):
@@ -202,7 +202,11 @@ class Character(Entity):
                 self.set_action("Fall")
                 self.wall_jump = False
                 print("Wall Jump Left or Right")
-                self.speed = (0, 4)
+                if self.flip[0]:
+                    self.pos = (self.pos[0] + 3, self.pos[1])
+                else:
+                    self.pos = (self.pos[0] - 3, self.pos[1])
+                self.speed = (0, 0)
         
 
     def update_speed(self):

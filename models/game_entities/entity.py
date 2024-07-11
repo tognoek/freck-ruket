@@ -26,7 +26,7 @@ class Entity:
     
     def set_action(self, action):
         if action != self.action:
-            print("Set action: " +self.name + " : "+  action)
+            # print("Set action: " +self.name + " : "+  action)
             self.action = action
             self.frame = 0
             self.loop_frame = 0

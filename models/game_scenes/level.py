@@ -2,6 +2,7 @@ import pygame, json
 from models.game_entities.map import Map
 from models.game_entities.trampoline import Trampoline
 from models.game_entities.fire import Fire
+from models.game_entities.fire_90 import Fire_90
 from models.utils import Data
 
 class Level:
@@ -19,6 +20,7 @@ class Level:
     def create_data(self):
         self.image_trampoline = self.data.load_image_trap("Trampoline")[0]
         self.image_fire = self.data.load_image_trap("Fire")[0]
+        self.image_fire_90 = self.data.load_image_trap("Fire", 90)[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -42,7 +44,13 @@ class Level:
                                             0, 0, 5, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_traps("Trampoline"))
                         if keys[1] == "fire":
-                            entity_map = Fire(value["name"], (pos[0], pos[1]), 
+                            if len(keys) > 2:
+                                entity_map = Fire_90(value["name"], (pos[0], pos[1]), 
+                                            self.image_fire_90, None, value["flip"], 
+                                            0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Fire-45"))
+                            else:
+                                entity_map = Fire(value["name"], (pos[0], pos[1]), 
                                             self.image_fire, None, value["flip"], 
                                             0, 0, 5, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_traps("Fire"))
