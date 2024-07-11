@@ -1,18 +1,28 @@
 import pygame, json
 from models.game_entities.map import Map
-from models.utils import Image
+from models.game_entities.trampoline import Trampoline
+from models.game_entities.fire import Fire
+from models.utils import Data
 
 class Level:
-    def __init__(self, level, image : Image):
-        self.data_images = image.convert_action_maps()
-
+    def __init__(self, level, data : Data):
+        self.data = data
         self.data_json = {}
         self.data_maps = []
         self.level = level
         self.left_top = (0, 0)
         self.bottom_right = (0, 0)
+        self.data_entities = {}
+        self.name_maps = ["block", "land", "blockgray", "metal", "line", "wall"]
+        # self.name_traps = ""
 
-    def load_map(self):
+    def create_data(self):
+        self.image_trampoline = self.data.load_image_trap("Trampoline")[0]
+        self.image_fire = self.data.load_image_trap("Fire")[0]
+        self.image_maps = self.data.convert_action_maps()
+
+    def load_map(self, level = 1):
+        self.level = level
         with open(f"data/Json/Level/level_{self.level}.json") as file:
             data = json.load(file)
         self.data_json = data
@@ -23,8 +33,24 @@ class Level:
         for dict_key, dict_value in self.data_json.items():
             for key, value in dict_value.items():
                 if value["name"] != "player":
+                    keys = value["name"].split("_")
                     pos = list(map(int, key.split(":")))
-                    entity_map = Map(value["name"], (pos[0], pos[1]), self.data_images[value["name"]], None, value["flip"], 0, 0, 5, int(value["type"]), int(value["z-index"]))
+                    if keys[0] == "traps":
+                        if keys[1] == "trampoline":
+                            entity_map = Trampoline(value["name"], (pos[0], pos[1]), 
+                                            self.image_trampoline, None, value["flip"], 
+                                            0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Trampoline"))
+                        if keys[1] == "fire":
+                            entity_map = Fire(value["name"], (pos[0], pos[1]), 
+                                            self.image_fire, None, value["flip"], 
+                                            0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Fire"))
+                            
+                    else:
+                        entity_map = Map(value["name"], (pos[0], pos[1]), 
+                                            self.image_maps[value["name"]], None, value["flip"], 
+                                            0, 0, 5, int(value["type"]), int(value["z-index"]))
                     self.data_maps.append(entity_map)
                     if self.left_top == None:
                         self.left_top = (entity_map.pos[0], entity_map.pos[1])
@@ -39,19 +65,35 @@ class Level:
                     elif self.bottom_right[1] < entity_map.rect().bottom:
                         self.bottom_right = (self.bottom_right[0], entity_map.rect().bottom)
 
+    def filter_type(self):
+        self.traps = []
+        self.maps = []
+        for i in self.data_maps:
+            if i.name.split("_")[0] == "traps":
+                self.traps.append(i)
+            else:
+                self.maps.append(i)
+
+    def get_traps(self):
+        return self.traps
+    
+    def get_maps(self):
+        return self.maps
+
     def get_left_top(self):
         return self.left_top
     
     def get_bottom_right(self):
         return self.bottom_right
 
-    def get_full_map(self):
+    def sort_by_type(self):
         self.data_maps.sort(key = lambda item : item.z_index)
-        return self.data_maps
+        # return self.data_maps
     
     def draw(self, surface : pygame.Surface, offset = (0, 0)):
         for entity_map in self.data_maps: 
-            surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip, False), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
+            entity_map.update()
+            surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
 
     def start_pos_player(self):
         if "player" in self.data_json:

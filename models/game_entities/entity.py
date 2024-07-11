@@ -2,7 +2,7 @@ import pygame, random
 
 class Entity:
 
-    def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1):
+    def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1, z_index = 1):
         self.name = name
         self.pos = pos
         self.images = images
@@ -13,8 +13,10 @@ class Entity:
         self.action = 'Idle'
         self.size_frame = size_frame
         self.type_entity = type_entity
+        self.z_index = z_index
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
         self.other_collisions_bottom = None
+        self.loop_frame = 0
 
     def copy(self):
         return Entity(self.name, self.x, self.y, self.images, self.sound, self.volume, self.frame)
@@ -24,21 +26,25 @@ class Entity:
     
     def set_action(self, action):
         if action != self.action:
+            print("Set action: " +self.name + " : "+  action)
             self.action = action
             self.frame = 0
-            self.off_pos = (3, 5)
+            self.loop_frame = 0
     
     def check_collisions(self):
         if all(value == False for value in self.collisions.values()):
             return False
         else:
             return True
-    def update(self):
+    def update(self, loop = True):
         self.frame += 1
         if self.frame >= len(self.images[self.action]) * self.size_frame:
             self.frame = 0
-        
-
+            self.loop_frame += 1
+            if not loop:
+                self.set_action('Idle')
+            return True
+        return False
 
     def animation(self):
         self.frame += 1
@@ -47,6 +53,7 @@ class Entity:
 
 
     def get_image(self) -> pygame.Surface:
+        # print(self.name, self.frame, self.size_frame, self.action)
         return self.images[self.action][int(self.frame / self.size_frame)]
     
     def get_image_default(self) -> pygame.Surface:
@@ -57,7 +64,7 @@ class Entity:
         return pygame.mask.Mask.to_surface(mask_surface)
     
     def render(self, surface, offset=(0, 0)):
-        surface.blit(pygame.transform.flip(self.get_image(), self.flip, False), (int(self.pos[0] + offset[0]), int(self.pos[1] + offset[1])))
+        surface.blit(pygame.transform.flip(self.get_image(), self.flip[0], self.flip[1]), (int(self.pos[0] + offset[0]), int(self.pos[1] + offset[1])))
 
     def run_sound(self):
         if (self.sound != None):

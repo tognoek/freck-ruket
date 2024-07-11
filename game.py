@@ -1,7 +1,7 @@
 import pygame, sys
 import json
 
-from models.utils import Image
+from models.utils import Data
 from ENV import WINDOWS_SCREEN, DISPLAY_SIZE
 from models.game_scenes.level import Level
 from models.game_entities.character import Character
@@ -24,36 +24,43 @@ pygame.display.set_caption("Tog")
 
 display = pygame.Surface(DISPLAY_SIZE)
 
-image = Image()
 
 class Game:
     def __init__(self):
 
-        self.Background = Background(image.load_background())
-        self.Background.create("Blue", (display.get_width(), display.get_height()))
+        self.image = Data()
 
-        self.Level = Level(1, image)
-        self.Level.load_map()
-        self.Level.convert()
+        self.Background = Background(self.image.load_background())
+        self.Background.create("Blue", (display.get_width(), display.get_height()))
 
         self.String = String(display)
 
-        self.start_player = self.Level.start_pos_player()
+        self.Level = Level(1, self.image)
+    def load_map(self):
+        self.Level.load_map(1)
+        self.Level.create_data()
+        self.Level.convert()
+        self.Level.sort_by_type()
+        self.Level.filter_type()
 
-        self.Camera = Camera(self.Level.get_left_top(), self.Level.get_bottom_right(), (display.get_width(), display.get_height()))
-        
-        Name = "Mask Dude"
-
-        images, y = image.load_images_main_character(Name)
-        data_character = image.load_data_charactre(Name)
-        self.Player = Character("Player", self.start_player, images, None, False, 0.5, 0, data_character, 8, 0)
+    def load_player(self, Name = "Ninja Frog"):
+        images, y = self.image.load_images_main_character(Name)
+        data_character = self.image.load_data_charactre(Name)
+        self.Player = Character("Player", self.Level.start_pos_player()
+                                , images, None, [False, False], 0.5, 0
+                                , data_character, 4, 0)
         self.Player.set_action("Run")
         
         self.X = None
         self.Y = None
 
-    def run(self):
+    def create_camera(self):
 
+        self.Camera = Camera(self.Level.get_left_top(), self.Level.get_bottom_right(), (display.get_width(), display.get_height()))  
+    def run(self):
+        self.load_map()
+        self.load_player()
+        self.create_camera()
         running = True
 
         while running:
@@ -66,18 +73,22 @@ class Game:
                 else:
                     self.Player.speed_x(-3)
             else:
-                self.Player.reset_speed(True)
+                if not self.Player.isHit():
+                    self.Player.reset_speed(True)
 
             self.Background.render(display)
 
             self.Level.draw(display, self.Camera.get_scroll())
             clock.tick(60)
 
-            self.Player.update_speed()
+            if not self.Player.isDie():
 
-            self.Player.update(self.Level.get_full_map())
+                self.Player.update_speed()
 
-            self.Camera.update(self.Player.get_pos())
+                self.Player.run(self.Level)
+
+            if not self.Player.isHit():
+                self.Camera.update(self.Player.get_pos())
 
             self.Player.render(display, self.Camera.get_scroll(), False)
 
@@ -109,7 +120,7 @@ class Game:
                         self.X = None
 
                     if event.key == pygame.K_RIGHT:
-                        self.Player.reset_speed(True)
+                        self.X = None
 
             screen.blit(pygame.transform.scale(display, WINDOWS_SCREEN), (0, 0))
             pygame.display.update()

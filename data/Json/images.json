@@ -138,7 +138,31 @@
 
         },
         "Traps" : {
+            "Trampoline" : {
+                "Idle" : {
+                    "Size" : "28x28",
+                    "Frame" : "1"
+                },
+                "Jump" : {
+                    "Size" : "28x28",
+                    "Frame" : "8"
+                }
+            },
+            "Fire" : {
+                "Idle" : {
+                    "Size" : "16x32",
+                    "Frame" : "1"
+                },
+                "On" : {
+                    "Size" : "16x32",
+                    "Frame" : "3"
+                },
+                "Hit" : {
+                    "Size" : "16x32",
+                    "Frame" : "4"
+                }
 
+            }
         }
     }
 }

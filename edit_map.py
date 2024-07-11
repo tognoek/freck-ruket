@@ -1,7 +1,6 @@
 import pygame, sys, random, copy
 import json
 from models.utils import *
-from models.entities import *
 from models.ui_components.button import Button
 from models.ui_components.string import String
 
@@ -24,7 +23,7 @@ SIZE_SHOW = (int(WINDOWS_SCREEN_EDIT[0] - EDIT_SIZE[0]), int((WINDOWS_SCREEN_EDI
 # tognoek = pygame.Surface((display.get_width() - 2, display.get_height() - 2))
 # tognoek.fill((100, 50, 20))
 
-data_maps = Image().load_data_maps()
+data_maps = Data().load_data_maps()
 
 name_data_maps = list(data_maps.keys())
 name_key_maps = []
@@ -111,11 +110,13 @@ button_type_5 = Button("type_5", "5", (255, 0, 0), (0, 0, 255), (screen.get_widt
 button_type_6 = Button("type_6", "6", (255, 0, 0), (0, 0, 255), (screen.get_width() - 210, 62), (10, 5))
 button_add_z_index = Button("zindex_1", "+", (255, 0, 0), (255, 0, 0), (screen.get_width() - 350, 25), (15, 10))
 button_dis_z_index = Button("zindex_-1", "-", (255, 0, 0), (255, 0, 0), (screen.get_width() - 400, 25), (20, 10))
+button_turn_y = Button("turn_y", "r-y", (255, 0, 0), (255, 0, 0), (screen.get_width() - 405, 55), (20, 10))
+button_turn_x = Button("turn_x", "r-x", (255, 0, 0), (255, 0, 0), (screen.get_width() - 355, 55), (15, 10))
 rect_status = pygame.Surface((60, 30))
 rect_status.fill((0, 0, 0))
 pygame.draw.rect(rect_status, (255, 255, 255), (1, 1, 58, 28))
 
-buttons = [button_left, button_right, button_top, button_buttom, button_xy, button_center, button_type_1, button_type_2, button_type_3, button_type_4, button_type_5, button_type_6]
+buttons = [button_left, button_right, button_top, button_buttom, button_xy, button_center, button_type_1, button_type_2, button_type_3, button_type_4, button_type_5, button_type_6, button_turn_x, button_turn_y]
 buttons.append(button_add_z_index)
 buttons.append(button_dis_z_index)
 buttons[6].on_off()
@@ -174,7 +175,7 @@ class MiniMap:
         return rect_1.collidedict(rect_2)
     
     def render(self, surface : pygame.Surface, offset = (0, 0)):
-        surface.blit(self.surface, (self.x + offset[0], self.y + offset[1]))
+        surface.blit(pygame.transform.flip(self.surface, self.flip[0], self.flip[1]), (self.x + offset[0], self.y + offset[1]))
         if self.e_type == 2:
             pygame.draw.rect(surface, (0, 0, 255), (self.x + offset[0], self.y + offset[1], self.surface.get_width(), self.surface.get_height()), 2)
         if self.e_type == 3:
@@ -782,6 +783,33 @@ while True:
                                     data[ir.name.split("_")[0]][key]["z-index"] = z_index
                                     list_key_select.append([ir.name.split("_")[0], key])
                             update_map = True
+                    
+                    if i.name == "turn_x":
+                        if minimap_select != None:
+                            key = str(minimap_select.x) + ":" + str(minimap_select.y)
+                            list_key_select = [[minimap_select.name.split("_")[0], key]]
+                            values = {
+                                "name" : minimap_select.name,
+                                "type" : minimap_select.e_type,
+                                "flip" : [not minimap_select.flip[0], minimap_select.flip[1]],
+                                "z-index" : minimap_select.z_index
+                            }
+                            data[minimap_select.name.split("_")[0]][key] = values
+                            update_map = True
+
+                    if i.name == "turn_y":
+                        if minimap_select != None:
+                            key = str(minimap_select.x) + ":" + str(minimap_select.y)
+                            list_key_select = [[minimap_select.name.split("_")[0], key]]
+                            values = {
+                                "name" : minimap_select.name,
+                                "type" : minimap_select.e_type,
+                                "flip" : [minimap_select.flip[0],not minimap_select.flip[1]],
+                                "z-index" : minimap_select.z_index
+                            }
+                            data[minimap_select.name.split("_")[0]][key] = values
+                            update_map = True
+
 
                     if i.name.split('_')[0] == "type":
                         for t in range(6):
@@ -814,7 +842,7 @@ while True:
                     value = {
                                 "name" : list_name_maps_in_data_convert[index_entity_data_map],
                                 "type" : type_map,
-                                "flip" : False,
+                                "flip" : [False, False],
                                 "z-index" : z_index_res
                             }
                     old_data.append(copy.deepcopy(data))

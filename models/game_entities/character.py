@@ -5,12 +5,21 @@ from models.game_entities.entity import Entity
     
 class Character(Entity):
 
-    def __init__(self, name, pos, images, sound, flip, volume, frame, data, size_frame=5, type_entity=1, speed = (0, 0)):
+    def __init__(self, name, pos, images, sound, flip, volume, frame, data, size_frame=4
+                 , type_entity=1, count_jump = 0, speed = (0, 0), wall_jump = False):
         super().__init__(name, pos, images, sound, flip, volume, frame, size_frame, type_entity)
-        self.count_jump = 0
+        self.count_jump = count_jump
         self.speed = speed
         self.data = data
-        self.wall_jump = False
+        self.wall_jump = wall_jump
+
+    def copy(self):
+        return Character(self.name, self.pos, self.images, self.sound,
+                          self.flip, self.volume, self.frame, self.data,
+                         self.size_frame, self.type_entity, self.count_jump,
+                           self.speed, self.wall_jump)
+
+        
 
     def render(self, surface, offset=(0, 0), point = True):
         super().render(surface, offset)
@@ -20,23 +29,28 @@ class Character(Entity):
                 pygame.draw.circle(surface, (255, 0, 0), (self.rect().x + i[0] + offset[0], self.rect().y + i[1] + offset[1]), 1)
 
     def hit(self):
-        print("Hit")
+        if self.action != "Hit":
+            self.speed = (1, -6)
+        self.set_action("Hit")
+        self.pos = (self.pos[0] + self.speed[0], self.pos[1] + self.speed[1])
 
+    def isDie(self):
+        return self.action == "Hit" and self.loop_frame > 1
 
-    def update(self, other, collision = "tognoek"):
+    def isHit(self):
+        return self.action == "Hit"
 
-        pos_old = self.pos
-
-        if self.type_entity == 3:
-            self.hit()
-            return
-
-        super().update()
-        self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
+    def run(self, level, collision = "tognoek"):
+        self.update(level=level, collision=collision)
+        if not self.isHit():
+            self.check_action(self.pos_old)
+        # self.animation()
+    def collision_traps(self, other):
+        for i in other:
+            i.collision_player(self)
+    def collistion_maps(self, other, collision = "tognoek"):
         if other is None:
             other = []
-        dot = pygame.Surface((1, 1))
-        dot.fill((255, 255, 255))
 
         if collision == "tognoek":        
             self.pos = (self.pos[0] + self.speed[0], self.pos[1])
@@ -60,8 +74,8 @@ class Character(Entity):
                             self.collisions["left"] = True
                 
                 self.pos = (entity_rect.x, self.pos[1])
-
-            self.pos = (self.pos[0], self.pos[1] + (self.speed[1]))
+            if not self.collisions["down"] and not self.collisions["up"]:
+                self.pos = (self.pos[0], self.pos[1] + (self.speed[1]))
             entity_rect = self.rect()
 
             for i in other:
@@ -139,9 +153,20 @@ class Character(Entity):
                         self.collisions["up"] = True
                     
                     self.pos = (self.pos[0], entity_rect.y)
-        self.check_action(pos_old)
 
-        self.animation()
+    def update(self, level, collision = "tognoek"):
+
+        self.pos_old = self.pos
+
+        super().update()
+
+        if self.type_entity == 3:
+            self.hit()
+            return
+        self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
+        self.collision_traps(other=level.get_traps())
+        self.collistion_maps(other = level.get_maps(), collision=collision)
+        
 
     def check_action(self, pos_old):
         if self.collisions["down"]:
@@ -166,15 +191,17 @@ class Character(Entity):
 
         if not self.collisions["down"] and self.speed[1] > 0:
             if self.collisions["right"] or self.collisions["left"] or self.wall_jump:
+                # trường hợp nhân vật bu vào tường
                 self.set_action("Wall Jump")
                 self.wall_jump = True
-                if self.flip:
+                if self.flip[0]:
                     self.speed = (-3, 1)
                 else:
                     self.speed = (3, 1)
             if not self.collisions["right"] and not self.collisions["left"] and self.wall_jump:
                 self.set_action("Fall")
                 self.wall_jump = False
+                print("Wall Jump Left or Right")
                 self.speed = (0, 4)
         
 
@@ -187,15 +214,16 @@ class Character(Entity):
             self.speed = (self.speed[0], 0)
 
         if self.speed[0] > 0:
-            self.flip = False
+            self.flip[0] = False
         if self.speed[0] < 0:
-            self.flip = True
+            self.flip[0] = True
 
 
     def speed_x(self, x):
         if not self.wall_jump:
             self.speed = (x, self.speed[1])
         else:
+            # Nhân vật đang bu vào tường nhưng lại chọn trái phải thì sẽ nhảy
             if x * self.speed[0] < 0:
                 self.speed = (x, -5)
                 self.wall_jump = False
