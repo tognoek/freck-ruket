@@ -3,6 +3,8 @@ from models.game_entities.map import Map
 from models.game_entities.trampoline import Trampoline
 from models.game_entities.fire import Fire
 from models.game_entities.fire_90 import Fire_90
+from models.game_entities.spikes import Spikes
+from models.game_entities.spikes_90 import Spikes_90
 from models.utils import Data
 
 class Level:
@@ -21,6 +23,8 @@ class Level:
         self.image_trampoline = self.data.load_image_trap("Trampoline")[0]
         self.image_fire = self.data.load_image_trap("Fire")[0]
         self.image_fire_90 = self.data.load_image_trap("Fire", 90)[0]
+        self.image_spikes = self.data.load_image_trap("Spikes")[0]
+        self.image_spikes_90 = self.data.load_image_trap("Spikes", 90)[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -48,12 +52,23 @@ class Level:
                                 entity_map = Fire_90(value["name"], (pos[0], pos[1]), 
                                             self.image_fire_90, None, value["flip"], 
                                             0, 0, 5, int(value["type"]), int(value["z-index"]),
-                                            self.data.load_data_traps("Fire-45"))
+                                            self.data.load_data_traps("Fire-90"))
                             else:
                                 entity_map = Fire(value["name"], (pos[0], pos[1]), 
                                             self.image_fire, None, value["flip"], 
                                             0, 0, 5, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_traps("Fire"))
+                        if keys[1] == "spikes":
+                            if len(keys) > 2:
+                                entity_map = Spikes_90(value["name"], (pos[0], pos[1]), 
+                                                self.image_spikes_90, None, value["flip"], 
+                                                0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                                self.data.load_data_traps("Spikes-90"))
+                            else:
+                                entity_map = Spikes(value["name"], (pos[0], pos[1]), 
+                                                self.image_spikes, None, value["flip"], 
+                                                0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                                self.data.load_data_traps("Spikes"))
                             
                     else:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 

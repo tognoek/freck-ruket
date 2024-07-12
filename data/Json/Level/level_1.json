@@ -2504,8 +2504,17 @@
          ],
          "z-index": 1
       },
-      "799:346": {
-         "name": "traps_fire_90",
+      "895:309": {
+         "name": "traps_spikes",
+         "type": 1,
+         "flip": [
+            false,
+            true
+         ],
+         "z-index": 1
+      },
+      "948:363": {
+         "name": "traps_spikes",
          "type": 1,
          "flip": [
             false,
@@ -2513,8 +2522,17 @@
          ],
          "z-index": 1
       },
-      "915:345": {
-         "name": "traps_fire_90",
+      "873:353": {
+         "name": "traps_spikes_90",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "781:351": {
+         "name": "traps_spikes_90",
          "type": 1,
          "flip": [
             true,
