@@ -17,6 +17,8 @@ class Entity:
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
         self.other_collisions_bottom = None
         self.loop_frame = 0
+        self.old_acction = "Idle"
+        self.dust_particles = []
 
     def copy(self):
         return Entity(self.name, self.x, self.y, self.images, self.sound, self.volume, self.frame)
@@ -25,6 +27,7 @@ class Entity:
         return pygame.Rect(self.pos[0], self.pos[1], self.get_image().get_width(), self.get_image().get_height())
     
     def set_action(self, action):
+        self.old_acction = self.action
         if action != self.action:
             # print("Set action: " +self.name + " : "+  action)
             self.action = action

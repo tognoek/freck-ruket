@@ -172,15 +172,6 @@
          ],
          "z-index": 1
       },
-      "1487:378": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
       "1531:378": {
          "name": "land_0",
          "type": 1,
@@ -244,15 +235,6 @@
          ],
          "z-index": 1
       },
-      "710:355": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
       "648:329": {
          "name": "land_0",
          "type": 1,
@@ -307,7 +289,70 @@
          ],
          "z-index": 1
       },
-      "981:317": {
+      "725:389": {
+         "name": "land_11",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "761:389": {
+         "name": "land_11",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "739:378": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "695:378": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "685:367": {
+         "name": "land_11",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "709:355": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "684:345": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "1487:378": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -2200,6 +2245,24 @@
             false
          ],
          "z-index": 1
+      },
+      "749:420": {
+         "name": "blockgray_6",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "765:420": {
+         "name": "blockgray_6",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
       }
    },
    "metal": {
@@ -2211,318 +2274,21 @@
             false
          ],
          "z-index": -9
-      },
-      "1179:330": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1179:282": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1179:234": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1179:186": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "739:330": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "739:282": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "739:234": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "739:186": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "739:138": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "736:561": {
-         "name": "metal_1",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
       }
    },
    "line": {},
    "wall": {},
    "traps": {
-      "1311:346": {
-         "name": "traps_fire",
-         "type": 1,
+      "1268:353": {
+         "name": "traps_trampoline",
+         "type": 2,
          "flip": [
             false,
             false
          ],
          "z-index": 1
       },
-      "1327:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1343:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1359:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1375:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1391:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1407:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1423:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1439:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1455:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1471:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1487:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1503:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1519:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1535:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1551:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1567:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1583:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1599:346": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1487:390": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1099:345": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "1027:280": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            true
-         ],
-         "z-index": 1
-      },
-      "895:309": {
-         "name": "traps_spikes",
-         "type": 1,
-         "flip": [
-            false,
-            true
-         ],
-         "z-index": 1
-      },
-      "948:363": {
-         "name": "traps_spikes",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1
-      },
-      "873:353": {
+      "1702:361": {
          "name": "traps_spikes_90",
          "type": 1,
          "flip": [
@@ -2531,12 +2297,39 @@
          ],
          "z-index": 1
       },
-      "781:351": {
-         "name": "traps_spikes_90",
+      "1581:367": {
+         "name": "traps_spikes",
          "type": 1,
          "flip": [
-            true,
+            false,
             false
+         ],
+         "z-index": 1
+      },
+      "1509:362": {
+         "name": "traps_fire_90",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "1410:349": {
+         "name": "traps_fire",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1
+      },
+      "1342:276": {
+         "name": "traps_fire",
+         "type": 1,
+         "flip": [
+            false,
+            true
          ],
          "z-index": 1
       }

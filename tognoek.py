@@ -1,59 +1,57 @@
-import pygame
+#!/usr/bin/python3.4
+# Setup Python ----------------------------------------------- #
+import pygame, sys, random
 
+# Setup pygame/window ---------------------------------------- #
+mainClock = pygame.time.Clock()
+from pygame.locals import *
 pygame.init()
+pygame.display.set_caption('game base')
+screen = pygame.display.set_mode((500, 500),0,32)
 
-screen = pygame.display.set_mode((700, 500))
+def circle_surf(radius, color):
+    surf = pygame.Surface((radius * 2, radius * 2))
+    pygame.draw.circle(surf, color, (radius, radius), radius)
+    surf.set_colorkey((0, 0, 0))
+    return surf
 
-display = pygame.Surface((350, 250))
+# [loc, velocity, timer]
+particles = []
 
-pygame.display.set_caption("My Game")
+# Loop ------------------------------------------------------- #
+while True:
 
-clock = pygame.time.Clock()
+    # Background --------------------------------------------- #
+    screen.fill((0,0,0))
 
-pos = [50, 120]
+    pygame.draw.rect(screen, (50, 20, 120), pygame.Rect(100, 100, 200, 80))
 
-offset = [0, 0]
+    mx, my = pygame.mouse.get_pos()
+    particles.append([[mx, my], [random.randint(0, 20) / 10 - 1, -5], random.randint(6, 11)])
 
-go = None
+    for particle in particles:
+        particle[0][0] += particle[1][0]
+        particle[0][1] += particle[1][1]
+        particle[2] -= 0.1
+        particle[1][1] += 0.15
+        pygame.draw.circle(screen, (255, 255, 255), [int(particle[0][0]), int(particle[0][1])], int(particle[2]))
 
-running = True
+        radius = particle[2] * 2
+        screen.blit(circle_surf(radius, (20, 20, 60)), (int(particle[0][0] - radius), int(particle[0][1] - radius)), special_flags=BLEND_RGB_ADD)
 
-while running:
+        if particle[2] <= 0:
+            particles.remove(particle)
 
-    if go != None:
-        if go:
-            pos[0] -= 5
-        else:
-            pos[0] += 5
-
-    offset[0] += (350 / 2 - pos[0] - offset[0]) / 30
-    offset[0] = int(offset[0])
-
+    # Buttons ------------------------------------------------ #
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        if event.type == QUIT:
             pygame.quit()
-            exit()
+            sys.exit()
+        if event.type == KEYDOWN:
+            if event.key == K_ESCAPE:
+                pygame.quit()
+                sys.exit()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                go = True
-            elif event.key == pygame.K_RIGHT:
-                go = False
-
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                go = None
-
-    display.fill((0, 0, 0))
-    pygame.draw.circle(display, (55, 0, 0), (-250 + offset[0], 120), 10)
-    pygame.draw.circle(display, (55, 0, 0), (700 + offset[0], 120), 10)
-    pygame.draw.circle(display, (55, 0, 0), (70 + offset[0], 120), 10)
-    pygame.draw.circle(display, (55, 0, 0), (170 + offset[0], 120), 10)
-    pygame.draw.circle(display, (255, 0, 0), (pos[0] + offset[0], pos[1] + offset[1]), 10)
-    screen.blit(pygame.transform.scale(display, (700, 500)), (0, 0))
-    print(pos)
+    # Update ------------------------------------------------- #
     pygame.display.update()
-    clock.tick(60)
-
-pygame.quit()
+    mainClock.tick(60)

@@ -5,6 +5,7 @@ from models.game_entities.fire import Fire
 from models.game_entities.fire_90 import Fire_90
 from models.game_entities.spikes import Spikes
 from models.game_entities.spikes_90 import Spikes_90
+from models.game_entities.fan import Fan
 from models.utils import Data
 
 class Level:
@@ -25,6 +26,7 @@ class Level:
         self.image_fire_90 = self.data.load_image_trap("Fire", 90)[0]
         self.image_spikes = self.data.load_image_trap("Spikes")[0]
         self.image_spikes_90 = self.data.load_image_trap("Spikes", 90)[0]
+        self.image_fan = self.data.load_image_trap("Fan")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -69,6 +71,11 @@ class Level:
                                                 self.image_spikes, None, value["flip"], 
                                                 0, 0, 5, int(value["type"]), int(value["z-index"]),
                                                 self.data.load_data_traps("Spikes"))
+                        if keys[1] == "fan":
+                            entity_map = Fan(value["name"], (pos[0], pos[1]), 
+                                            self.image_fan, None, value["flip"], 
+                                            0, 0, 3, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Fan"))
                             
                     else:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 
@@ -116,7 +123,8 @@ class Level:
     def draw(self, surface : pygame.Surface, offset = (0, 0)):
         for entity_map in self.data_maps: 
             entity_map.update()
-            surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
+            entity_map.render(surface, offset)
+            # surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
 
     def start_pos_player(self):
         if "player" in self.data_json:

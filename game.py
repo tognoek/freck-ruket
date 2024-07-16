@@ -113,7 +113,7 @@ class Game:
                         self.X = True
 
                     if event.key == pygame.K_UP:
-                        self.Player.speed_y(-5)
+                        self.Player.speed_y(-6)
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:

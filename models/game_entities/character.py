@@ -1,6 +1,7 @@
-import pygame
+import pygame, random
 
 from models.game_entities.entity import Entity
+from models.game_entities.dust_particle import Dustparticle
 
     
 class Character(Entity):
@@ -12,6 +13,11 @@ class Character(Entity):
         self.speed = speed
         self.data = data
         self.wall_jump = wall_jump
+        self.evolution_y = 0.4
+        self.lock_jump = False
+        self.key_up = False
+        self.key_left = False
+        self.key_right = False
 
     def copy(self):
         return Character(self.name, self.pos, self.images, self.sound,
@@ -19,18 +25,86 @@ class Character(Entity):
                          self.size_frame, self.type_entity, self.count_jump,
                            self.speed, self.wall_jump)
 
+    def dust_particle(self):
+        if self.action == "Jump" and (self.old_acction == "Run" or self.old_acction == "Idle"):
+            pos = self.data[self.action][3]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(2, 4)):
+                self.dust_particles.append(i)
+            pos = self.data[self.action][5]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(2, 4)):
+                self.dust_particles.append(i)
+
+        if self.action == "Wall Jump" and (self.old_acction == "Jump" or self.old_acction == "Fall" or self.old_acction == "Double Jump"):
+            
+            if self.flip[0]:
+                pos = self.data[self.action][5]
+            else:
+                pos = self.data[self.action][3]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(1, 3)):
+                self.dust_particles.append(i)
         
+        if self.old_acction == "Wall Jump" and self.action == "Jump":
+            
+            if self.flip[0]:
+                pos = self.data[self.action][3]
+            else:
+                pos = self.data[self.action][4]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(1, 3)):
+                self.dust_particles.append(i)
+
+
+        if self.old_acction == "Fall" and (self.action == "Run" or self.action == "Idle"):
+            pos = self.data[self.action][3]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(2, 4)):
+                self.dust_particles.append(i)
+            pos = self.data[self.action][5]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(2, 4)):
+                self.dust_particles.append(i)
+        
+        if self.action == "Double Jump" and (self.old_acction == "Jump" or self.old_acction == "Fall"):
+            pos = self.data[self.action][3]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(1, 3)):
+                self.dust_particles.append(i)
+            pos = self.data[self.action][5]
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(1, 3)):
+                self.dust_particles.append(i)
+
+        if self.action == "Run":
+            
+            if len(self.dust_particles) < 2:
+                if self.flip[0]:
+                    pos = self.data[self.action][3]
+                    pos = (pos[0] + self.pos[0] + 2 , pos[1] + self.pos[1] + random.randint(2, 4))
+                else:
+                    pos = self.data[self.action][6]
+                    pos = (pos[0] + self.pos[0] - 3, pos[1] + self.pos[1] + random.randint(2, 4))
+                dust_particl = Dustparticle(pos, 1.5, (200, 200, 200), [-0.5, 0], random.randint(2, 9))
+                self.dust_particles.append(dust_particl)
 
     def render(self, surface, offset=(0, 0), point = True):
         super().render(surface, offset)
+
+        self.dust_particle()
+        
+        for i in self.dust_particles:
+            i.update()
+            i.render(surface, offset)
+            i.speed[1] -= 0.05
+            if i.is_die():
+                self.dust_particles.remove(i)
+
         if point:
             pygame.draw.circle(surface, (255, 0, 0), (self.rect().x + offset[0], self.rect().y + offset[1]), 1)
             for i in self.data[self.action]:
                 pygame.draw.circle(surface, (255, 0, 0), (self.rect().x + i[0] + offset[0], self.rect().y + i[1] + offset[1]), 1)
+        
+        self.key_up = False
+        self.key_left = False
+        self.key_right = False
 
     def hit(self):
         if self.action != "Hit":
-            self.speed = (1, -6)
+            self.speed = (1, -5)
         self.set_action("Hit")
         self.pos = (self.pos[0] + self.speed[0], self.pos[1] + self.speed[1])
 
@@ -169,6 +243,9 @@ class Character(Entity):
         
 
     def check_action(self, pos_old):
+        if self.lock_jump:
+            self.set_action("Jump")
+            return
         if self.collisions["down"]:
             self.count_jump = 0
             self.wall_jump = False
@@ -201,7 +278,7 @@ class Character(Entity):
             if not self.collisions["right"] and not self.collisions["left"] and self.wall_jump:
                 self.set_action("Fall")
                 self.wall_jump = False
-                print("Wall Jump Left or Right")
+                # print("Wall Jump Left or Right")
                 if self.flip[0]:
                     self.pos = (self.pos[0] + 3, self.pos[1])
                 else:
@@ -210,7 +287,7 @@ class Character(Entity):
         
 
     def update_speed(self):
-        self.speed = (self.speed[0], self.speed[1] + 0.4)
+        self.speed = (self.speed[0], self.speed[1] + self.evolution_y)
         if self.speed[1] > 5:
             self.speed = (self.speed[0], 5)
 
@@ -237,6 +314,7 @@ class Character(Entity):
         self.count_jump = self.count_jump + 1
         if self.count_jump < 3 and not self.wall_jump:
             self.speed = (self.speed[0], y)
+            self.key_up = True
 
     def reset_speed(self, e_type):
         if e_type:
