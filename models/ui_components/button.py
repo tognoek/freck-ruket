@@ -12,6 +12,7 @@ class Button:
         self.type = False
         self.image = image
         self.name_render = self.text_show
+        self.font = pygame.font.Font(None, 18)
 
     def set_name(self, name_acction = None):
         if name_acction is not None:
@@ -32,11 +33,10 @@ class Button:
         self.type = not self.type
 
     def render(self, surface : pygame.Surface):
-        font = pygame.font.Font(None, 18)
         if self.type:
-            self.text = font.render(self.name_render, True, self.color_on)
+            self.text = self.font.render(self.name_render, True, self.color_on)
         else:
-            self.text = font.render(self.name_render, True, self.color_off)
+            self.text = self.font.render(self.name_render, True, self.color_off)
         self.size_button = (self.text.get_width() + self.size[0] + 2, self.text.get_height() + self.size[1] + 2)
         background = pygame.Surface(self.size_button)
         background.fill((0, 0, 0))

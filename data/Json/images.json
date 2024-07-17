@@ -177,7 +177,21 @@
                     "Size" : "24x8",
                     "Frame" : "4"
                 }
-            }
+            },
+            "Saw" : {
+                "Idle" : {
+                    "Size" : "38x38",
+                    "Frame" : "1"
+                },
+                "On" : {
+                    "Size" : "38x38",
+                    "Frame" : "8"
+                },
+                "Chain" : {
+                    "Size" : "8x8",
+                    "Frame" : "1"
+                }
+            } 
         }
     }
 }

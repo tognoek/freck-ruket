@@ -1,6 +1,7 @@
 import pygame
 from models.game_entities.entity import Entity
 from models.game_entities.character import Character
+from models.game_entities.dust_particle import Dustparticle
 
 class Fan(Entity):
     def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1, z_index = 1, data = None):
@@ -30,7 +31,7 @@ class Fan(Entity):
                 if player.collision_tognoek(wind_rect,  player.data[player.action][4]):
                     player.lock_jump = True
                     player.set_action("Jump")
-                    player.count_jump = 0
+                    player.count_jump = 1
                     if player.data[player.action][4][1] + player.get_pos()[1] - (y_r - self.wind_power) < self.power_fan:
                         if not player.key_up:
                             player.speed = (player.speed[0], 0)
@@ -39,7 +40,7 @@ class Fan(Entity):
                 if player.collision_tognoek(wind_rect,  player.data[player.action][5]):
                     player.lock_jump = True
                     player.set_action("Jump")
-                    player.count_jump = 0
+                    player.count_jump = 1
                     if player.data[player.action][5][1] + player.get_pos()[1] - (y_r - self.wind_power) < self.power_fan:
                         if not player.key_up:
                             player.speed = (player.speed[0], 0)
@@ -49,12 +50,12 @@ class Fan(Entity):
                 if player.collision_tognoek(other_rect, player.data[player.action][4]):
                     self.set_action("On")
                     player.speed_y(-8)
-                    player.count_jump = 0
+                    player.count_jump = 1
                     player.set_action("Jump")
                 if player.collision_tognoek(other_rect, player.data[player.action][5]):
                     self.set_action("On")
                     player.speed_y(-8)
-                    player.count_jump = 0
+                    player.count_jump = 1
                     player.set_action("Jump")
                 player.pos = (player.pos[0], player_rect.y)
 
@@ -81,3 +82,23 @@ class Fan(Entity):
             if self.count_active > self.size_active:
                 self.set_action("Idle")
                 self.count_active = 0
+    def dust_particle(self):
+
+        if self.action == "On":
+            frame = int(self.frame / self.size_frame)
+            x = self.get_pos()[0] + self.data[self.action][frame][0][0]
+            y = self.get_pos()[1] + self.data[self.action][frame][0][1]
+            w = self.data[self.action][frame][1][0]
+            h = self.data[self.action][frame][1][1]
+            for i in Dustparticle.create_dust_particles_fly((x, y), 1, (w, h), 0, (20, 40)):
+                self.dust_particles.append(i)
+
+    def render(self, surface, offset):
+        # print(123123)
+        super().render(surface, offset)
+        self.dust_particle()
+        for i in self.dust_particles:
+            i.update()
+            i.render(surface, offset)
+            if i.is_die():
+                self.dust_particles.remove(i)

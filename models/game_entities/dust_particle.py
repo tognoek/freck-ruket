@@ -39,13 +39,25 @@ class Dustparticle():
             particles.append(particle)
         return particles
     
-    def create_dust_particles(pos, num_particles=5, size = (16, 16)):
+    def create_dust_particles(pos, num_particles=5, size = (16, 16), r = 1):
         particles = []
         for _ in range(num_particles):
             speed = [random.uniform(-1, 1), random.uniform(0.5, 1)]
             life_time = random.randint(10, 20)
             pos_r = (pos[0] + random.randint(0, size[0]), pos[1])
             color = (200, 200, 200)
-            particle = Dustparticle(pos_r, 1, color, speed, life_time)
+            particle = Dustparticle(pos_r, r, color, speed, life_time)
             particles.append(particle)
         return particles
+    
+    def create_dust_particles_fly(pos, num_particles=5, size = (16, 16), r = 1, life = (10, 20)):
+        particles = []
+        for _ in range(num_particles):
+            speed = [random.uniform(-0.5, 0.5), random.uniform(-3, -1)]
+            life_time = random.randint(life[0], life[1])
+            pos_r = (pos[0] + random.randint(0, size[0]), pos[1])
+            color = (200, 200, 200)
+            particle = Dustparticle(pos_r, r, color, speed, life_time)
+            particles.append(particle)
+        return particles
+        
