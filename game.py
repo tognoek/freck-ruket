@@ -55,7 +55,6 @@ class Game:
         self.Y = None
 
     def create_camera(self):
-
         self.Camera = Camera(self.Level.get_left_top(), self.Level.get_bottom_right(), (display.get_width(), display.get_height()))  
     def run(self):
         self.load_map()

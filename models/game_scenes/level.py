@@ -87,6 +87,7 @@ class Level:
                             temp.append(pos)
                             temp.append(value["type"])
                             temp.append(value["z-index"])
+                            temp.append(value["flip"])
                             saw.append(temp)
                             
                     else:
@@ -115,11 +116,10 @@ class Level:
             if saw[i][0] == temp[-1][0]:
                 temp.append(saw[i])
             else:
-                if len(temp) > 1:
-                    entity = Saw("trap_saw", (0, 0), self.image_saw, None, 
-                                (False, False), 0, 0, 5, saw[i-1][3], saw[i-1][4], temp)
-                    entity.create()
-                    self.data_maps.append(entity)
+                entity = Saw("traps_saw", (0, 0), self.image_saw, None, 
+                            saw[i-1][5], 0, 0, 5, saw[i-1][3], saw[i-1][4], temp)
+                entity.create()
+                self.data_maps.append(entity)
                 temp = [saw[i]]
 
 

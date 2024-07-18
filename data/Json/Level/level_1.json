@@ -1106,21 +1106,11 @@
          "z-index": 1,
          "values": []
       },
-      "736:602": {
-         "name": "traps_trampoline",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
       "374:529": {
          "name": "traps_saw",
          "type": 1,
          "flip": [
-            false,
+            true,
             false
          ],
          "z-index": 1,
@@ -1134,7 +1124,7 @@
          "type": 1,
          "flip": [
             false,
-            false
+            true
          ],
          "z-index": 1,
          "values": [
@@ -1146,7 +1136,7 @@
          "name": "traps_saw",
          "type": 1,
          "flip": [
-            false,
+            true,
             false
          ],
          "z-index": 1,
@@ -1168,6 +1158,52 @@
             "2",
             "1"
          ]
+      },
+      "861:271": {
+         "name": "traps_saw",
+         "type": 1,
+         "flip": [
+            true,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "3",
+            "1"
+         ]
+      },
+      "863:416": {
+         "name": "traps_saw",
+         "type": 1,
+         "flip": [
+            true,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "3",
+            "2"
+         ]
+      },
+      "746:600": {
+         "name": "traps_trampoline",
+         "type": 2,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "618:601": {
+         "name": "traps_trampoline",
+         "type": 2,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
       }
    }
 }
