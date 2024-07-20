@@ -46,6 +46,7 @@ class Level:
                 if value["name"] != "player":
                     keys = value["name"].split("_")
                     pos = list(map(int, key.split(":")))
+                    entity_map = None
                     if keys[0] == "traps":
                         if keys[1] == "trampoline":
                             entity_map = Trampoline(value["name"], (pos[0], pos[1]), 
@@ -94,20 +95,21 @@ class Level:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 
                                             self.image_maps[value["name"]], None, value["flip"], 
                                             0, 0, 5, int(value["type"]), int(value["z-index"]))
-                    self.data_maps.append(entity_map)
+                    if entity_map != None:
+                        self.data_maps.append(entity_map)
 
-                    if self.left_top == None:
-                        self.left_top = (entity_map.pos[0], entity_map.pos[1])
-                    elif self.left_top[0] > entity_map.pos[0]:
-                        self.left_top = (entity_map.pos[0], self.left_top[1])
-                    elif self.left_top[1] >  entity_map.pos[1]:
-                        self.left_top = (self.left_top[0],  entity_map.pos[1])
-                    if self.bottom_right == None:
-                        self.bottom_right = (entity_map.pos[0],  entity_map.pos[1])
-                    elif self.bottom_right[0] < entity_map.rect().right:
-                        self.bottom_right = (entity_map.rect().right, self.bottom_right[1])
-                    elif self.bottom_right[1] < entity_map.rect().bottom:
-                        self.bottom_right = (self.bottom_right[0], entity_map.rect().bottom)
+                        if self.left_top == None:
+                            self.left_top = (entity_map.pos[0], entity_map.pos[1])
+                        elif self.left_top[0] > entity_map.pos[0]:
+                            self.left_top = (entity_map.pos[0], self.left_top[1])
+                        elif self.left_top[1] >  entity_map.pos[1]:
+                            self.left_top = (self.left_top[0],  entity_map.pos[1])
+                        if self.bottom_right == None:
+                            self.bottom_right = (entity_map.pos[0],  entity_map.pos[1])
+                        elif self.bottom_right[0] < entity_map.rect().right:
+                            self.bottom_right = (entity_map.rect().right, self.bottom_right[1])
+                        elif self.bottom_right[1] < entity_map.rect().bottom:
+                            self.bottom_right = (self.bottom_right[0], entity_map.rect().bottom)
 
         saw = sorted(saw, key =lambda x: (x[0], x[1]))
         saw.append((saw[-1][0] + 1, 1))

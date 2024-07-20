@@ -67,7 +67,6 @@ class Trampoline(Entity):
 
 
     def render(self, surface, offset):
-        # print(123123)
         super().render(surface, offset)
         self.dust_particle()
         for i in self.dust_particles:
