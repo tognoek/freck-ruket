@@ -114,6 +114,9 @@ class Game:
                     if event.key == pygame.K_UP:
                         self.Player.speed_y(-6)
 
+                    if event.key == pygame.K_k:
+                        self.Player.reset()
+
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
                         self.X = None

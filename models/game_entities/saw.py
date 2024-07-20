@@ -42,14 +42,14 @@ class Saw(Entity):
         temp.append(self.data[0])
         if len(self.data) > 1:
             for i in range(len(self.data)):
-                start = (temp[i][2][0], temp[i][2][1])
-                end = (temp[i+1][2][0], temp[i+1][2][1])
+                start = (temp[i][1][0], temp[i][1][1])
+                end = (temp[i+1][1][0], temp[i+1][1][1])
                 self.array.append(self.calculate_coordinates(start[0], start[1], end[0], end[1], 1, (16, 16)))
                 self.array_dot.append(self.calculate_coordinates(start[0], start[1], end[0], end[1], 8))
         else:
-            start = (temp[0][2][0] - 16, temp[0][2][1] - 16)
+            start = (temp[0][1][0] - 16, temp[0][1][1] - 16)
             self.array = [[start]]
-            start = (temp[0][2][0], temp[0][2][1])
+            start = (temp[0][1][0], temp[0][1][1])
             self.array_dot = [[start]]
 
     def render(self, surface : pygame.Surface, offset):

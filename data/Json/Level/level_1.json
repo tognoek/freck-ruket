@@ -1148,11 +1148,67 @@
          ],
          "z-index": 1,
          "values": [
+            "1",
+            "1"
+         ]
+      },
+      "421:343": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
+            "1"
+         ]
+      },
+      "425:472": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
             "2",
+            "350",
             "3"
          ]
       },
-      "492:470": {
+      "468:498": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "2",
+            "1"
+         ]
+      },
+      "470:576": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "2",
+            "2",
+            "0",
+            "2"
+         ]
+      },
+      "413:330": {
          "name": "traps_saw",
          "type": 1,
          "flip": [

@@ -18,6 +18,7 @@ class Character(Entity):
         self.key_up = False
         self.key_left = False
         self.key_right = False
+        self.begin_pos = self.pos
 
     def copy(self):
         return Character(self.name, self.pos, self.images, self.sound,
@@ -113,6 +114,11 @@ class Character(Entity):
 
     def isHit(self):
         return self.action == "Hit"
+    
+    def reset(self):
+        self.pos = self.begin_pos
+        self.type_entity = 1
+        self.action = "Idle"
 
     def run(self, level, collision = "tognoek"):
         self.update(level=level, collision=collision)

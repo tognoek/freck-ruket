@@ -191,7 +191,17 @@
                     "Size" : "8x8",
                     "Frame" : "1"
                 }
-            } 
+            },
+            "Spiked Ball" : {
+                "Idle" : {
+                    "Size" : "28x28",
+                    "Frame" : "1"
+                },
+                "Chain" : {
+                    "Size" : "8x8",
+                    "Frame" : "1"
+                }
+            }
         }
     }
 }

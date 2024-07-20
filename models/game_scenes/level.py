@@ -7,6 +7,7 @@ from models.game_entities.spikes import Spikes
 from models.game_entities.spikes_90 import Spikes_90
 from models.game_entities.fan import Fan
 from models.game_entities.saw import Saw
+from models.game_entities.spiked_ball import SpikedBall
 from models.utils import Data
 
 class Level:
@@ -29,6 +30,7 @@ class Level:
         self.image_spikes_90 = self.data.load_image_trap("Spikes", 90)[0]
         self.image_fan = self.data.load_image_trap("Fan")[0]
         self.image_saw = self.data.load_image_trap("Saw")[0]
+        self.image_spiked_ball = self.data.load_image_trap("Spiked Ball")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -41,6 +43,7 @@ class Level:
         self.bottom_right = None
         self.left_top = None
         saw = []
+        spiked_ball = []
         for dict_key, dict_value in self.data_json.items():
             for key, value in dict_value.items():
                 if value["name"] != "player":
@@ -82,14 +85,29 @@ class Level:
                                             self.data.load_data_traps("Fan"))
                         if keys[1] == "saw":
                             temp = []
+                            sub_temp = []
                             for i in value["values"]:
                                 if len(i) > 0:
-                                    temp.append(int(i))
+                                    sub_temp.append(int(i))
+                            temp.append(sub_temp)
                             temp.append(pos)
+                            temp.append(value["flip"])
                             temp.append(value["type"])
                             temp.append(value["z-index"])
-                            temp.append(value["flip"])
                             saw.append(temp)
+                        
+                        if keys[1] == "spikedball":
+                            temp = []
+                            sub_temp = []
+                            for i in value["values"]:
+                                if len(i) > 0:
+                                    sub_temp.append(int(i))
+                            temp.append(sub_temp)
+                            temp.append(pos)
+                            temp.append(value["flip"])
+                            temp.append(value["type"])
+                            temp.append(value["z-index"])
+                            spiked_ball.append(temp)
                             
                     else:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 
@@ -111,18 +129,32 @@ class Level:
                         elif self.bottom_right[1] < entity_map.rect().bottom:
                             self.bottom_right = (self.bottom_right[0], entity_map.rect().bottom)
 
-        saw = sorted(saw, key =lambda x: (x[0], x[1]))
-        saw.append((saw[-1][0] + 1, 1))
+        # Tạo dữ liệu cho saw
+        saw = sorted(saw, key =lambda x: (x[0][0], x[0][1]))
+        saw.append([[saw[-1][0][0] + 1, 1]])
         temp = [saw[0]]
         for i in range(1, len(saw)):
-            if saw[i][0] == temp[-1][0]:
-                temp.append(saw[i])
+            if saw[i][0][0] == temp[-1][0][0]:
+                temp.append(saw[i][:2])
             else:
                 entity = Saw("traps_saw", (0, 0), self.image_saw, None, 
-                            saw[i-1][5], 0, 0, 5, saw[i-1][3], saw[i-1][4], temp)
+                            saw[i-1][2], 0, 0, 5, saw[i-1][3], saw[i-1][4], temp)
                 entity.create()
                 self.data_maps.append(entity)
                 temp = [saw[i]]
+
+        spiked_ball = sorted(spiked_ball, key =lambda x: (x[0][0], x[0][1]))
+        spiked_ball.append([[spiked_ball[-1][0][0] + 1, 1]])
+        temp = [spiked_ball[0]]
+        for i in range(1, len(spiked_ball)):
+            if spiked_ball[i][0][0] == temp[-1][0][0]:
+                temp.append(spiked_ball[i][:2])
+            else:
+                entity = SpikedBall("traps_spikedball", (0, 0), self.image_spiked_ball, None, 
+                            spiked_ball[i-1][2], 0, 0, 5, spiked_ball[i-1][3], spiked_ball[i-1][4], temp)
+                entity.create()
+                self.data_maps.append(entity)
+                temp = [spiked_ball[i]]
 
 
     def filter_type(self):

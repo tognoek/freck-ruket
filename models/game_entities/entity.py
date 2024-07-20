@@ -1,4 +1,5 @@
 import pygame, random
+import math
 
 class Entity:
 
@@ -101,4 +102,10 @@ class Entity:
         if rect_1.colliderect(other):
             return True
         return False
-  
+    
+    def collision_tognoek_rect(self, other : pygame.Surface, point = (0, 0), pos_other = (0, 0), radius = 14):
+        c_x1 = pos_other[0] + other.get_width() / 2
+        c_y1 = pos_other[1] + other.get_height() / 2
+        c_x2 = self.get_pos()[0] + point[0]
+        c_y2 = self.get_pos()[1] + point[1]
+        return radius + 1 >= math.hypot(c_x2 - c_x1, c_y2 - c_y1)
