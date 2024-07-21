@@ -44,28 +44,39 @@ class SpikedBall(Entity):
             self.distance = temp[1][0][3]
         else:
             self.distance = 1
-        self.angle = 0
+        self.angle = math.radians(self.max_angle)
         self.coordinates = (temp[0][1][0], temp[0][1][1])
         self.angle_default = 2 * math.asin(self.distance / 2 / self.len)
-        self.vector = 1
+        self.angle_step = self.angle_default / 50
+        self.angle_r = 0
+        self.vector = -1
+        self.vector_step = 1
 
     def update(self):
         super().update()
         dx = math.sin(self.angle) * self.len
         dy = math.cos(self.angle) * self.len
         self.pos = (dx + self.coordinates[0] , dy + self.coordinates[1])
-        self.angle += self.vector * self.angle_default
+
         if self.max_angle > 0:
-            if math.degrees(self.angle) > self.max_angle and math.degrees(self.angle) < 180:
+            angle_old = self.angle
+            self.angle_r += self.vector_step * self.angle_step
+            self.angle +=  self.angle_r * self.vector
+            if angle_old * self.angle <= 0:
+                self.vector_step *= -1
+            if math.fabs(self.angle) > math.radians(self.max_angle):
                 self.vector *= -1
-            if math.degrees(self.angle) < 360 - self.max_angle and math.degrees(self.angle) > 180:
-                self.vector *= -1
-        self.angle = self.angle % (2 * math.pi)
-        self.image_rotate = pygame.transform.rotate(self.get_image(), math.degrees(self.angle))
+                self.vector_step *= -1
+                self.angle_r = 0
+        else:
+            self.angle += self.angle_default
+            self.angle = self.angle % (2 * math.pi)
+
+        self.image_rotate = self.get_image()
 
     def render(self, surface : pygame.Surface, offset):
         pos = self.get_pos()
-        for t in self.calculate_coordinates(self.coordinates[0], self.coordinates[1], pos[0], pos[1], step = 8):
+        for t in self.calculate_coordinates(self.coordinates[0], self.coordinates[1], pos[0], pos[1], step = 10):
             surface.blit(self.images["Chain"][0], (t[0] + offset[0], t[1] + offset[1]))
             self.pos_iamge = (t[0], t[1])
         self.pos_iamge = (self.pos_iamge[0] - self.image_rotate.get_width() / 2 + 4, self.pos_iamge[1] - self.image_rotate.get_height() / 2 + 4)

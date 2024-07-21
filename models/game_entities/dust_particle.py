@@ -1,19 +1,20 @@
 import pygame, random
 
 class Dustparticle():
-    def __init__(self, pos, size, color, speed, life_time):
+    def __init__(self, pos, size, color, speed, life_time, max_size=2):
         self.pos = pos
         self.size = size
         self.color = color
         self.speed = speed
         self.life_time = life_time
+        self.max_size = max_size
 
     def update(self):
         self.life_time -= 1
         self.pos = (self.pos[0] + self.speed[0], self.pos[1] + self.speed[1])
         self.size = self.size + 0.3
-        if self.size > 2:
-            self.size = 2
+        if self.size > self.max_size:
+            self.size = self.max_size
 
     def circle_surf(self, radius, color):
         surf = pygame.Surface((radius * 2, radius * 2))
@@ -39,14 +40,14 @@ class Dustparticle():
             particles.append(particle)
         return particles
     
-    def create_dust_particles(pos, num_particles=5, size = (16, 16), r = 1):
+    def create_dust_particles(pos, num_particles=5, size = (16, 16), r = 1, max_size = 2):
         particles = []
         for _ in range(num_particles):
             speed = [random.uniform(-1, 1), random.uniform(0.5, 1)]
             life_time = random.randint(10, 20)
             pos_r = (pos[0] + random.randint(0, size[0]), pos[1])
             color = (200, 200, 200)
-            particle = Dustparticle(pos_r, r, color, speed, life_time)
+            particle = Dustparticle(pos_r, r, color, speed, life_time, max_size)
             particles.append(particle)
         return particles
     

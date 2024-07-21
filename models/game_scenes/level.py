@@ -118,43 +118,44 @@ class Level:
 
                         if self.left_top == None:
                             self.left_top = (entity_map.pos[0], entity_map.pos[1])
-                        elif self.left_top[0] > entity_map.pos[0]:
+                        if self.left_top[0] > entity_map.pos[0]:
                             self.left_top = (entity_map.pos[0], self.left_top[1])
-                        elif self.left_top[1] >  entity_map.pos[1]:
+                        if self.left_top[1] >  entity_map.pos[1]:
                             self.left_top = (self.left_top[0],  entity_map.pos[1])
                         if self.bottom_right == None:
                             self.bottom_right = (entity_map.pos[0],  entity_map.pos[1])
-                        elif self.bottom_right[0] < entity_map.rect().right:
+                        if self.bottom_right[0] < entity_map.rect().right:
                             self.bottom_right = (entity_map.rect().right, self.bottom_right[1])
-                        elif self.bottom_right[1] < entity_map.rect().bottom:
+                        if self.bottom_right[1] < entity_map.rect().bottom:
                             self.bottom_right = (self.bottom_right[0], entity_map.rect().bottom)
 
         # Tạo dữ liệu cho saw
-        saw = sorted(saw, key =lambda x: (x[0][0], x[0][1]))
-        saw.append([[saw[-1][0][0] + 1, 1]])
-        temp = [saw[0]]
-        for i in range(1, len(saw)):
-            if saw[i][0][0] == temp[-1][0][0]:
-                temp.append(saw[i][:2])
-            else:
-                entity = Saw("traps_saw", (0, 0), self.image_saw, None, 
-                            saw[i-1][2], 0, 0, 5, saw[i-1][3], saw[i-1][4], temp)
-                entity.create()
-                self.data_maps.append(entity)
-                temp = [saw[i]]
-
-        spiked_ball = sorted(spiked_ball, key =lambda x: (x[0][0], x[0][1]))
-        spiked_ball.append([[spiked_ball[-1][0][0] + 1, 1]])
-        temp = [spiked_ball[0]]
-        for i in range(1, len(spiked_ball)):
-            if spiked_ball[i][0][0] == temp[-1][0][0]:
-                temp.append(spiked_ball[i][:2])
-            else:
-                entity = SpikedBall("traps_spikedball", (0, 0), self.image_spiked_ball, None, 
-                            spiked_ball[i-1][2], 0, 0, 5, spiked_ball[i-1][3], spiked_ball[i-1][4], temp)
-                entity.create()
-                self.data_maps.append(entity)
-                temp = [spiked_ball[i]]
+        if len(saw) > 0:
+            saw = sorted(saw, key =lambda x: (x[0][0], x[0][1]))
+            saw.append([[saw[-1][0][0] + 1, 1]])
+            temp = [saw[0]]
+            for i in range(1, len(saw)):
+                if saw[i][0][0] == temp[-1][0][0]:
+                    temp.append(saw[i][:2])
+                else:
+                    entity = Saw("traps_saw", (0, 0), self.image_saw, None, 
+                                saw[i-1][2], 0, 0, 5, saw[i-1][3], saw[i-1][4], temp)
+                    entity.create()
+                    self.data_maps.append(entity)
+                    temp = [saw[i]]
+        if len(spiked_ball) > 0:
+            spiked_ball = sorted(spiked_ball, key =lambda x: (x[0][0], x[0][1]))
+            spiked_ball.append([[spiked_ball[-1][0][0] + 1, 1]])
+            temp = [spiked_ball[0]]
+            for i in range(1, len(spiked_ball)):
+                if spiked_ball[i][0][0] == temp[-1][0][0]:
+                    temp.append(spiked_ball[i][:2])
+                else:
+                    entity = SpikedBall("traps_spikedball", (0, 0), self.image_spiked_ball, None, 
+                                spiked_ball[i-1][2], 0, 0, 5, spiked_ball[i-1][3], spiked_ball[i-1][4], temp)
+                    entity.create()
+                    self.data_maps.append(entity)
+                    temp = [spiked_ball[i]]
 
 
     def filter_type(self):

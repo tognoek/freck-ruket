@@ -1,1 +1,3 @@
-print(8 % 3)
+import math
+
+print(math.radians(360))

@@ -10,7 +10,7 @@ class Trampoline(Entity):
         self.is_active = True
         self.count_active = 0
         self.size_active = 100
-        self.feedback_force = -8
+        self.feedback_force = -10
         self.is_dust_particle = True
 
     def collision_player(self, player : Character):
@@ -59,7 +59,7 @@ class Trampoline(Entity):
             y = self.get_pos()[1] + self.data[self.action][frame][0][1]
             w = self.data[self.action][frame][1][0]
             h = self.data[self.action][frame][1][1]
-            for i in Dustparticle.create_dust_particles((x, y), 10, (w, h), 0.5):
+            for i in Dustparticle.create_dust_particles((x, y), 10, (w, h), 0, 1):
                 self.dust_particles.append(i)
 
         if self.action == "Idle" and self.old_acction == "Jump":

@@ -72,14 +72,14 @@ class Character(Entity):
 
         if self.action == "Run":
             
-            if len(self.dust_particles) < 2:
+            if len(self.dust_particles) < 1:
                 if self.flip[0]:
                     pos = self.data[self.action][3]
                     pos = (pos[0] + self.pos[0] + 2 , pos[1] + self.pos[1] + random.randint(2, 4))
                 else:
                     pos = self.data[self.action][6]
                     pos = (pos[0] + self.pos[0] - 3, pos[1] + self.pos[1] + random.randint(2, 4))
-                dust_particl = Dustparticle(pos, 1.5, (200, 200, 200), [-0.5, 0], random.randint(2, 9))
+                dust_particl = Dustparticle(pos, 1.5, (200, 200, 200), [-0.5, -0.3], random.randint(2, 9))
                 self.dust_particles.append(dust_particl)
 
     def render(self, surface, offset=(0, 0), point = True):
