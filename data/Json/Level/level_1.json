@@ -32,7 +32,7 @@
       }
    },
    "player": {
-      "668:350": {
+      "649:486": {
          "name": "player",
          "type": 1,
          "flip": [
@@ -78,7 +78,7 @@
    "traps": {
       "961:596": {
          "name": "traps_trampoline",
-         "type": 2,
+         "type": 1,
          "flip": [
             false,
             false
@@ -141,11 +141,9 @@
             "0",
             "5"
          ]
-      }
-   },
-   "metal": {
-      "587:592": {
-         "name": "metal_3",
+      },
+      "521:510": {
+         "name": "traps_fallingplatforms",
          "type": 1,
          "flip": [
             false,
@@ -154,6 +152,28 @@
          "z-index": 1,
          "values": []
       },
+      "424:587": {
+         "name": "traps_fan",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "739:549": {
+         "name": "traps_trampoline",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      }
+   },
+   "metal": {
       "635:592": {
          "name": "metal_3",
          "type": 1,
@@ -263,60 +283,79 @@
          ],
          "z-index": 1,
          "values": []
+      },
+      "592:592": {
+         "name": "metal_1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "544:592": {
+         "name": "metal_1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "496:592": {
+         "name": "metal_1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "448:592": {
+         "name": "metal_1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "400:592": {
+         "name": "metal_1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "580:576": {
+         "name": "metal_11",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "548:560": {
+         "name": "metal_13",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
       }
    },
-   "block": {
-      "587:560": {
-         "name": "block_11",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "587:528": {
-         "name": "block_11",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "587:496": {
-         "name": "block_11",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "555:548": {
-         "name": "block_10",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "508:547": {
-         "name": "block_2",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      }
-   },
+   "block": {},
    "wall": {
       "1067:592": {
          "name": "wall_0",

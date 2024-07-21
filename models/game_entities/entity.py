@@ -34,6 +34,9 @@ class Entity:
             self.action = action
             self.frame = 0
             self.loop_frame = 0
+
+    def is_die(self):
+        return False
     
     def check_collisions(self):
         if all(value == False for value in self.collisions.values()):

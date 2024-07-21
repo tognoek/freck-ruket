@@ -94,6 +94,7 @@ class Game:
             # screen.fill((255, 255, 255))
 
             self.String.render(str(int(clock.get_fps())), pos=(100, 100))
+            self.String.render(self.Player.action, pos=(100, 150))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

@@ -8,6 +8,7 @@ from models.game_entities.spikes_90 import Spikes_90
 from models.game_entities.fan import Fan
 from models.game_entities.saw import Saw
 from models.game_entities.spiked_ball import SpikedBall
+from models.game_entities.falling_platforms import FallingPlatforms
 from models.utils import Data
 
 class Level:
@@ -31,6 +32,7 @@ class Level:
         self.image_fan = self.data.load_image_trap("Fan")[0]
         self.image_saw = self.data.load_image_trap("Saw")[0]
         self.image_spiked_ball = self.data.load_image_trap("Spiked Ball")[0]
+        self.image_falling_platforms = self.data.load_image_trap("Falling Platforms")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -83,6 +85,13 @@ class Level:
                                             self.image_fan, None, value["flip"], 
                                             0, 0, 3, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_traps("Fan"))
+                            
+                        if keys[1] == "fallingplatforms":
+                            entity_map = FallingPlatforms(value["name"], (pos[0], pos[1]), 
+                                            self.image_falling_platforms, None, value["flip"], 
+                                            0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Falling Platforms"))
+
                         if keys[1] == "saw":
                             temp = []
                             sub_temp = []
@@ -143,6 +152,8 @@ class Level:
                     entity.create()
                     self.data_maps.append(entity)
                     temp = [saw[i]]
+
+        # Taooj dữ liệu cho Spiked Ball
         if len(spiked_ball) > 0:
             spiked_ball = sorted(spiked_ball, key =lambda x: (x[0][0], x[0][1]))
             spiked_ball.append([[spiked_ball[-1][0][0] + 1, 1]])
@@ -185,8 +196,9 @@ class Level:
     
     def draw(self, surface : pygame.Surface, offset = (0, 0)):
         for entity_map in self.data_maps: 
-            entity_map.update()
-            entity_map.render(surface, offset)
+            if not entity_map.is_die():
+                entity_map.update()
+                entity_map.render(surface, offset)
             # surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
 
     def start_pos_player(self):

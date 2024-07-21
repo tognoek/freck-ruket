@@ -12,8 +12,10 @@ class Fan(Entity):
         self.size_active = 30
         self.wind_power = 100
         self.power_fan = 3
+        self.dust_particles = []
 
     def collision_player(self, player : Character):
+        player.lock_jump = False
         if self.is_active:
             frame = int(self.frame / self.size_frame)
             x = self.get_pos()[0] + self.data[self.action][frame][0][0]
@@ -24,8 +26,6 @@ class Fan(Entity):
             other_rect = pygame.Rect((x, y),(w, h))
             wind_rect = pygame.Rect((x, y_r - self.wind_power), (w, self.wind_power))
             player_rect = player.rect()
-
-            player.lock_jump = False
 
             if self.type_entity == 1 and self.action == "On":
                 if player.collision_tognoek(wind_rect,  player.data[player.action][4]):

@@ -22,25 +22,23 @@ class Trampoline(Entity):
             w = self.data[self.action][frame][1][0]
             h = self.data[self.action][frame][1][1]
             other_rect = pygame.Rect((x, y),(w, h))
+            if player.speed[1] > 0:
+                if player.collision_tognoek(other_rect, player.data[player.action][4]):
+                    if player.data[player.action][4][1] + player.get_pos()[1] - other_rect.top <= player.speed[1]:
+                        self.is_active = False
+                        self.set_action("Jump")
+                        player_rect.bottom = other_rect.top + (player_rect.height - player.data[player.action][4][1]) - 1
+                        player.count_jump = 0
+                        player.speed_y(self.feedback_force)
+                if player.collision_tognoek(other_rect, player.data[player.action][5]):
+                    if player.data[player.action][5][1] + player.get_pos()[1] - other_rect.top <= player.speed[1]:
+                        self.is_active = False
+                        player_rect.bottom = other_rect.top + (player_rect.height - player.data[player.action][5][1]) - 1
+                        self.set_action("Jump")
+                        player.count_jump = 0
+                        player.speed_y(self.feedback_force)
 
-            if self.type_entity == 2:
-                if player.speed[1] > 0:
-                    if player.collision_tognoek(other_rect, player.data[player.action][4]):
-                        if player.data[player.action][4][1] + player.get_pos()[1] - other_rect.top <= player.speed[1]:
-                            self.is_active = False
-                            self.set_action("Jump")
-                            player_rect.bottom = other_rect.top + (player_rect.height - player.data[player.action][4][1]) - 1
-                            player.count_jump = 0
-                            player.speed_y(self.feedback_force)
-                    if player.collision_tognoek(other_rect, player.data[player.action][5]):
-                        if player.data[player.action][5][1] + player.get_pos()[1] - other_rect.top <= player.speed[1]:
-                            self.is_active = False
-                            player_rect.bottom = other_rect.top + (player_rect.height - player.data[player.action][5][1]) - 1
-                            self.set_action("Jump")
-                            player.count_jump = 0
-                            player.speed_y(self.feedback_force)
-
-                player.pos = (player.pos[0], player_rect.y)
+            player.pos = (player.pos[0], player_rect.y)
 
     def update(self, loop=False):
         if not self.is_active:

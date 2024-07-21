@@ -15,6 +15,8 @@ class Character(Entity):
         self.wall_jump = wall_jump
         self.evolution_y = 0.4
         self.lock_jump = False
+        self.run_look = False
+        self.idle_look = False
         self.key_up = False
         self.key_left = False
         self.key_right = False
@@ -29,10 +31,10 @@ class Character(Entity):
     def dust_particle(self):
         if self.action == "Jump" and (self.old_acction == "Run" or self.old_acction == "Idle"):
             pos = self.data[self.action][3]
-            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(2, 4)):
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(1, 3)):
                 self.dust_particles.append(i)
             pos = self.data[self.action][5]
-            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(2, 4)):
+            for i in Dustparticle.create_dust_particles_jump((pos[0] + self.pos[0], pos[1] + self.pos[1]), random.randint(1, 3)):
                 self.dust_particles.append(i)
 
         if self.action == "Wall Jump" and (self.old_acction == "Jump" or self.old_acction == "Fall" or self.old_acction == "Double Jump"):
@@ -127,13 +129,15 @@ class Character(Entity):
         # self.animation()
     def collision_traps(self, other):
         for i in other:
-            i.collision_player(self)
+            if not i.is_die():
+                i.collision_player(self)
     def collistion_maps(self, other, collision = "tognoek"):
         if other is None:
             other = []
 
-        if collision == "tognoek":        
-            self.pos = (self.pos[0] + self.speed[0], self.pos[1])
+        if collision == "tognoek": 
+            if not self.collisions["right"] and not self.collisions["left"]:       
+                self.pos = (self.pos[0] + self.speed[0], self.pos[1])
             entity_rect = self.rect()
             for i in other:
                 other_rect = i.rect()
@@ -235,7 +239,6 @@ class Character(Entity):
                     self.pos = (self.pos[0], entity_rect.y)
 
     def update(self, level, collision = "tognoek"):
-
         self.pos_old = self.pos
 
         super().update()
@@ -269,8 +272,16 @@ class Character(Entity):
             if self.count_jump == 1:
                 self.set_action("Jump")
 
-            if pos_old[1] < self.pos[1]:
+            if pos_old[1] < self.pos[1] and not self.idle_look:
                 self.set_action("Fall")
+        
+        if self.run_look:
+            self.set_action("Run")
+            return
+        
+        if self.idle_look and self.action != "Run":
+            self.set_action("Idle")
+            return
 
         if not self.collisions["down"] and self.speed[1] > 0:
             if self.collisions["right"] or self.collisions["left"] or self.wall_jump:

@@ -201,6 +201,16 @@
                     "Size" : "8x8",
                     "Frame" : "1"
                 }
+            },
+            "Falling Platforms" : {
+                "Idle" : {
+                    "Size" : "32x10",
+                    "Frame" : "1"
+                },
+                "On" : {
+                    "Size" : "32x10",
+                    "Frame" : "4"
+                }
             }
         }
     }
