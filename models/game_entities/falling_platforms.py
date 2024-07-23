@@ -18,6 +18,8 @@ class FallingPlatforms(Entity):
         self.size_idle = 50
         self.index_idle = 0
         self.dust_particles = []
+        self.speed_down = 3
+        self.max_speed_down = 7
 
     def collision_player(self, player : Character):
         player.idle_look = False
@@ -75,7 +77,10 @@ class FallingPlatforms(Entity):
                 self.is_active = False
 
         if not self.is_active:
-            self.pos = (self.pos[0], self.pos[1] + 7)
+            self.pos = (self.pos[0], self.pos[1] + self.speed_down)
+            self.speed_down += 0.5
+            if self.speed_down > self.max_speed_down:
+                self.speed_down = self.max_speed_down
             self.die += 1
 
     def is_die(self):
