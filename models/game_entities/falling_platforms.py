@@ -29,7 +29,8 @@ class FallingPlatforms(Entity):
             w = self.data[self.action][frame][1][0]
             h = self.data[self.action][frame][1][1]
             other_rect = pygame.Rect((x, y),(w, h))
-            player.pos = (player.pos[0], player.pos[1] + 3)
+            if not player.collisions["down"]:
+                player.pos = (player.pos[0], player.pos[1] + 3)
 
             if player.speed[1] > 0:
                 if player.collision_tognoek(other_rect, player.data[player.action][4]):

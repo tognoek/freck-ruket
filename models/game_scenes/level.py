@@ -9,7 +9,10 @@ from models.game_entities.fan import Fan
 from models.game_entities.saw import Saw
 from models.game_entities.spiked_ball import SpikedBall
 from models.game_entities.falling_platforms import FallingPlatforms
+from models.game_entities.rock_head import RockHead
+from models.game_entities.spike_head import SpikeHead
 from models.utils import Data
+import math
 
 class Level:
     def __init__(self, level, data : Data):
@@ -33,6 +36,8 @@ class Level:
         self.image_saw = self.data.load_image_trap("Saw")[0]
         self.image_spiked_ball = self.data.load_image_trap("Spiked Ball")[0]
         self.image_falling_platforms = self.data.load_image_trap("Falling Platforms")[0]
+        self.image_rock_head = self.data.load_image_trap("Rock Head")[0]
+        self.image_spike_head = self.data.load_image_trap("Spike Head")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -91,6 +96,19 @@ class Level:
                                             self.image_falling_platforms, None, value["flip"], 
                                             0, 0, 5, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_traps("Falling Platforms"))
+                            
+                        if keys[1] == "rockhead":
+                            vector = list(map(int, value["values"]))
+                            entity_map = RockHead(value["name"], (pos[0], pos[1]), 
+                                            self.image_rock_head, None, value["flip"], 
+                                            0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Rock Head"), vector)
+                        if keys[1] == "spikehead":
+                            vector = list(map(int, value["values"]))
+                            entity_map = SpikeHead(value["name"], (pos[0], pos[1]), 
+                                            self.image_spike_head, None, value["flip"], 
+                                            0, 0, 5, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Spike Head"), vector)
 
                         if keys[1] == "saw":
                             temp = []
@@ -178,10 +196,37 @@ class Level:
             else:
                 self.maps.append(i)
 
-    def get_traps(self):
+    def get_traps(self, pos = None):
+        if pos != None:
+            res = []
+            for i in self.traps:
+                x = i.get_pos()[0] - pos[0]
+                y = i.get_pos()[1] - pos[1]
+                if math.hypot(x, y) < 240:
+                    res.append(i)
+            return res
         return self.traps
     
-    def get_maps(self):
+    def get_maps_traps(self, pos = None):
+        if pos!= None:
+            res = []
+            for i in self.data_maps:
+                x = i.get_pos()[0] - pos[0]
+                y = i.get_pos()[1] - pos[1]
+                if math.hypot(x, y) < 240:
+                    res.append(i)
+            return res
+        return self.data_maps
+
+    def get_maps(self, pos = None):
+        if pos != None:
+            res = []
+            for i in self.maps:
+                x = i.get_pos()[0] - pos[0]
+                y = i.get_pos()[1] - pos[1]
+                if math.hypot(x, y) < 240:
+                    res.append(i)
+            return res
         return self.maps
 
     def get_left_top(self):
@@ -197,7 +242,10 @@ class Level:
     def draw(self, surface : pygame.Surface, offset = (0, 0)):
         for entity_map in self.data_maps: 
             if not entity_map.is_die():
-                entity_map.update()
+                if entity_map.name in ["traps_rockhead", "traps_spikehead"]:
+                    entity_map.update(self.get_maps(entity_map.get_pos()))
+                else:
+                    entity_map.update()
                 entity_map.render(surface, offset)
             # surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
 

@@ -211,6 +211,58 @@
                     "Size" : "32x10",
                     "Frame" : "4"
                 }
+            },
+            "Rock Head" : {
+                "Idle" : {
+                    "Size" : "42x42",
+                    "Frame" : "1"
+                },
+                "Blink" : {
+                    "Size" : "42x42",
+                    "Frame" : "4"
+                },
+                "Top Hit" : {
+                    "Size" : "42x42",
+                    "Frame" : "4"
+                },
+                "Bottom Hit" : {
+                    "Size" : "42x42",
+                    "Frame" : "4"
+                },
+                "Left Hit" : {
+                    "Size" : "42x42",
+                    "Frame" : "4"
+                },
+                "Right Hit" : {
+                    "Size" : "42x42",
+                    "Frame" : "4"
+                }
+            },
+            "Spike Head" : {
+                "Idle" : {
+                    "Size" : "54x52",
+                    "Frame" : "1"
+                },
+                "Blink" : {
+                    "Size" : "54x52",
+                    "Frame" : "4"
+                },
+                "Top Hit" : {
+                    "Size" : "54x52",
+                    "Frame" : "4"
+                },
+                "Bottom Hit" : {
+                    "Size" : "54x52",
+                    "Frame" : "4"
+                },
+                "Left Hit" : {
+                    "Size" : "54x52",
+                    "Frame" : "4"
+                },
+                "Right Hit" : {
+                    "Size" : "54x52",
+                    "Frame" : "4"
+                }
             }
         }
     }

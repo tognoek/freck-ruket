@@ -27,17 +27,17 @@ class Fire(Entity):
             if self.type_entity == 1:
                 if player.speed[0] > 0:
                     if player.collision_tognoek(other_rect, player.data[player.action][2]):
-                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0]) - 3
+                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0])
                         player.collisions["right"] = True
                     if player.collision_tognoek(other_rect, player.data[player.action][3]):
-                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0]) - 3
+                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0])
                         player.collisions["right"] = True
                 if player.speed[0] < 0:
                     if player.collision_tognoek(other_rect, player.data[player.action][6]):
-                        player_rect.left = other_rect.right - player.data[player.action][6][0] + 2
+                        player_rect.left = other_rect.right - player.data[player.action][6][0] - 1
                         player.collisions["left"] = True
                     if player.collision_tognoek(other_rect, player.data[player.action][7]):
-                        player_rect.left = other_rect.right - player.data[player.action][7][0] + 2
+                        player_rect.left = other_rect.right - player.data[player.action][7][0] - 1
                         player.collisions["left"] = True
                 
                 player.pos = (player_rect.x, player.pos[1])

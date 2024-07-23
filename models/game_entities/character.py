@@ -128,9 +128,12 @@ class Character(Entity):
             self.check_action(self.pos_old)
         # self.animation()
     def collision_traps(self, other):
-        for i in other:
+        for i in other.get_traps(self.get_pos()):
             if not i.is_die():
-                i.collision_player(self)
+                if i.name in ["traps_rockhead", "traps_spikehead"]:
+                    i.collision_player(self, other.get_maps_traps(i.get_pos()))
+                else:
+                    i.collision_player(self)
     def collistion_maps(self, other, collision = "tognoek"):
         if other is None:
             other = []
@@ -246,10 +249,10 @@ class Character(Entity):
         if self.type_entity == 3:
             self.hit()
             return
+    
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
-        self.collision_traps(other=level.get_traps())
-        self.collistion_maps(other = level.get_maps(), collision=collision)
-        
+        self.collision_traps(other=level)
+        self.collistion_maps(other = level.get_maps(self.get_pos()), collision=collision)
 
     def check_action(self, pos_old):
         if self.lock_jump:
@@ -262,14 +265,15 @@ class Character(Entity):
                 self.set_action("Idle")
                 self.speed = (0, 5)
             else:
-                self.set_action("Run")
+                if self.speed[0] != 0:
+                    self.set_action("Run")
 
         if not self.wall_jump:
 
-            if self.count_jump == 2:
+            if self.count_jump == 2 and self.speed[1] < 0:
                 self.set_action("Double Jump")
 
-            if self.count_jump == 1:
+            if self.count_jump == 1 and self.speed[1] < 0:
                 self.set_action("Jump")
 
             if pos_old[1] < self.pos[1] and not self.idle_look:
@@ -305,6 +309,8 @@ class Character(Entity):
 
     def update_speed(self):
         self.speed = (self.speed[0], self.speed[1] + self.evolution_y)
+        if self.type_entity == 3:
+            return
         if self.speed[1] > 5:
             self.speed = (self.speed[0], 5)
 
@@ -318,6 +324,8 @@ class Character(Entity):
 
 
     def speed_x(self, x):
+        if self.type_entity == 3:
+            return
         if not self.wall_jump:
             self.speed = (x, self.speed[1])
         else:
@@ -328,12 +336,16 @@ class Character(Entity):
                 self.count_jump = 1
 
     def speed_y(self, y):
+        if self.type_entity == 3:
+            return
         self.count_jump = self.count_jump + 1
         if self.count_jump < 3 and not self.wall_jump:
             self.speed = (self.speed[0], y)
             self.key_up = True
 
     def reset_speed(self, e_type):
+        if self.type_entity == 3:
+            return
         if e_type:
             self.speed_x(0)
         else:

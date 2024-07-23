@@ -24,6 +24,8 @@ SIZE_SHOW = (int(WINDOWS_SCREEN_EDIT[0] - EDIT_SIZE[0]), int((WINDOWS_SCREEN_EDI
 # tognoek = pygame.Surface((display.get_width() - 2, display.get_height() - 2))
 # tognoek.fill((100, 50, 20))
 
+speed_tognoek = 5
+
 data_maps = Data().load_data_maps()
 
 name_data_maps = list(data_maps.keys())
@@ -601,6 +603,7 @@ while True:
             render(screen, value, size_image, (pos_x, pos_y), False)
 
     String.render("z-index: " + str(z_index), pos = (display.get_width() - 250, 40), color = (0, 0, 0))
+    String.render("speed wasd: " + str(speed_tognoek), pos = (display.get_width() - 250, 50), color = (0, 0, 0))
 
     input_values.render(screen)
 
@@ -641,6 +644,14 @@ while True:
 
         if event.type == pygame.KEYDOWN:
 
+            if keys[pygame.K_LALT] and keys[pygame.K_y]:
+                speed_tognoek += 1
+                if speed_tognoek > 12:
+                    speed_tognoek = 12
+            if keys[pygame.K_LALT] and keys[pygame.K_u]:
+                speed_tognoek -= 1
+                if speed_tognoek < 1:
+                    speed_tognoek = 1
             if input_values.selected:
                 for i in range(48, 48 + 10 + 1):
                     if keys[i]:
@@ -735,7 +746,7 @@ while True:
                 if keys[pygame.K_w] and alt_c:
                     old_data.append(copy.deepcopy(data))
                     key = str(minimap_select.x) + ":" + str(minimap_select.y)
-                    key_new = str(minimap_select.x) + ":" + str(minimap_select.y - 1)
+                    key_new = str(minimap_select.x) + ":" + str(minimap_select.y - speed_tognoek)
                     list_key_select = [[minimap_select.name.split("_")[0], key_new]]
                     data[minimap_select.name.split("_")[0]].pop(key)
                     values = {
@@ -751,7 +762,7 @@ while True:
                 if keys[pygame.K_s] and alt_c:
                     old_data.append(copy.deepcopy(data))
                     key = str(minimap_select.x) + ":" + str(minimap_select.y)
-                    key_new = str(minimap_select.x) + ":" + str(minimap_select.y + 1)
+                    key_new = str(minimap_select.x) + ":" + str(minimap_select.y + speed_tognoek)
                     list_key_select = [[minimap_select.name.split("_")[0], key_new]]
                     data[minimap_select.name.split("_")[0]].pop(key)
                     values = {
@@ -767,7 +778,7 @@ while True:
                 if keys[pygame.K_a] and alt_c:
                     old_data.append(copy.deepcopy(data))
                     key = str(minimap_select.x) + ":" + str(minimap_select.y)
-                    key_new = str(minimap_select.x - 1) + ":" + str(minimap_select.y)
+                    key_new = str(minimap_select.x - speed_tognoek) + ":" + str(minimap_select.y)
                     list_key_select = [[minimap_select.name.split("_")[0], key_new]]
                     data[minimap_select.name.split("_")[0]].pop(key)
                     values = {
@@ -783,7 +794,7 @@ while True:
                 if keys[pygame.K_d] and alt_c and not keys[pygame.K_LALT] and not keys[pygame.K_RALT]:
                     old_data.append(copy.deepcopy(data))
                     key = str(minimap_select.x) + ":" + str(minimap_select.y)
-                    key_new = str(minimap_select.x + 1) + ":" + str(minimap_select.y)
+                    key_new = str(minimap_select.x + speed_tognoek) + ":" + str(minimap_select.y)
                     list_key_select = [[minimap_select.name.split("_")[0], key_new]]
                     data[minimap_select.name.split("_")[0]].pop(key)
                     values = {

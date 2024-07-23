@@ -11,20 +11,30 @@ class Fire_90(Entity):
         self.size_frame_fire = 5
         self.index_frame_fire = 0
         self.range = [2, 3, 6, 7]
+        self.range_f = [0, 1, 4, 5]
 
     def collision_player(self, player : Character):
         if self.is_active:
             frame = int(self.frame / self.size_frame)
             if self.flip[0]:
-                 x = self.get_pos()[0]
+                x = self.get_pos()[0]
+                x_f = x + 16
             else:
                 x = self.get_pos()[0] + self.data[self.action][frame][0][0]
+                x_f = x - 16
             y = self.get_pos()[1] + self.data[self.action][frame][0][1]
             w = self.data[self.action][frame][1][0]
             h = self.data[self.action][frame][1][1]
+            w_f = w - 16
             other_rect = pygame.Rect((x, y),(w, h))
+            other_rect_fire = pygame.Rect((x_f, y),(w_f, h))
             player_rect = player.rect()
             if self.type_entity == 1:
+                if self.action == "On":
+                    for i in self.range_f:
+                        if player.collision_tognoek(other_rect_fire, player.data[player.action][i]):
+                            player.type_entity = 3
+                            return
                 for i in self.range:
                      if player.collision_tognoek(other_rect, player.data[player.action][i]): 
                         if self.action == "On":
@@ -33,23 +43,23 @@ class Fire_90(Entity):
                                 return
                 if player.speed[0] > 0:
                     if player.collision_tognoek(other_rect, player.data[player.action][2]):
-                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0]) - 3
+                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0])
                         player.collisions["right"] = True
                         if not self.flip[0]:
                              self.set_action("Hit")
                     if player.collision_tognoek(other_rect, player.data[player.action][3]):
-                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0]) - 3
+                        player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0])
                         player.collisions["right"] = True
                         if not self.flip[0]:
                              self.set_action("Hit")
                 if player.speed[0] < 0:
                     if player.collision_tognoek(other_rect, player.data[player.action][6]):
-                        player_rect.left = other_rect.right - player.data[player.action][6][0] + 2
+                        player_rect.left = other_rect.right - player.data[player.action][6][0] - 1
                         player.collisions["left"] = True
                         if self.flip[0]:
                              self.set_action("Hit")
                     if player.collision_tognoek(other_rect, player.data[player.action][7]):
-                        player_rect.left = other_rect.right - player.data[player.action][7][0] + 2
+                        player_rect.left = other_rect.right - player.data[player.action][7][0] - 1
                         player.collisions["left"] = True
                         if self.flip[0]:
                              self.set_action("Hit")
