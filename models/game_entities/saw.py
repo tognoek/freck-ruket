@@ -33,7 +33,7 @@ class Saw(Entity):
     def collision_player(self, player : Character):
         if self.action == "On":
             for i in range(8):
-                if player.collision_tognoek(self.rect(), player.data[player.action][i]):
+                if player.collision_tognoek_circle(self.get_image(), player.data[player.action][i], self.get_pos(), 19):
                     player.type_entity = 3
                     return
 

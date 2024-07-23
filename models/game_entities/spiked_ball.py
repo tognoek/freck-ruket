@@ -10,7 +10,7 @@ class SpikedBall(Entity):
     
     def collision_player(self, player : Character):
         for i in range(8):
-            if player.collision_tognoek_rect(self.image_rotate, player.data[player.action][i], self.pos_iamge, 14):
+            if player.collision_tognoek_circle(self.image_rotate, player.data[player.action][i], self.pos_image, 14):
                 player.type_entity = 3
                 return
             
@@ -78,7 +78,7 @@ class SpikedBall(Entity):
         pos = self.get_pos()
         for t in self.calculate_coordinates(self.coordinates[0], self.coordinates[1], pos[0], pos[1], step = 10):
             surface.blit(self.images["Chain"][0], (t[0] + offset[0], t[1] + offset[1]))
-            self.pos_iamge = (t[0], t[1])
-        self.pos_iamge = (self.pos_iamge[0] - self.image_rotate.get_width() / 2 + 4, self.pos_iamge[1] - self.image_rotate.get_height() / 2 + 4)
-        surface.blit(self.image_rotate, (self.pos_iamge[0] + offset[0], self.pos_iamge[1] + offset[1]))
+            self.pos_image = (t[0], t[1])
+        self.pos_image = (self.pos_image[0] - self.image_rotate.get_width() / 2 + 4, self.pos_image[1] - self.image_rotate.get_height() / 2 + 4)
+        surface.blit(self.image_rotate, (self.pos_image[0] + offset[0], self.pos_image[1] + offset[1]))
         # super().render(surface, offset)

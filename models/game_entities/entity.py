@@ -106,7 +106,7 @@ class Entity:
             return True
         return False
     
-    def collision_tognoek_rect(self, other : pygame.Surface, point = (0, 0), pos_other = (0, 0), radius = 14):
+    def collision_tognoek_circle(self, other : pygame.Surface, point = (0, 0), pos_other = (0, 0), radius = 14):
         c_x1 = pos_other[0] + other.get_width() / 2
         c_y1 = pos_other[1] + other.get_height() / 2
         c_x2 = self.get_pos()[0] + point[0]

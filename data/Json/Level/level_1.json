@@ -857,6 +857,19 @@
          ],
          "z-index": 1,
          "values": []
+      },
+      "683:195": {
+         "name": "traps_saw",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "5",
+            "1"
+         ]
       }
    },
    "metal": {
