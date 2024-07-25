@@ -42,7 +42,7 @@
       }
    },
    "player": {
-      "483:181": {
+      "675:514": {
          "name": "player",
          "type": 1,
          "flip": [
@@ -523,6 +523,136 @@
          ],
          "z-index": 1,
          "values": []
+      },
+      "356:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "312:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "268:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "224:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "180:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-5:576": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-49:576": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "136:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "92:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "48:564": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-93:576": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-137:576": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-181:576": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
       }
    },
    "traps": {
@@ -870,6 +1000,56 @@
             "5",
             "1"
          ]
+      },
+      "752:447": {
+         "name": "traps_arrow",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "559:566": {
+         "name": "traps_arrow",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 6,
+         "values": []
+      },
+      "267:383": {
+         "name": "traps_arrow",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "108:493": {
+         "name": "traps_arrow",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "191:428": {
+         "name": "traps_arrow",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
       }
    },
    "metal": {

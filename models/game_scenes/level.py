@@ -11,6 +11,7 @@ from models.game_entities.spiked_ball import SpikedBall
 from models.game_entities.falling_platforms import FallingPlatforms
 from models.game_entities.rock_head import RockHead
 from models.game_entities.spike_head import SpikeHead
+from models.game_entities.arrow import Arrow
 from models.utils import Data
 import math
 
@@ -38,6 +39,7 @@ class Level:
         self.image_falling_platforms = self.data.load_image_trap("Falling Platforms")[0]
         self.image_rock_head = self.data.load_image_trap("Rock Head")[0]
         self.image_spike_head = self.data.load_image_trap("Spike Head")[0]
+        self.image_arrow = self.data.load_image_trap("Arrow")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -109,6 +111,11 @@ class Level:
                                             self.image_spike_head, None, value["flip"], 
                                             0, 0, 5, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_traps("Spike Head"), vector)
+                        if keys[1] == "arrow":
+                            entity_map = Arrow(value["name"], (pos[0], pos[1]), 
+                                            self.image_arrow, None, value["flip"], 
+                                            0, 0, 7, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Arrow"))
 
                         if keys[1] == "saw":
                             temp = []
