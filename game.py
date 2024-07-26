@@ -89,7 +89,7 @@ class Game:
             if not self.Player.isHit():
                 self.Camera.update(self.Player.get_pos())
 
-            self.Player.render(display, self.Camera.get_scroll(), True)
+            self.Player.render(display, self.Camera.get_scroll(), False)
 
             # screen.fill((255, 255, 255))
 

@@ -31,50 +31,50 @@ class RockHead(Entity):
         w = self.data[self.action][frame][1][0]
         h = self.data[self.action][frame][1][1]
         other_rect = pygame.Rect((x, y),(w, h))
-        coll_index_player = -1
+        coll_index_player = []
         if self.type_entity == 1:
             if player.collision_tognoek(other_rect, player.data[player.action][6]):
                 player_rect.left = other_rect.right - player.data[player.action][6][0]
                 player.collisions["left"] = True
-                coll_index_player = 3
+                coll_index_player = [2, 3]
             elif player.collision_tognoek(other_rect, player.data[player.action][7]):
                 player_rect.left = other_rect.right - player.data[player.action][7][0]
                 player.collisions["left"] = True
-                coll_index_player = 2
+                coll_index_player = [2, 3]
 
             elif player.collision_tognoek(other_rect, player.data[player.action][2]):
                 player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][2][0])
                 player.collisions["right"] = True
-                coll_index_player = 7
+                coll_index_player = [6, 7]
             elif player.collision_tognoek(other_rect, player.data[player.action][3]):
                 player_rect.right = other_rect.left + (player_rect.width - player.data[player.action][3][0])
                 player.collisions["right"] = True
-                coll_index_player = 6
+                coll_index_player = [6, 7]
 
             elif player.collision_tognoek(other_rect, player.data[player.action][0]):
                 player_rect.top = other_rect.bottom - player.data[player.action][0][1]
                 player.collisions["up"] = True
-                coll_index_player = 5
+                coll_index_player = [4, 5]
             elif player.collision_tognoek(other_rect, player.data[player.action][1]):
                 player_rect.top = other_rect.bottom - player.data[player.action][1][1]
                 player.collisions["up"] = True
-                coll_index_player = 4
+                coll_index_player = [4, 5]
 
             elif player.collision_tognoek(other_rect, player.data[player.action][4]):
                 player_rect.bottom = other_rect.top + (player_rect.height - player.data[player.action][4][1])
                 player.collisions["down"] = True
-                coll_index_player = 1
+                coll_index_player = [0, 1]
             elif player.collision_tognoek(other_rect, player.data[player.action][5]):
                 player_rect.bottom = other_rect.top + (player_rect.height - player.data[player.action][5][1])
                 player.collisions["down"] = True
-                coll_index_player = 0
+                coll_index_player = [0, 1]
 
             player.pos = (player_rect.left, player_rect.top)    
-            if coll_index_player != -1:
+            for t in coll_index_player:
                 if maps != None:
                     for i in maps:
                         if i.type_entity == 1:
-                            if player.collision_tognoek(i, player.data[player.action][coll_index_player]):
+                            if player.collision_tognoek(i, player.data[player.action][t]):
                                 player.type_entity = 3
 
     def collision(self, other):

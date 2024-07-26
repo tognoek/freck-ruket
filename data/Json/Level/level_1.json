@@ -42,7 +42,7 @@
       }
    },
    "player": {
-      "675:514": {
+      "1810:191": {
          "name": "player",
          "type": 1,
          "flip": [
@@ -653,6 +653,16 @@
          ],
          "z-index": 1,
          "values": []
+      },
+      "1803:237": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
       }
    },
    "traps": {
@@ -1050,6 +1060,19 @@
          ],
          "z-index": 1,
          "values": []
+      },
+      "1500:242": {
+         "name": "traps_rockhead",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
+            "2"
+         ]
       }
    },
    "metal": {
