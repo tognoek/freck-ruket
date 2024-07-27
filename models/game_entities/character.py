@@ -255,6 +255,9 @@ class Character(Entity):
         self.collistion_maps(other = level.get_maps(self.get_pos()), collision=collision)
 
     def check_action(self, pos_old):
+        if self.collisions["up"]:
+            self.speed_y(0)
+            self.count_jump = 3
         if self.lock_jump:
             self.set_action("Jump")
             return

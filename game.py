@@ -36,8 +36,8 @@ class Game:
         self.String = String(display)
 
         self.Level = Level(1, self.image)
-    def load_map(self):
-        self.Level.load_map(1)
+    def load_map(self, level = 1):
+        self.Level.load_map(level)
         self.Level.create_data()
         self.Level.convert()
         self.Level.sort_by_type()
@@ -89,7 +89,7 @@ class Game:
             if not self.Player.isHit():
                 self.Camera.update(self.Player.get_pos())
 
-            self.Player.render(display, self.Camera.get_scroll(), False)
+            self.Player.render(display, self.Camera.get_scroll(), True)
 
             # screen.fill((255, 255, 255))
 
@@ -116,6 +116,11 @@ class Game:
                         self.Player.speed_y(-6)
 
                     if event.key == pygame.K_k:
+                        self.load_map()
+                        self.load_player()
+                        self.create_camera()
+                    
+                    if event.key == pygame.K_l:
                         self.Player.reset()
 
                 if event.type == pygame.KEYUP:

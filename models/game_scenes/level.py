@@ -12,6 +12,7 @@ from models.game_entities.falling_platforms import FallingPlatforms
 from models.game_entities.rock_head import RockHead
 from models.game_entities.spike_head import SpikeHead
 from models.game_entities.arrow import Arrow
+from models.game_entities.blocks import Blocks
 from models.utils import Data
 import math
 
@@ -25,9 +26,14 @@ class Level:
         self.bottom_right = (0, 0)
         self.data_entities = {}
         self.name_maps = ["block", "land", "blockgray", "metal", "line", "wall"]
+        self.is_create = False
         # self.name_traps = ""
 
     def create_data(self):
+        if self.is_create:
+            return
+        self.is_create = True
+        print("Create Data Images")
         self.image_trampoline = self.data.load_image_trap("Trampoline")[0]
         self.image_fire = self.data.load_image_trap("Fire")[0]
         self.image_fire_90 = self.data.load_image_trap("Fire", 90)[0]
@@ -40,6 +46,7 @@ class Level:
         self.image_rock_head = self.data.load_image_trap("Rock Head")[0]
         self.image_spike_head = self.data.load_image_trap("Spike Head")[0]
         self.image_arrow = self.data.load_image_trap("Arrow")[0]
+        self.image_blocks = self.data.load_image_trap("Blocks")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -47,6 +54,7 @@ class Level:
         with open(f"data/Json/Level/level_{self.level}.json") as file:
             data = json.load(file)
         self.data_json = data
+        self.data_maps = []
 
     def convert(self):
         self.bottom_right = None
@@ -116,6 +124,12 @@ class Level:
                                             self.image_arrow, None, value["flip"], 
                                             0, 0, 7, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_traps("Arrow"))
+                            
+                        if keys[1] == "blocks":
+                            entity_map = Blocks(value["name"], (pos[0], pos[1]), 
+                                            self.image_blocks, None, value["flip"], 
+                                            0, 0, 3, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_traps("Blocks"))
 
                         if keys[1] == "saw":
                             temp = []

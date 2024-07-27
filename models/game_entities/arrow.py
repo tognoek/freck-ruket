@@ -7,14 +7,17 @@ class Arrow(Entity):
         super().__init__(name, pos, images, sound, flip, volume, frame, size_frame, type_entity, z_index)
         self.data = data
         self.is_die_arrow = False
+        self.is_action = False
 
     def collision_player(self, player : Character):
-        if not self.is_die_arrow:
+        if not self.is_action:
             for i in player.data[player.action]:
                 if player.collision_tognoek_circle(self.get_image(), i, self.get_pos(), 7):
                     self.set_action("Hit")
+                    player.count_jump = 0
                     player.speed_y(-10)
-                    player.count_jump = 1
+                    self.is_action = True
+                    return
     
     def is_die(self):
         return self.is_die_arrow

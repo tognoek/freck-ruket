@@ -273,6 +273,28 @@
                     "Size" : "18x18",
                     "Frame" : "4"
                 }
+            },
+            "Blocks" : {
+                "Idle" : {
+                    "Size" : "22x22",
+                    "Frame" : "1"
+                },
+                "HitTop" : {
+                    "Size" : "22x22",
+                    "Frame" : "3"
+                },
+                "HitSide" : {
+                    "Size" : "22x22",
+                    "Frame" : "3"
+                },
+                "Part 1" : {
+                    "Size" : "22x22",
+                    "Frame" : "3"
+                },
+                "Part 2" : {
+                    "Size" : "22x22",
+                    "Frame" : "3"
+                }
             }
         }
     }

@@ -42,7 +42,7 @@
       }
    },
    "player": {
-      "1810:191": {
+      "293:534": {
          "name": "player",
          "type": 1,
          "flip": [
@@ -1073,6 +1073,159 @@
             "1",
             "2"
          ]
+      },
+      "242:478": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "264:478": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "352:478": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "352:500": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "264:500": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "242:500": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "352:456": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "352:434": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "352:412": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "299:456": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-179:450": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-129:477": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-74:509": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "5:536": {
+         "name": "traps_blocks",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "923:534": {
+         "name": "traps_spikehead",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
+            "2"
+         ]
       }
    },
    "metal": {
@@ -1398,6 +1551,56 @@
       },
       "566:211": {
          "name": "metal_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "164:478": {
+         "name": "metal_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "108:445": {
+         "name": "metal_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "108:397": {
+         "name": "metal_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "108:349": {
+         "name": "metal_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "108:301": {
+         "name": "metal_4",
          "type": 1,
          "flip": [
             false,
