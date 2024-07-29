@@ -3,6 +3,7 @@ PATH_CHARCTERS = "data/Images/Main Characters"
 PATH_MAPS = "data/Images/Maps"
 PATH_BACKGROUND = "data/Images/Background"
 PATH_TRAPS = "data/Images/Traps"
+PATH_ITEMS = "data/Images/Items"
 
 WINDOWS_SCREEN = (960, 720)
 WINDOWS_SCREEN_EDIT = (5 * 300, 3 * 300)

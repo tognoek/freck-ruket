@@ -1,7 +1,7 @@
 import pygame
 import json
 import os
-from ENV import PATH_CHARCTERS, PATH_MAPS, PATH_BACKGROUND, PATH_TRAPS
+from ENV import PATH_CHARCTERS, PATH_MAPS, PATH_BACKGROUND, PATH_TRAPS, PATH_ITEMS
 
 
 class Data:
@@ -42,7 +42,7 @@ class Data:
 
         return images, frames
     
-    def load_image_trap(self, name, rotate = 0):
+    def load_image_traps(self, name, rotate = 0):
         data = self.file_json["Images"]["Traps"][name]
         images = {}
         frames = {}
@@ -54,10 +54,24 @@ class Data:
         
         return images, frames
     
+    def load_image_items(self, name, rotate = 0):
+        data = self.file_json["Images"]["Items"][name]
+        images = {}
+        frames = {}
+        for attribute, values in data.items():
+            path = PATH_ITEMS + "/" + name + "/" + attribute + " (" + values["Size"] + ").png"
+            x, y = map(int , values["Size"].split("x"))
+            images[attribute] = self.cut_image(path, int(values["Frame"]), (x, y), rotate)
+            frames[attribute] = int(values["Frame"])
+        
+        return images, frames
+    
     def load_data_charactre(self, name):
         return self.data_error["Points Collision"]["Main Characters"][name] 
     def load_data_traps(self, name):
         return self.data_error["Points Collision"]["Traps"][name] 
+    def load_data_items(self, name):
+        return self.data_error["Points Collision"]["Items"][name] 
 
     def load_data_maps(self):
         images = {}

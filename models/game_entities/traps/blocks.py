@@ -1,7 +1,7 @@
 import pygame
 from models.game_entities.entity import Entity
 from models.game_entities.character import Character
-from models.game_entities.broken import Broken
+from models.game_entities.traps.broken import Broken
 import random
 
 class Blocks(Entity):

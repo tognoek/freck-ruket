@@ -4,7 +4,44 @@
 
         },
         "Items" : {
-
+            "Fruits" : {
+                "Apple" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Bananas" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Cherries" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Kiwi" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Melon" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Orange" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Pineapple" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Strawberry" : {
+                    "Size" : "32x32",
+                    "Frame" : "17"
+                },
+                "Collected" : {
+                    "Size" : "32x32",
+                    "Frame" : "6"
+                }
+            }
         },
         "Main Characters" : {
             "Mask Dude" : {
@@ -296,6 +333,7 @@
                     "Frame" : "3"
                 }
             }
+            
         }
     }
 }

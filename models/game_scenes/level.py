@@ -1,18 +1,19 @@
 import pygame, json
-from models.game_entities.map import Map
-from models.game_entities.trampoline import Trampoline
-from models.game_entities.fire import Fire
-from models.game_entities.fire_90 import Fire_90
-from models.game_entities.spikes import Spikes
-from models.game_entities.spikes_90 import Spikes_90
-from models.game_entities.fan import Fan
-from models.game_entities.saw import Saw
-from models.game_entities.spiked_ball import SpikedBall
-from models.game_entities.falling_platforms import FallingPlatforms
-from models.game_entities.rock_head import RockHead
-from models.game_entities.spike_head import SpikeHead
-from models.game_entities.arrow import Arrow
-from models.game_entities.blocks import Blocks
+from models.game_entities.traps.map import Map
+from models.game_entities.traps.trampoline import Trampoline
+from models.game_entities.traps.fire import Fire
+from models.game_entities.traps.fire_90 import Fire_90
+from models.game_entities.traps.spikes import Spikes
+from models.game_entities.traps.spikes_90 import Spikes_90
+from models.game_entities.traps.fan import Fan
+from models.game_entities.traps.saw import Saw
+from models.game_entities.traps.spiked_ball import SpikedBall
+from models.game_entities.traps.falling_platforms import FallingPlatforms
+from models.game_entities.traps.rock_head import RockHead
+from models.game_entities.traps.spike_head import SpikeHead
+from models.game_entities.traps.arrow import Arrow
+from models.game_entities.traps.blocks import Blocks
+from models.game_entities.items.fruits import Fruits
 from models.utils import Data
 import math
 
@@ -27,6 +28,7 @@ class Level:
         self.data_entities = {}
         self.name_maps = ["block", "land", "blockgray", "metal", "line", "wall"]
         self.is_create = False
+        self.fps = 60
         # self.name_traps = ""
 
     def create_data(self):
@@ -34,19 +36,20 @@ class Level:
             return
         self.is_create = True
         print("Create Data Images")
-        self.image_trampoline = self.data.load_image_trap("Trampoline")[0]
-        self.image_fire = self.data.load_image_trap("Fire")[0]
-        self.image_fire_90 = self.data.load_image_trap("Fire", 90)[0]
-        self.image_spikes = self.data.load_image_trap("Spikes")[0]
-        self.image_spikes_90 = self.data.load_image_trap("Spikes", 90)[0]
-        self.image_fan = self.data.load_image_trap("Fan")[0]
-        self.image_saw = self.data.load_image_trap("Saw")[0]
-        self.image_spiked_ball = self.data.load_image_trap("Spiked Ball")[0]
-        self.image_falling_platforms = self.data.load_image_trap("Falling Platforms")[0]
-        self.image_rock_head = self.data.load_image_trap("Rock Head")[0]
-        self.image_spike_head = self.data.load_image_trap("Spike Head")[0]
-        self.image_arrow = self.data.load_image_trap("Arrow")[0]
-        self.image_blocks = self.data.load_image_trap("Blocks")[0]
+        self.image_trampoline = self.data.load_image_traps("Trampoline")[0]
+        self.image_fire = self.data.load_image_traps("Fire")[0]
+        self.image_fire_90 = self.data.load_image_traps("Fire", 90)[0]
+        self.image_spikes = self.data.load_image_traps("Spikes")[0]
+        self.image_spikes_90 = self.data.load_image_traps("Spikes", 90)[0]
+        self.image_fan = self.data.load_image_traps("Fan")[0]
+        self.image_saw = self.data.load_image_traps("Saw")[0]
+        self.image_spiked_ball = self.data.load_image_traps("Spiked Ball")[0]
+        self.image_falling_platforms = self.data.load_image_traps("Falling Platforms")[0]
+        self.image_rock_head = self.data.load_image_traps("Rock Head")[0]
+        self.image_spike_head = self.data.load_image_traps("Spike Head")[0]
+        self.image_arrow = self.data.load_image_traps("Arrow")[0]
+        self.image_blocks = self.data.load_image_traps("Blocks")[0]
+        self.image_fruits = self.data.load_image_items("Fruits")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -156,6 +159,12 @@ class Level:
                             temp.append(value["type"])
                             temp.append(value["z-index"])
                             spiked_ball.append(temp)
+
+                    elif keys[0] == "items":
+                            entity_map = Fruits(value["name"], (pos[0], pos[1]), 
+                                            self.image_fruits, None, value["flip"], 
+                                            0, 0, 2, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_items("Fruits"))
                             
                     else:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 
@@ -212,10 +221,13 @@ class Level:
         self.traps = []
         self.maps = []
         for i in self.data_maps:
-            if i.name.split("_")[0] == "traps":
+            if i.name.split("_")[0] in ["traps", "items"]:
                 self.traps.append(i)
             else:
                 self.maps.append(i)
+
+    def update_fps(self, fps=60):
+        self.fps = fps
 
     def get_traps(self, pos = None):
         if pos != None:

@@ -20,6 +20,7 @@ class Entity:
         self.loop_frame = 0
         self.old_acction = "Idle"
         self.dust_particles = []
+        self.fps = 60
 
     def copy(self):
         return Entity(self.name, self.x, self.y, self.images, self.sound, self.volume, self.frame)
@@ -44,7 +45,7 @@ class Entity:
         else:
             return True
     def update(self, loop = True):
-        self.frame += 1
+        self.frame += 1 / self.fps * 60
         if self.frame >= len(self.images[self.action]) * self.size_frame:
             self.frame = 0
             self.loop_frame += 1
@@ -52,11 +53,6 @@ class Entity:
                 self.set_action('Idle')
             return True
         return False
-
-    def animation(self):
-        self.frame += 1
-        if self.frame >= len(self.images[self.action]) * self.size_frame:
-            self.frame = 0
 
 
     def get_image(self) -> pygame.Surface:
