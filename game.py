@@ -22,6 +22,8 @@ icon = pygame.image.load("data/icon.png")
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Tog")
 
+pygame.mouse.set_visible(False)
+
 display = pygame.Surface(DISPLAY_SIZE)
 
 
@@ -80,7 +82,7 @@ class Game:
             self.Level.draw(display, self.Camera.get_scroll())
             self.Level.update_fps(clock.get_fps())
             
-            clock.tick(60)
+            clock.tick(65)
 
             if not self.Player.isDie():
 

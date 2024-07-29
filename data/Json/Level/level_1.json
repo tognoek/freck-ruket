@@ -2026,146 +2026,6 @@
       }
    },
    "items": {
-      "-639:487": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-597:482": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-550:485": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-559:521": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-583:520": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-621:518": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-661:527": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-699:521": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-765:505": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-774:496": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-705:485": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-672:498": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-742:499": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-762:490": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
       "-1216:544": {
          "name": "items_bananas",
          "type": 1,
@@ -2228,46 +2088,6 @@
       },
       "-898:524": {
          "name": "items_strawberry",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-847:566": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-816:567": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-786:575": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-539:579": {
-         "name": "items_apple",
          "type": 1,
          "flip": [
             false,
@@ -2978,6 +2798,176 @@
       },
       "-138:492": {
          "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-774:515": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-728:513": {
+         "name": "items_box2",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-677:519": {
+         "name": "items_box3",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-726:561": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-698:563": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-672:566": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-648:566": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-635:559": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-603:562": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-773:449": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-721:461": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-677:450": {
+         "name": "items_cherries",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-610:441": {
+         "name": "items_kiwi",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-619:482": {
+         "name": "items_melon",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-645:389": {
+         "name": "items_orange",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-694:391": {
+         "name": "items_pineapple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "-744:399": {
+         "name": "items_strawberry",
          "type": 1,
          "flip": [
             false,

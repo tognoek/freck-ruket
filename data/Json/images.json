@@ -41,7 +41,49 @@
                     "Size" : "32x32",
                     "Frame" : "6"
                 }
-            }
+            },
+            "Box1" : {
+                "Idle" : {
+                    "Size" : "28x24",
+                    "Frame" : "1"
+                },
+                "Hit" : {
+                    "Size" : "28x24",
+                    "Frame" : "3"
+                },
+                "Break" : {
+                    "Size" : "28x24",
+                    "Frame" : "4"
+                }
+            } ,
+            "Box2" : {
+                "Idle" : {
+                    "Size" : "28x24",
+                    "Frame" : "1"
+                },
+                "Hit" : {
+                    "Size" : "28x24",
+                    "Frame" : "4"
+                },
+                "Break" : {
+                    "Size" : "28x24",
+                    "Frame" : "4"
+                }
+            } ,
+            "Box3" : {
+                "Idle" : {
+                    "Size" : "28x24",
+                    "Frame" : "1"
+                },
+                "Hit" : {
+                    "Size" : "28x24",
+                    "Frame" : "2"
+                },
+                "Break" : {
+                    "Size" : "28x24",
+                    "Frame" : "4"
+                }
+            } 
         },
         "Main Characters" : {
             "Mask Dude" : {

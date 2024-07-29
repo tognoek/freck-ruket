@@ -14,6 +14,9 @@ from models.game_entities.traps.spike_head import SpikeHead
 from models.game_entities.traps.arrow import Arrow
 from models.game_entities.traps.blocks import Blocks
 from models.game_entities.items.fruits import Fruits
+from models.game_entities.items.box1 import Box1
+from models.game_entities.items.box2 import Box2
+from models.game_entities.items.box3 import Box3
 from models.utils import Data
 import math
 
@@ -50,6 +53,9 @@ class Level:
         self.image_arrow = self.data.load_image_traps("Arrow")[0]
         self.image_blocks = self.data.load_image_traps("Blocks")[0]
         self.image_fruits = self.data.load_image_items("Fruits")[0]
+        self.image_box1 = self.data.load_image_items("Box1")[0]
+        self.image_box2 = self.data.load_image_items("Box2")[0]
+        self.image_box3 = self.data.load_image_items("Box3")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -161,10 +167,26 @@ class Level:
                             spiked_ball.append(temp)
 
                     elif keys[0] == "items":
-                            entity_map = Fruits(value["name"], (pos[0], pos[1]), 
+                            if keys[1] in ["apple", "bananas", "cherries", "kiwi", "melon", "orange", "pineapple", "strawberry"]:
+                                entity_map = Fruits(value["name"], (pos[0], pos[1]), 
                                             self.image_fruits, None, value["flip"], 
                                             0, 0, 2, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_items("Fruits"))
+                            if keys[1] == "box1":
+                                entity_map = Box1(value["name"], (pos[0], pos[1]), 
+                                            self.image_box1, None, value["flip"], 
+                                            0, 0, 2, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_items("Box1"))
+                            if keys[1] == "box2":
+                                entity_map = Box2(value["name"], (pos[0], pos[1]), 
+                                            self.image_box2, None, value["flip"], 
+                                            0, 0, 2, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_items("Box2"))
+                            if keys[1] == "box3":
+                                entity_map = Box3(value["name"], (pos[0], pos[1]), 
+                                            self.image_box3, None, value["flip"], 
+                                            0, 0, 2, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_items("Box3"))
                             
                     else:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 
