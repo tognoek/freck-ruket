@@ -2,18 +2,26 @@ import pygame
 from models.game_entities.entity import Entity
 from models.game_entities.character import Character
 from models.game_entities.items.break_class import Break
+from models.game_entities.items.fruits import Fruits
 import random
 
 class Box3(Entity):
-    def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1, z_index = 1, data = None):
+    def __init__(self, name, pos, images, sound, flip, volume, frame, 
+                 size_frame = 5, type_entity = 1, z_index = 1, data = None, images_fruits = None):
         super().__init__(name, pos, images, sound, flip, volume, frame, size_frame, type_entity, z_index)
         self.data = data
         self.is_active = True
         self.live = 5
         self.is_die_box = False
+        self.is_die_breaks = False
         self.is_breaks = False
         self.breaks = []
         self.loop = False
+        self.is_fruits = False
+        self.is_die_fruits = False
+        self.fruits = []
+        self.size_fruits = 8
+        self.images_fruits = images_fruits
 
     def collision_player(self, player : Character):
         if self.is_active:
@@ -69,7 +77,14 @@ class Box3(Entity):
                             self.set_action("Hit")
                             self.live -= 1
                 player.pos = (player.pos[0], player_rect.y)
-
+        if self.is_die_breaks:
+            for item_fruit in self.fruits:
+                if item_fruit.is_action:
+                    for i in player.data[player.action]:
+                        if player.collision_tognoek_circle(item_fruit.get_image(), i, item_fruit.get_pos(), 7):
+                            item_fruit.set_action("Collected")
+                            item_fruit.is_action = False
+                            break
     def is_die(self):
         return self.is_die_box
     
@@ -106,17 +121,36 @@ class Box3(Entity):
                 i.render(surface, offset)
             for i in self.breaks:
                 if i.is_die():
-                    self.is_die_box = True
+                    self.is_die_breaks = True
+        
+        if self.is_fruits:
+            if len(self.fruits) == 0:
+                for _ in range(self.size_fruits):
+                    pos = (self.pos[0] + random.randint(-20, 20), self.pos[1] - 5)
+                    name = random.choice(["items_apple", "items_bananas", "items_kiwi", "items_cherries", 
+                                          "items_pineapple", "items_melon", "items_strawberry", "items_orange"])
+                    
+                    entity = Fruits(name, pos, self.images_fruits, None, (False, False), 0, random.randint(0, 15), 3, 
+                                    self.type_entity, self.z_index, None)
+                    self.fruits.append(entity)
+            
+            for i in self.fruits:
+                i.update()
+                if not i.is_die():
+                    i.render(surface, offset)
+            for i in self.fruits:
+                if i.is_die():
+                    self.is_die_fruits
         else:
             super().render(surface, offset)
             
 
     def update(self, loop=False):
-        if self.is_die_box:
-            return False
+        self.is_die_box = self.is_die_breaks and self.is_die_fruits
         if self.live < 0 and self.is_active:
             self.is_breaks = True
             self.is_active = False
+            self.is_fruits = True
         super().update(self.loop)
             
 

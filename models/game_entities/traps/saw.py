@@ -11,6 +11,7 @@ class Saw(Entity):
         self.array_dot = []
         self.action = "On"
         self.dot = 0
+        self.pos = (self.data[0][1][0], self.data[0][1][1])
         self.sub_dot = 0
 
     def calculate_coordinates(self, x1, y1, x2, y2, step=1, offet = (0, 0)):

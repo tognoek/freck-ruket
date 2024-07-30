@@ -8,15 +8,15 @@ class Fruits(Entity):
         self.data = data
         self.set_action(self.name.split("_")[1][0].upper() + self.name.split("_")[1][1:])
         self.is_die_arrow = False
-        self.is_action = False
+        self.is_action = True
         self.frame = random.randint(0, len(self.images[self.action]) - 2 * self.size_frame)
 
     def collision_player(self, player : Character):
-        if not self.is_action:
+        if self.is_action:
             for i in player.data[player.action]:
                 if player.collision_tognoek_circle(self.get_image(), i, self.get_pos(), 7):
                     self.set_action("Collected")
-                    self.is_action = True
+                    self.is_action = False
                     return
     
     def is_die(self):

@@ -42,7 +42,7 @@
       }
    },
    "player": {
-      "-457:537": {
+      "1169:184": {
          "name": "player",
          "type": 1,
          "flip": [
@@ -1225,6 +1225,34 @@
          "values": [
             "1",
             "2"
+         ]
+      },
+      "540:291": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
+            "1"
+         ]
+      },
+      "540:371": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
+            "2",
+            "120",
+            "4"
          ]
       }
    },

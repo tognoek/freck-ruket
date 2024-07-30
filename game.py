@@ -79,7 +79,7 @@ class Game:
 
             self.Background.render(display)
 
-            self.Level.draw(display, self.Camera.get_scroll())
+            self.Level.draw(display, self.Camera.get_scroll(), self.Player.get_pos())
             self.Level.update_fps(clock.get_fps())
             
             clock.tick(65)

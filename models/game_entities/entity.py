@@ -77,6 +77,14 @@ class Entity:
     def get_pos(self) -> tuple:
         return self.pos
     
+    def show(self, pos, max_len = 500):
+        if pos == None:
+            return True
+        x = self.get_pos()[0] - pos[0]
+        y = self.get_pos()[1] - pos[1]
+        l = math.hypot(x, y)
+        return l < max_len
+    
     def collision_mask(self, other, default=False):
         if default:
             entity_1 = pygame.mask.from_surface(self.get_image_default())

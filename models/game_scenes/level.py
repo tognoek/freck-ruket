@@ -176,17 +176,17 @@ class Level:
                                 entity_map = Box1(value["name"], (pos[0], pos[1]), 
                                             self.image_box1, None, value["flip"], 
                                             0, 0, 2, int(value["type"]), int(value["z-index"]),
-                                            self.data.load_data_items("Box1"))
+                                            self.data.load_data_items("Box1"), self.image_fruits)
                             if keys[1] == "box2":
                                 entity_map = Box2(value["name"], (pos[0], pos[1]), 
                                             self.image_box2, None, value["flip"], 
                                             0, 0, 2, int(value["type"]), int(value["z-index"]),
-                                            self.data.load_data_items("Box2"))
+                                            self.data.load_data_items("Box2"), self.image_fruits)
                             if keys[1] == "box3":
                                 entity_map = Box3(value["name"], (pos[0], pos[1]), 
                                             self.image_box3, None, value["flip"], 
                                             0, 0, 2, int(value["type"]), int(value["z-index"]),
-                                            self.data.load_data_items("Box3"))
+                                            self.data.load_data_items("Box3"), self.image_fruits)
                             
                     else:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 
@@ -294,14 +294,15 @@ class Level:
         self.data_maps.sort(key = lambda item : item.z_index)
         # return self.data_maps
     
-    def draw(self, surface : pygame.Surface, offset = (0, 0)):
-        for entity_map in self.data_maps: 
-            if not entity_map.is_die():
-                if entity_map.name in ["traps_rockhead", "traps_spikehead"]:
-                    entity_map.update(self.get_maps(entity_map.get_pos()))
-                else:
-                    entity_map.update()
-                entity_map.render(surface, offset)
+    def draw(self, surface : pygame.Surface, offset = (0, 0), pos_player = None, max_len = 500):
+        for entity_map in self.data_maps:
+            if entity_map.show(pos_player, max_len):
+                if not entity_map.is_die():
+                    if entity_map.name in ["traps_rockhead", "traps_spikehead"]:
+                        entity_map.update(self.get_maps(entity_map.get_pos()))
+                    else:
+                        entity_map.update()
+                    entity_map.render(surface, offset)
             # surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
 
     def start_pos_player(self):

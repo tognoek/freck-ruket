@@ -7,6 +7,7 @@ class SpikedBall(Entity):
     def __init__(self, name, pos, images, sound, flip, volume, frame, size_frame = 5, type_entity = 1, z_index = 1, data = None):
         super().__init__(name, pos, images, sound, flip, volume, frame, size_frame, type_entity, z_index)
         self.data = data
+        self.pos = (self.data[1][1][0], self.data[1][1][1])
     
     def collision_player(self, player : Character):
         for i in range(8):
@@ -76,7 +77,7 @@ class SpikedBall(Entity):
 
     def render(self, surface : pygame.Surface, offset):
         pos = self.get_pos()
-        for t in self.calculate_coordinates(self.coordinates[0], self.coordinates[1], pos[0], pos[1], step = 10):
+        for t in self.calculate_coordinates(self.coordinates[0], self.coordinates[1], pos[0], pos[1], step = 12):
             surface.blit(self.images["Chain"][0], (t[0] + offset[0], t[1] + offset[1]))
             self.pos_image = (t[0], t[1])
         self.pos_image = (self.pos_image[0] - self.image_rotate.get_width() / 2 + 4, self.pos_image[1] - self.image_rotate.get_height() / 2 + 4)
