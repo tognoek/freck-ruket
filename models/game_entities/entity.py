@@ -66,7 +66,7 @@ class Entity:
         mask_surface = pygame.mask.from_surface(self.get_image())
         return pygame.mask.Mask.to_surface(mask_surface)
     
-    def render(self, surface, offset=(0, 0)):
+    def render(self, surface, offset=(0, 0), pause = False):
         surface.blit(pygame.transform.flip(self.get_image(), self.flip[0], self.flip[1]), (int(self.pos[0] + offset[0]), int(self.pos[1] + offset[1])))
 
     def run_sound(self):

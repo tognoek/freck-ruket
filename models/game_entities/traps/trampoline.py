@@ -64,11 +64,12 @@ class Trampoline(Entity):
             self.is_dust_particle = True
 
 
-    def render(self, surface, offset):
+    def render(self, surface, offset, pause):
         super().render(surface, offset)
         self.dust_particle()
         for i in self.dust_particles:
-            i.update()
-            i.render(surface, offset)
+            if not pause:
+                i.update()
+                i.render(surface, offset)
             if i.is_die():
                 self.dust_particles.remove(i)

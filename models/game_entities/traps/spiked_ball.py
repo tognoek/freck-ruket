@@ -75,7 +75,7 @@ class SpikedBall(Entity):
 
         self.image_rotate = self.get_image()
 
-    def render(self, surface : pygame.Surface, offset):
+    def render(self, surface : pygame.Surface, offset, pause):
         pos = self.get_pos()
         for t in self.calculate_coordinates(self.coordinates[0], self.coordinates[1], pos[0], pos[1], step = 12):
             surface.blit(self.images["Chain"][0], (t[0] + offset[0], t[1] + offset[1]))

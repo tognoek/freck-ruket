@@ -87,12 +87,14 @@ class FallingPlatforms(Entity):
         return self.die > 100
 
 
-    def render(self, surface, offset):
-        super().render(surface, offset)
+    def render(self, surface, offset, pause):
+        super().render(surface, offset, pause)
         if self.frame % 3 == 0:
-            self.dust_particle()
+            if not pause:
+                self.dust_particle()
         for i in self.dust_particles:
-            i.update()
+            if not pause:
+                i.update()
             i.render(surface, offset)
             if i.is_die():
                 self.dust_particles.remove(i)

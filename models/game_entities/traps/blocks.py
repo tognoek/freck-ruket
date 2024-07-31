@@ -73,9 +73,9 @@ class Blocks(Entity):
     def is_die(self):
         return self.is_die_blocks
     
-    def render(self, surface, offset):
+    def render(self, surface, offset, pause):
         if not self.is_broken:
-            super().render(surface, offset)
+            super().render(surface, offset, pause)
         else:
             if len(self.broken) == 0:
                 pos = (self.pos[0], self.pos[1])
@@ -86,7 +86,8 @@ class Blocks(Entity):
                                 self.type_entity, self.z_index, None, [0.5, -3], "Part 2")
                 self.broken.append(entity)
             for i in self.broken:
-                i.update()
+                if not pause:
+                    i.update()
                 i.render(surface, offset)
             
             for i in self.broken:

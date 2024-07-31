@@ -42,6 +42,9 @@ class Data:
 
         return images, frames
     
+    def load_mouse(self):
+        return pygame.image.load("data/Images/Menu/Mouse/mouse.png")
+
     def load_image_traps(self, name, rotate = 0):
         data = self.file_json["Images"]["Traps"][name]
         images = {}
@@ -104,3 +107,40 @@ class Data:
                 images[key] = image
         
         return images
+    
+class Text:
+    def __init__(self):
+        self.name = ["a", "b", "c", "d", "e", "f", "g",
+                      "h", "i", "j", "k", "l", "m", "n",
+                        "o", "p", "q", "r", "s", "t", "u",
+                          "v", "w", "x", "y", "z", " ",
+                          "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                          ".", ",", ":", "?", "!", "(", ")", "+", "-"]
+        self.image = pygame.image.load("data/Images/Menu/Text/Text (Black) (8x10).png")
+        self.data = {}
+
+    def create(self):
+        temp = []
+        for i in range(5):
+            for t in range(10):
+                sur = pygame.Surface((8, 10))
+                sur.blit(self.image, (0, 0), (t * 8, i * 10, 8, 10))
+                sur.set_colorkey((0, 0, 0))
+                temp.append(sur)
+
+        t = 0
+        for i in range(0, 27):
+            self.data[self.name[t]] = temp[i]
+            t = t + 1
+        for i in range(30, 49):
+            self.data[self.name[t]] = temp[i]
+            t = t + 1
+
+    def get_text(self, s : str) -> list:
+        temp = []
+        for i in s.lower():
+            if i not in self.name:
+                temp.append(self.data["?"])
+            else:
+                temp.append(self.data[i])
+        return temp

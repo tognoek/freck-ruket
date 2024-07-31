@@ -93,12 +93,14 @@ class Fan(Entity):
             for i in Dustparticle.create_dust_particles_fly((x, y), 1, (w, h), 0, (20, 40)):
                 self.dust_particles.append(i)
 
-    def render(self, surface, offset):
+    def render(self, surface, offset, pause):
         # print(123123)
         super().render(surface, offset)
-        self.dust_particle()
+        if not pause:
+            self.dust_particle()
         for i in self.dust_particles:
-            i.update()
+            if not pause:
+                i.update()
             i.render(surface, offset)
             if i.is_die():
                 self.dust_particles.remove(i)

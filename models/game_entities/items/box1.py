@@ -88,7 +88,7 @@ class Box1(Entity):
     def is_die(self):
         return self.is_die_box
     
-    def render(self, surface, offset):
+    def render(self, surface, offset, pause = False):
         if self.is_breaks:
             if len(self.breaks) == 0:
                 pos = (self.pos[0], self.pos[1] - 5)
@@ -117,7 +117,8 @@ class Box1(Entity):
                 self.breaks.append(entity)
             
             for i in self.breaks:
-                i.update()
+                if not pause:
+                    i.update()
                 i.render(surface, offset)
             for i in self.breaks:
                 if i.is_die():
@@ -135,7 +136,8 @@ class Box1(Entity):
                     self.fruits.append(entity)
             
             for i in self.fruits:
-                i.update()
+                if  not pause:
+                    i.update()
                 if not i.is_die():
                     i.render(surface, offset)
             for i in self.fruits:

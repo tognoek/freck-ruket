@@ -53,15 +53,15 @@ class Saw(Entity):
             start = (temp[0][1][0], temp[0][1][1])
             self.array_dot = [[start]]
 
-    def render(self, surface : pygame.Surface, offset):
+    def render(self, surface : pygame.Surface, offset, pause):
         self.pos = self.array[self.dot][self.sub_dot]
 
         for i in self.array_dot:
             for t in i:
                 surface.blit(self.images["Chain"][0], (t[0] + offset[0], t[1] + offset[1]))
-        super().render(surface, offset)
-
-        self.sub_dot += 1
+        super().render(surface, offset, pause)
+        if not pause:
+            self.sub_dot += 1
         if self.sub_dot == len(self.array[self.dot]):
             self.sub_dot = 0
             self.dot += 1

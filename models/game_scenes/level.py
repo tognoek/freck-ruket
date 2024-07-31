@@ -294,7 +294,7 @@ class Level:
         self.data_maps.sort(key = lambda item : item.z_index)
         # return self.data_maps
     
-    def draw(self, surface : pygame.Surface, offset = (0, 0), pos_player = None, max_len = 500):
+    def update(self, pos_player = None, max_len = 500):
         for entity_map in self.data_maps:
             if entity_map.show(pos_player, max_len):
                 if not entity_map.is_die():
@@ -302,7 +302,12 @@ class Level:
                         entity_map.update(self.get_maps(entity_map.get_pos()))
                     else:
                         entity_map.update()
-                    entity_map.render(surface, offset)
+
+    def render(self, surface : pygame.Surface, offset = (0, 0), pos_player = None, max_len = 500, pause = False):
+        for entity_map in self.data_maps:
+            if entity_map.show(pos_player, max_len):
+                if not entity_map.is_die():
+                    entity_map.render(surface, offset, pause)
             # surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
 
     def start_pos_player(self):
@@ -315,3 +320,9 @@ class Level:
             result = (0, 0)  # Default position if player not found in the map
         return result
   
+    def run(self, level = 1):
+        self.load_map(level)
+        self.create_data()
+        self.convert()
+        self.sort_by_type()
+        self.filter_type()
