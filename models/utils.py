@@ -144,3 +144,15 @@ class Text:
             else:
                 temp.append(self.data[i])
         return temp
+    
+class Image:
+    def __init__(self):
+        pass
+
+    def load_image(self, path : str):
+        path = path.replace("\\", "/")
+        sur = pygame.image.load(path).convert_alpha()
+        result = pygame.Surface((sur.get_width(),sur.get_height()))
+        result.blit(sur, (0, 0))
+        result.set_colorkey((0, 0, 0))
+        return result

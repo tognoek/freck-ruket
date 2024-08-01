@@ -1,9 +1,15 @@
 import pygame
+from models.ui_components.button import ButtonImage
 
 class ScreenPause:
     
-    def __init__(self, display : pygame.Surface):
+    def __init__(self, display : pygame.Surface, image_button, data_text):
         self.display = display
+        self.image_button = image_button
+        self.data_text = data_text
+
+    def create_menu(self):
+        self.ButtonImage = ButtonImage()
 
     def render(self):
         sur = pygame.Surface((100, 100))

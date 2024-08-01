@@ -3,7 +3,7 @@ from models.game_entities.character import Character
 from models.game_scenes.level import Level
 from models.game_scenes.camera import Camera
 from models.game_scenes.gackground import Background
-from models.utils import Data
+from models.utils import Data, Image, Text
 from models.ui_components.string import String
 from models.game_scenes.screenmenu import ScreenMenu
 from models.game_scenes.screenpause import ScreenPause
@@ -22,8 +22,13 @@ class GameCanvas:
         self.Level = Level(1, self.image)
         self.String = String(self.display)
 
-        self.ScreenMenu = ScreenMenu(self.display)
-        self.ScreenPause = ScreenPause(self.display)
+        self.ImageButton = Image().load_image("data/Images/Menu/Buttons/frame.png")
+
+        self.Text = Text()
+        self.Text.create()
+
+        self.ScreenMenu = ScreenMenu(self.display, self.ImageButton, self.Text)
+        self.ScreenPause = ScreenPause(self.display, self.ImageButton, self.Text)
 
         self.index_level = 1
         self.is_pause = False
@@ -127,7 +132,7 @@ class GameCanvas:
 
     def click_mouse(self, x, y, z):
         if self.is_menu:
-            if self.ScreenMenu.click_mouse(x, y, z):
+            if self.ScreenMenu.click_mouse(x, y, z) == "start":
                 self.is_menu = False
                 self.is_play = True
 

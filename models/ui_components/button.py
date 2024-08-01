@@ -1,6 +1,5 @@
 import pygame
 
-
 class Button:
     def __init__(self, name, text, color_on, color_off, pos, size, image = None) -> None:
         self.name = name
@@ -44,3 +43,40 @@ class Button:
         pos_text = (background.get_width() // 2 - self.text.get_width() // 2, background.get_height() // 2 - self.text.get_height() // 2)
         background.blit(self.text, pos_text)
         surface.blit(background, self.pos)
+
+class ButtonImage:
+    def __init__(self, name, text, pos, image, data_text, ratio = 1, max_width = None) -> None:
+        self.name = name
+        self.pos = pos
+        self.text = data_text.get_text(text)
+        self.len = len(text)
+        self.image = image
+        self.ratio = ratio
+        self.max = max_width
+        self.is_click = False
+
+    def click_mouse(self, pos, z):
+        self.is_click = False
+        if self.pos[0] <= pos[0] and self.pos[0] + self.width_image_button >= pos[0]:
+            if self.pos[1] <= pos[1] and self.pos[1] + self.height_image_button >= pos[1]:
+                self.is_click = z == 1
+        return self.is_click
+
+    def render(self, surface : pygame.Surface):
+        self.width = int(8 * self.ratio)
+        self.height = int(10 * self.ratio)
+        if self.max is not None:
+            self.width_image_button = max(self.width * self.len + 20 * self.ratio, self.max * self.ratio)
+        else:
+            self.width_image_button = self.width * self.len + 20 * self.ratio
+        self.height_image_button = self.height + 14 * self.ratio
+        surface.blit(pygame.transform.scale(self.image,(self.width_image_button, self.height_image_button)), self.pos)
+        left_text = self.width_image_button - self.width * self.len
+        left_text = left_text / 2
+        for i, v in enumerate(self.text):
+            image = pygame.transform.scale(v,(self.width, self.height))
+            surface.blit(image, (int(self.pos[0] + left_text + self.width * i), int(self.pos[1] + 5 * self.ratio)))
+                     
+        
+        
+

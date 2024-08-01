@@ -23,9 +23,10 @@ class String:
             pos = (self.surface.get_width() // 2 - text.get_width() // 2, self.surface.get_height() // 2 - text.get_height() // 2)
         self.surface.blit(text, pos)
 
-    def render_until(self, text, pos = (0, 0)):
+    def render_until(self, text, pos = (0, 0), ratio = 2):
         text = self.Text.get_text(text)
         for i, v in enumerate(text):
-            pos_draw = (pos[0] + i * 8, pos[1])
-            self.surface.blit(v, pos_draw)
+            pos_draw = (pos[0] + i * int(8 * ratio), pos[1])
+            image = pygame.transform.scale(v, (int(8 * ratio), int(10 * ratio)))
+            self.surface.blit(image, pos_draw)
 
