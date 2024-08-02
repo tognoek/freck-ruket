@@ -76,7 +76,24 @@ class ButtonImage:
         for i, v in enumerate(self.text):
             image = pygame.transform.scale(v,(self.width, self.height))
             surface.blit(image, (int(self.pos[0] + left_text + self.width * i), int(self.pos[1] + 5 * self.ratio)))
-                     
+
+class ImageButton:
+
+    def __init__(self, name, image, pos, ratio = 1) -> None:
+        self.name = name
+        self.pos = pos
+        self.image = pygame.transform.scale(image, (image.get_width() * ratio, image.get_height() * ratio))
+        self.ratio = ratio
+
+    def render(self, display):
+        display.blit(self.image, self.pos)
+
+    def click_mouse(self, pos, z):
+        if self.pos[0] <= pos[0] and self.pos[0] + self.image.get_width() >= pos[0]:
+            if self.pos[1] <= pos[1] and self.pos[1] + self.image.get_height() >= pos[1]:
+                return z == 1
+            
+        return False
         
         
 

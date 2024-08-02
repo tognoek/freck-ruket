@@ -1,7 +1,7 @@
 import pygame
 import json
 import os
-from ENV import PATH_CHARCTERS, PATH_MAPS, PATH_BACKGROUND, PATH_TRAPS, PATH_ITEMS
+from ENV import PATH_CHARCTERS, PATH_MAPS, PATH_BACKGROUND, PATH_TRAPS, PATH_ITEMS, PATH_IMAGES_LEVELS, PATH_IMAGES_BUTTONS
 
 
 class Data:
@@ -87,6 +87,17 @@ class Data:
                 images[key] = image
         
         return images
+    def load_data_images_level(self):
+        images = {}
+        for filename in os.listdir(PATH_IMAGES_LEVELS):
+            file_path = os.path.join(PATH_IMAGES_LEVELS, filename)
+            if os.path.isfile(file_path) and filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+
+                image = pygame.image.load(file_path)
+                key = os.path.splitext(filename)[0]
+                images[key] = image
+        
+        return images
 
     def convert_action_maps(self):
         data = self.load_data_maps()
@@ -156,3 +167,14 @@ class Image:
         result.blit(sur, (0, 0))
         result.set_colorkey((0, 0, 0))
         return result
+    
+    def load_image_character(self, name):
+        image = pygame.image.load(PATH_CHARCTERS + "/" + name + "/Idle (32x32).png")
+        sur = pygame.Surface((32, 32))
+        sur.blit(image, (0, 0), (0, 0, 32, 32))
+        sur.set_colorkey((0, 0, 0))
+        return sur
+    
+    def load_image_button(sef, name):
+        return pygame.image.load(PATH_IMAGES_BUTTONS + "/" + name + ".png")
+    

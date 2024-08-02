@@ -38,7 +38,6 @@ class Level:
         if self.is_create:
             return
         self.is_create = True
-        print("Create Data Images")
         self.image_trampoline = self.data.load_image_traps("Trampoline")[0]
         self.image_fire = self.data.load_image_traps("Fire")[0]
         self.image_fire_90 = self.data.load_image_traps("Fire", 90)[0]

@@ -7,7 +7,8 @@ from models.utils import Data, Image, Text
 from models.ui_components.string import String
 from models.game_scenes.screenmenu import ScreenMenu
 from models.game_scenes.screenpause import ScreenPause
-
+from models.game_scenes.screenlevel import ScreenLevel
+from models.game_scenes.screenfigure import ScreenFigure
 
 class GameCanvas:
 
@@ -24,9 +25,16 @@ class GameCanvas:
 
         self.ImageButton = Image().load_image("data/Images/Menu/Buttons/frame.png")
 
+        self.framebig = pygame.image.load("data/Images/Menu/Buttons/framebig.png")
+        self.framebig = pygame.transform.scale(self.framebig, self.display.get_size())
+
         self.Text = Text()
         self.Text.create()
 
+        self.name_character = "Pink Man"
+
+        self.ScreenLevel = ScreenLevel(self.display)
+        self.ScreenFigure = ScreenFigure(self.display, self.ImageButton, self.Text)
         self.ScreenMenu = ScreenMenu(self.display, self.ImageButton, self.Text)
         self.ScreenPause = ScreenPause(self.display, self.ImageButton, self.Text)
 
@@ -34,8 +42,12 @@ class GameCanvas:
         self.is_pause = False
         self.is_play = False
         self.is_menu = True
+        self.is_menu_level = False
+        self.is_menu_figure = False
 
-    def load_player(self, name = "Ninja Frog"):
+        self.exit = False
+
+    def load_player(self, name = "Pink Man"):
         images, y = self.image.load_images_main_character(name)
         data_character = self.image.load_data_charactre(name)
         self.Player = Character("Player", self.Level.start_pos_player()
@@ -52,7 +64,7 @@ class GameCanvas:
 
     def create(self):
         self.Level.run(self.index_level)
-        self.load_player()
+        self.load_player(self.name_character)
         self.create_camera()
 
     def run(self, mouse = (0, 0)):
@@ -80,23 +92,33 @@ class GameCanvas:
         self.Level.update(self.Player.get_pos())
 
     def render(self, mouse = (0, 0)):
+        self.display.fill((142, 207, 210))
         if self.is_play:
             self.Background.render(self.display)
-            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), 500, False)
-            self.Player.render(self.display, self.Camera.get_scroll(), True)
+            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), 900, False)
+            self.Player.render(self.display, self.Camera.get_scroll(), False)
             self.String.render_until(self.Player.action, pos=(100, 150))
 
         if self.is_menu:
             self.ScreenMenu.render()
 
+        if self.is_menu_level:
+            self.ScreenLevel.render()
+
+        if self.is_menu_figure:
+            if self.ScreenFigure.is_begin:
+                self.ScreenFigure.set_index_character(self.name_character)
+            self.ScreenFigure.render()
+
         if self.is_pause:
             self.Background.render(self.display)
-            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), 500, True)
+            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), 900, True)
             self.Player.render(self.display, self.Camera.get_scroll(), True)
             self.ScreenPause.render()
 
         if not self.is_play:
             self.display.blit(self.image_mouse, (mouse[0] * self.ratio[0], mouse[1] * self.ratio[1]))
+            self.display.blit(self.framebig, (0, 0))
 
     def event(self, event, mouse):
         if self.is_play:
@@ -129,14 +151,57 @@ class GameCanvas:
 
         if event.type == pygame.MOUSEBUTTONUP:
             self.click_mouse(mouse[0] * self.ratio[0], mouse[1] * self.ratio[1], event.button)
+        
+        return self.exit
 
     def click_mouse(self, x, y, z):
         if self.is_menu:
-            if self.ScreenMenu.click_mouse(x, y, z) == "start":
+            name_click = self.ScreenMenu.click_mouse(x, y, z)
+            if name_click == "start":
+                self.create()
                 self.is_menu = False
                 self.is_play = True
+
+            if name_click == "level":
+                self.is_menu = False
+                self.is_menu_level = True
+
+            if name_click == "figure":
+                self.is_menu = False
+                self.is_menu_figure = True
+                self.ScreenFigure.is_begin = True
+            
+            if name_click == "exit":
+                self.exit = True
 
         if self.is_pause:
             if self.ScreenPause.click_mouse(x, y, z):
                 self.is_pause = False
                 self.is_play = True
+
+        if self.is_menu_level:
+            name_click = self.ScreenLevel.click_mouse(x, y, z)
+            if name_click == "next":
+                self.ScreenLevel.set_page(1)
+            if name_click == "previous":
+                self.ScreenLevel.set_page(-1)
+            if name_click == "back":
+                self.is_menu_level = False
+                self.is_menu = True
+
+        
+        if self.is_menu_figure:
+            name_click = self.ScreenFigure.click_mouse(x, y, z)
+            if name_click == "next":
+                self.ScreenFigure.set_page(1)
+            if name_click == "previous":
+                self.ScreenFigure.set_page(-1)
+            if name_click == "back":
+                self.is_menu_figure = False
+                self.is_menu = True
+
+            if name_click == "select":
+                self.name_character = self.ScreenFigure.get_name_character()
+                self.ScreenMenu.update_images_character(self.name_character)
+                self.is_menu_figure = False
+                self.is_menu = True

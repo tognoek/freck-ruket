@@ -3,14 +3,13 @@ from ENV import WINDOWS_SCREEN, DISPLAY_SIZE
 from models.game_scenes.gamecanvas import GameCanvas
 
 pygame.init()
-
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode(WINDOWS_SCREEN)
+screen = pygame.display.set_mode(WINDOWS_SCREEN, pygame.NOFRAME)
 
-icon = pygame.image.load("data/icon.png")
 pygame.mouse.set_visible(False)
 
+icon = pygame.image.load("data/icon.png")
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Tog")
 
@@ -24,7 +23,6 @@ class Game:
 
         self.GameCanvas = GameCanvas(display=display, ratio=ratio)
     def run(self):
-        self.GameCanvas.create()
         running = True
 
         while running:
@@ -34,7 +32,10 @@ class Game:
             self.GameCanvas.run(pygame.mouse.get_pos())
             
             for event in pygame.event.get():
-                self.GameCanvas.event(event, pygame.mouse.get_pos())
+                if self.GameCanvas.event(event, pygame.mouse.get_pos()):
+                    running = False
+                    pygame.quit()
+                    sys.exit()
 
                 if event.type == pygame.QUIT:
                     running = False
