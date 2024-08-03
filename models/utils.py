@@ -2,7 +2,47 @@ import pygame
 import json
 import os
 from ENV import PATH_CHARCTERS, PATH_MAPS, PATH_BACKGROUND, PATH_TRAPS, PATH_ITEMS, PATH_IMAGES_LEVELS, PATH_IMAGES_BUTTONS
+MAXLEVEL = 50
+class Save:
+    def __init__(self):
+        self.path_locks = "data\Json\Level\lock_levels.json"
+        self.path_start = "data\Json\Level\start.json"
+    def save_lock(self, key):
+        if key > MAXLEVEL:
+            key = MAXLEVEL
+        key = str(f"{key:02}")
+        with open(self.path_locks) as file:
+            data = json.load(file)
+        data[key] = False
+        with open(self.path_locks, "w") as file:
+            json.dump(data, file, indent=2)
 
+    def get_start(self):
+        with open(self.path_start) as file:
+            data = json.load(file)
+        return int(data["level"])
+    def get_character(self):
+        with open(self.path_start) as file:
+            data = json.load(file)
+        return data["character"]
+    
+    def update_character(self, key):
+        with open(self.path_start, "r") as file:
+            data = json.load(file)
+        data["character"] = key
+        with open(self.path_start, "w") as file:
+            json.dump(data, file)
+    
+    def update_start(self, key):
+        with open(self.path_start, "r") as file:
+            data = json.load(file)
+        key_old = int(data["level"])
+        if key > MAXLEVEL:
+            key = MAXLEVEL
+        if key_old < key:
+            data["level"] = key
+            with open(self.path_start, "w") as file:
+                json.dump(data, file)
 
 class Data:
 
@@ -118,6 +158,11 @@ class Data:
                 images[key] = image
         
         return images
+    
+    def load_data_lock_levels(self):
+        with open("data/Json/Level/lock_levels.json") as f:
+            data = json.load(f)
+        return data
     
 class Text:
     def __init__(self):

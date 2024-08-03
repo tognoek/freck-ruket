@@ -35,7 +35,6 @@ class ScreenLevel:
         self.background = pygame.transform.scale(self.background, (320, 220))
 
         self.page = 1
-        self.old_page = 0
 
         self.levels = []
         image_next = Image().load_image_button("Next")
@@ -45,14 +44,15 @@ class ScreenLevel:
         image_back = Image().load_image_button("Back")
         self.button_back = ImageButton("back", image_back, (30, 30), 3)
         self.buttons = [self.button_next, self.button_previous, self.button_back]
+        self.data_lock_levels = Data().load_data_lock_levels()
 
     def render(self):
+        self.data_lock_levels = Data().load_data_lock_levels()
         self.display.blit(self.background, (140, 130))
         pos = (205, 150)
         t = 0
         r = 0
-        if self.page != self.old_page:
-            self.old_page = self.page
+        if True:
             self.levels = []
             for i in range((self.page - 1) * 9, self.page * 9):
                 if i > 49:
@@ -63,15 +63,13 @@ class ScreenLevel:
                 size = (int(size[0] * 3), int(size[1] * 3))
                 image = pygame.transform.scale(image, size)
                 level = Level(name, image, (pos[0] + t * (size[0] + 10), pos[1] + r * (size[1] + 10)))
-                if i == 0:
-                    level.is_block = False
+                level.is_block = self.data_lock_levels[name]
                 self.levels.append(level)
                 t = t + 1
                 if t == 3:
                     t = 0
                     r = r + 1
         self.String.render_until("level", (220, 60), 4)
-        self.String.render_until(str(self.page), (420, 150), 2)
         for i in self.levels:
             if i.is_block:
                 self.display.blit(self.image_block, i.pos)
@@ -88,12 +86,20 @@ class ScreenLevel:
                 return i.name
         for i in self.levels:
             if i.click_mouse((x, y), z):
-                print(i.name)
                 return i.name
+        return "tognoek"
 
     def set_page(self, index):
-        self.page = self.page + index
-        if self.page < 1:
-            self.page = 1
-        if self.page > 6:
-            self.page = 6
+        page = self.page + index
+        if page < 1:
+            page = 1
+        if page > 6:
+            page = 6
+        is_check = True
+        for i in range((page - 1) * 9, page * 9):
+            name = str(f"{i+1:02}")
+            if not self.data_lock_levels[name]:
+                is_check = False
+                break
+        if not is_check:
+            self.page = page

@@ -54,6 +54,13 @@ class ButtonImage:
         self.ratio = ratio
         self.max = max_width
         self.is_click = False
+        self.width = int(8 * self.ratio)
+        self.height = int(10 * self.ratio)
+        if self.max is not None:
+            self.width_image_button = max(self.width * self.len + 20 * self.ratio, self.max * self.ratio)
+        else:
+            self.width_image_button = self.width * self.len + 20 * self.ratio
+        self.height_image_button = self.height + 14 * self.ratio
 
     def click_mouse(self, pos, z):
         self.is_click = False
@@ -63,13 +70,6 @@ class ButtonImage:
         return self.is_click
 
     def render(self, surface : pygame.Surface):
-        self.width = int(8 * self.ratio)
-        self.height = int(10 * self.ratio)
-        if self.max is not None:
-            self.width_image_button = max(self.width * self.len + 20 * self.ratio, self.max * self.ratio)
-        else:
-            self.width_image_button = self.width * self.len + 20 * self.ratio
-        self.height_image_button = self.height + 14 * self.ratio
         surface.blit(pygame.transform.scale(self.image,(self.width_image_button, self.height_image_button)), self.pos)
         left_text = self.width_image_button - self.width * self.len
         left_text = left_text / 2

@@ -79,12 +79,7 @@ class Box1(Entity):
                 player.pos = (player.pos[0], player_rect.y)
         if self.is_die_breaks:
             for item_fruit in self.fruits:
-                if item_fruit.is_action:
-                    for i in player.data[player.action]:
-                        if player.collision_tognoek_circle(item_fruit.get_image(), i, item_fruit.get_pos(), 7):
-                            item_fruit.set_action("Collected")
-                            item_fruit.is_action = False
-                            break
+                item_fruit.collision_player(player)
     def is_die(self):
         return self.is_die_box
     

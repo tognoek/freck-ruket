@@ -83,7 +83,21 @@
                     "Size" : "28x24",
                     "Frame" : "4"
                 }
-            } 
+            },
+            "Check Point" :{
+                "Idle" : {
+                    "Size" : "64x64",
+                    "Frame" : "1"
+                },
+                "On" : {
+                    "Size" : "64x64",
+                    "Frame" : "24"
+                },
+                "On_Idle" : {
+                    "Size" : "64x64",
+                    "Frame" : "10"
+                }
+            }
         },
         "Main Characters" : {
             "Mask Dude" : {

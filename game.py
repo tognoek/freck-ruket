@@ -28,7 +28,6 @@ class Game:
         while running:
             display.fill((10, 10, 100, 0.1))
             clock.tick(65)
-
             self.GameCanvas.run(pygame.mouse.get_pos())
             
             for event in pygame.event.get():
@@ -43,9 +42,9 @@ class Game:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        running = False
-                        pygame.quit()
-                        sys.exit()
+                        if self.GameCanvas.is_play:
+                            self.GameCanvas.is_pause = True
+                            self.GameCanvas.is_play = False
                     
 
             screen.blit(pygame.transform.scale(display, WINDOWS_SCREEN), (0, 0))

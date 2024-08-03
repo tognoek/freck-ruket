@@ -17,6 +17,7 @@ from models.game_entities.items.fruits import Fruits
 from models.game_entities.items.box1 import Box1
 from models.game_entities.items.box2 import Box2
 from models.game_entities.items.box3 import Box3
+from models.game_entities.items.checkpoint import CheckPoint
 from models.utils import Data
 import math
 
@@ -32,6 +33,8 @@ class Level:
         self.name_maps = ["block", "land", "blockgray", "metal", "line", "wall"]
         self.is_create = False
         self.fps = 60
+        self.sum_point = 0
+        self.next_level = False
         # self.name_traps = ""
 
     def create_data(self):
@@ -55,6 +58,7 @@ class Level:
         self.image_box1 = self.data.load_image_items("Box1")[0]
         self.image_box2 = self.data.load_image_items("Box2")[0]
         self.image_box3 = self.data.load_image_items("Box3")[0]
+        self.image_checkpoint = self.data.load_image_items("Check Point")[0]
         self.image_maps = self.data.convert_action_maps()
 
     def load_map(self, level = 1):
@@ -186,6 +190,12 @@ class Level:
                                             self.image_box3, None, value["flip"], 
                                             0, 0, 2, int(value["type"]), int(value["z-index"]),
                                             self.data.load_data_items("Box3"), self.image_fruits)
+                                
+                            if keys[1] == "checkpoint":
+                                entity_map = CheckPoint(value["name"], (pos[0], pos[1]), 
+                                            self.image_checkpoint, None, value["flip"], 
+                                            0, 0, 2, int(value["type"]), int(value["z-index"]),
+                                            self.data.load_data_items("Check Point"))
                             
                     else:
                         entity_map = Map(value["name"], (pos[0], pos[1]), 
@@ -306,9 +316,9 @@ class Level:
         for entity_map in self.data_maps:
             if entity_map.show(pos_player, max_len):
                 if not entity_map.is_die():
+                    if entity_map.name == "items_checkpoint":
+                        self.next_level = entity_map.next_level
                     entity_map.render(surface, offset, pause)
-            # surface.blit(pygame.transform.flip(entity_map.get_image(), entity_map.flip[0], entity_map.flip[1]), (entity_map.get_pos()[0] + offset[0], entity_map.get_pos()[1] + offset[1]))
-
     def start_pos_player(self):
         if "player" in self.data_json:
             key = list(self.data_json["player"].keys())
@@ -318,10 +328,26 @@ class Level:
         else:
             result = (0, 0)  # Default position if player not found in the map
         return result
+    
+    def update_sumpoint(self):
+        self.sum_point = 0
+        for entity in self.data_maps:
+            if entity.name in ["items_apple", "items_bananas", "items_kiwi", "items_cherries", 
+                                          "items_pineapple", "items_melon", "items_strawberry", "items_orange"]:
+                self.sum_point += 1
+
+            if entity.name == "items_box1":
+                self.sum_point += 4
+            if entity.name == "items_box2":
+                self.sum_point += 6
+            if entity.name == "items_box3":
+                self.sum_point += 8
   
     def run(self, level = 1):
+        self.next_level = False
         self.load_map(level)
         self.create_data()
         self.convert()
+        self.update_sumpoint()
         self.sort_by_type()
         self.filter_type()

@@ -16,6 +16,7 @@ class Fruits(Entity):
             for i in player.data[player.action]:
                 if player.collision_tognoek_circle(self.get_image(), i, self.get_pos(), 7):
                     self.set_action("Collected")
+                    player.update_point(1)
                     self.is_action = False
                     return
     

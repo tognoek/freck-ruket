@@ -24,6 +24,8 @@ SIZE_SHOW = (int(WINDOWS_SCREEN_EDIT[0] - EDIT_SIZE[0]), int((WINDOWS_SCREEN_EDI
 # tognoek = pygame.Surface((display.get_width() - 2, display.get_height() - 2))
 # tognoek.fill((100, 50, 20))
 
+LEVEL = 3
+
 speed_tognoek = 5
 
 data_maps = Data().load_data_maps()
@@ -55,11 +57,12 @@ for i in data_maps_convert[name_key_maps[0]].keys():
     data_images_y[i] = data_maps[i]
 
 data = {}
+def load():
+    with open("data/Json/Level/level_" + str(LEVEL) + ".json", "r") as file:
+        data_json = json.load(file)
+    return data_json
 
-with open("data/Json/Level/level_1.json", "r") as file:
-    data_json = json.load(file)
-
-data = data_json
+data = load()
 
 clock = pygame.time.Clock()
 
@@ -94,7 +97,7 @@ def render(surface : pygame.Surface, image : pygame.Surface, size = (0, 0), pos 
 
 
 def save_map(data):
-    with open("data/Json/Level/level_1.json", "w") as file:
+    with open("data/Json/Level/level_" + str(LEVEL) + ".json", "w") as file:
         json.dump(data, file, indent=3)
 
 action = {"up": False, "down": False, "left": False, "right": False}
@@ -604,6 +607,7 @@ while True:
 
     String.render("z-index: " + str(z_index), pos = (display.get_width() - 250, 40), color = (0, 0, 0))
     String.render("speed wasd: " + str(speed_tognoek), pos = (display.get_width() - 250, 50), color = (0, 0, 0))
+    String.render("LEVEL: " + str(LEVEL), pos = (display.get_width() - 340, 10), color = (0, 0, 0))
 
     input_values.render(screen)
 
@@ -973,6 +977,22 @@ while True:
                 speed_offset += 1
                 if speed_offset > 32:
                     speed_offset = 32
+
+            if event.key == pygame.K_m:
+                save_map(data)
+                LEVEL += 1
+                if LEVEL > 50:
+                    LEVEL = 50
+                update_map = True
+                data = load()
+
+            if event.key == pygame.K_n:
+                save_map(data)
+                LEVEL -= 1
+                if LEVEL < 1:
+                    LEVEL = 1
+                update_map = True
+                data = load()
             
             if event.key == pygame.K_l:
                 speed_offset -= 1

@@ -1,0 +1,148 @@
+{
+   "land": {
+      "280:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "324:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "368:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "412:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "456:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "500:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "724:511": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "768:511": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "544:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "588:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "632:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "676:488": {
+         "name": "land_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      }
+   },
+   "player": {
+      "412:456": {
+         "name": "player",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      }
+   },
+   "items": {
+      "632:424": {
+         "name": "items_checkpoint",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      }
+   }
+}

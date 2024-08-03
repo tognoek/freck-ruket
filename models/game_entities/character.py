@@ -21,6 +21,8 @@ class Character(Entity):
         self.key_left = False
         self.key_right = False
         self.begin_pos = self.pos
+        self.point = 0
+        self.rate_play = 0
 
     def copy(self):
         return Character(self.name, self.pos, self.images, self.sound,
@@ -104,6 +106,11 @@ class Character(Entity):
         self.key_up = False
         self.key_left = False
         self.key_right = False
+
+    def update_point(self, point = None):
+        if point is None:
+            self.point = 0
+        self.point += point
 
     def hit(self):
         if self.action != "Hit":
