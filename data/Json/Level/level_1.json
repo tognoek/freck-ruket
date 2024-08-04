@@ -1,37 +1,447 @@
 {
    "blockgray": {
-      "779:592": {
-         "name": "blockgray_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "795:592": {
-         "name": "blockgray_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "811:592": {
-         "name": "blockgray_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "860:-223": {
+      "434:326": {
          "name": "blockgray_0",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "450:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "466:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "482:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "498:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "514:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "530:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "546:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "562:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "578:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "594:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "610:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "626:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "642:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "658:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "674:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "690:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "706:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "722:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "738:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "754:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "770:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "786:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "802:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "818:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "834:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "850:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "866:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "882:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1034:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1050:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1066:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1082:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1098:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1114:326": {
+         "name": "blockgray_4",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1130:326": {
+         "name": "blockgray_3",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:342": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:358": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:374": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:390": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:406": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:422": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:438": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:454": {
+         "name": "blockgray_7",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1136:470": {
+         "name": "blockgray_7",
          "type": 1,
          "flip": [
             false,
@@ -42,7 +452,7 @@
       }
    },
    "player": {
-      "-345:538": {
+      "636:435": {
          "name": "player",
          "type": 1,
          "flip": [
@@ -54,7 +464,7 @@
       }
    },
    "land": {
-      "596:548": {
+      "475:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -64,7 +474,7 @@
          "z-index": 1,
          "values": []
       },
-      "640:548": {
+      "519:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -74,7 +484,7 @@
          "z-index": 1,
          "values": []
       },
-      "684:548": {
+      "563:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -84,7 +494,7 @@
          "z-index": 1,
          "values": []
       },
-      "1115:596": {
+      "607:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -94,7 +504,7 @@
          "z-index": 1,
          "values": []
       },
-      "1159:596": {
+      "651:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -104,7 +514,7 @@
          "z-index": 1,
          "values": []
       },
-      "1115:552": {
+      "695:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -114,7 +524,7 @@
          "z-index": 1,
          "values": []
       },
-      "1203:596": {
+      "739:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -124,7 +534,7 @@
          "z-index": 1,
          "values": []
       },
-      "1247:596": {
+      "783:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -134,7 +544,7 @@
          "z-index": 1,
          "values": []
       },
-      "1291:596": {
+      "827:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -144,7 +554,7 @@
          "z-index": 1,
          "values": []
       },
-      "1335:596": {
+      "871:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -154,7 +564,7 @@
          "z-index": 1,
          "values": []
       },
-      "1379:596": {
+      "915:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -164,7 +574,7 @@
          "z-index": 1,
          "values": []
       },
-      "1423:596": {
+      "959:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -174,7 +584,7 @@
          "z-index": 1,
          "values": []
       },
-      "1424:244": {
+      "1003:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -184,7 +594,7 @@
          "z-index": 1,
          "values": []
       },
-      "1467:596": {
+      "1047:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -194,7 +604,7 @@
          "z-index": 1,
          "values": []
       },
-      "1511:596": {
+      "1091:570": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -204,7 +614,7 @@
          "z-index": 1,
          "values": []
       },
-      "1555:596": {
+      "555:543": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -214,7 +624,7 @@
          "z-index": 1,
          "values": []
       },
-      "1599:596": {
+      "599:543": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -224,7 +634,7 @@
          "z-index": 1,
          "values": []
       },
-      "1643:596": {
+      "643:543": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -234,7 +644,7 @@
          "z-index": 1,
          "values": []
       },
-      "1156:217": {
+      "687:543": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -244,7 +654,7 @@
          "z-index": 1,
          "values": []
       },
-      "1382:216": {
+      "586:514": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -254,7 +664,7 @@
          "z-index": 1,
          "values": []
       },
-      "1436:552": {
+      "630:514": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -264,7 +674,7 @@
          "z-index": 1,
          "values": []
       },
-      "1687:596": {
+      "674:514": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -274,7 +684,7 @@
          "z-index": 1,
          "values": []
       },
-      "1731:596": {
+      "632:484": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -284,8 +694,8 @@
          "z-index": 1,
          "values": []
       },
-      "1775:596": {
-         "name": "land_0",
+      "632:545": {
+         "name": "land_6",
          "type": 1,
          "flip": [
             false,
@@ -294,367 +704,7 @@
          "z-index": 1,
          "values": []
       },
-      "1819:596": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1819:552": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1475:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1796:308": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1519:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1563:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1607:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1651:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1695:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1739:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1783:290": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1796:352": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1796:396": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1796:440": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1796:484": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1796:528": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1796:572": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1436:508": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1436:464": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1436:420": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1436:376": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1436:332": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1130:269": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "356:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "312:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "268:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "224:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "180:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-5:576": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-49:576": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "136:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "92:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "48:564": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-93:576": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-137:576": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-181:576": {
-         "name": "land_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1803:237": {
+      "1093:571": {
          "name": "land_0",
          "type": 1,
          "flip": [
@@ -666,18 +716,8 @@
       }
    },
    "traps": {
-      "961:596": {
-         "name": "traps_trampoline",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "874:381": {
-         "name": "traps_spikedball",
+      "780:449": {
+         "name": "traps_rockhead",
          "type": 1,
          "flip": [
             false,
@@ -685,11 +725,24 @@
          ],
          "z-index": 1,
          "values": [
-            "2",
-            "1"
+            "3",
+            "4"
          ]
       },
-      "871:491": {
+      "843:344": {
+         "name": "traps_rockhead",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "4",
+            "3"
+         ]
+      },
+      "1004:336": {
          "name": "traps_spikedball",
          "type": 1,
          "flip": [
@@ -698,33 +751,26 @@
          ],
          "z-index": 1,
          "values": [
-            "2",
+            "1",
+            "2"
+         ]
+      },
+      "1006:400": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
             "2",
             "90",
-            "3"
+            "4"
          ]
       },
-      "521:510": {
-         "name": "traps_fallingplatforms",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "424:587": {
-         "name": "traps_fan",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "739:549": {
+      "1047:544": {
          "name": "traps_trampoline",
          "type": 1,
          "flip": [
@@ -734,487 +780,7 @@
          "z-index": 1,
          "values": []
       },
-      "1189:553": {
-         "name": "traps_rockhead",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "1",
-            "3",
-            "2",
-            "4"
-         ]
-      },
-      "1389:550": {
-         "name": "traps_rockhead",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "3",
-            "4"
-         ]
-      },
-      "1321:547": {
-         "name": "traps_rockhead",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "1",
-            "2"
-         ]
-      },
-      "1328:514": {
-         "name": "traps_spikehead",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "2",
-            "3",
-            "1",
-            "4"
-         ]
-      },
-      "979:210": {
-         "name": "traps_fire_90",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1063:210": {
-         "name": "traps_spikes",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "728:55": {
-         "name": "traps_saw",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "1",
-            "1"
-         ]
-      },
-      "965:51": {
-         "name": "traps_saw",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "1",
-            "2"
-         ]
-      },
-      "1169:-3": {
-         "name": "traps_saw",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "2",
-            "1"
-         ]
-      },
-      "790:-113": {
-         "name": "traps_saw",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "3",
-            "2"
-         ]
-      },
-      "1020:-120": {
-         "name": "traps_saw",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "3",
-            "3"
-         ]
-      },
-      "900:-49": {
-         "name": "traps_saw",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "3",
-            "1"
-         ]
-      },
-      "421:189": {
-         "name": "traps_fire",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "843:210": {
-         "name": "traps_fire_90",
-         "type": 1,
-         "flip": [
-            true,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "800:174": {
-         "name": "traps_spikes_90",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "615:192": {
-         "name": "traps_trampoline",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "712:347": {
-         "name": "traps_fallingplatforms",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "760:346": {
-         "name": "traps_fallingplatforms",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "804:345": {
-         "name": "traps_fallingplatforms",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "847:355": {
-         "name": "traps_fallingplatforms",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "891:339": {
-         "name": "traps_fallingplatforms",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "953:353": {
-         "name": "traps_fallingplatforms",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "617:96": {
-         "name": "traps_fan",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "683:195": {
-         "name": "traps_saw",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "5",
-            "1"
-         ]
-      },
-      "752:447": {
-         "name": "traps_arrow",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "559:566": {
-         "name": "traps_arrow",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 6,
-         "values": []
-      },
-      "267:383": {
-         "name": "traps_arrow",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "108:493": {
-         "name": "traps_arrow",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "191:428": {
-         "name": "traps_arrow",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1500:242": {
-         "name": "traps_rockhead",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": [
-            "1",
-            "2"
-         ]
-      },
-      "242:478": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "264:478": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "352:478": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "352:500": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "264:500": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "242:500": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "352:456": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "352:434": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "352:412": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "299:456": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-179:450": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-129:477": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-74:509": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "5:536": {
-         "name": "traps_blocks",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "923:534": {
+      "1019:340": {
          "name": "traps_spikehead",
          "type": 1,
          "flip": [
@@ -1227,7 +793,7 @@
             "2"
          ]
       },
-      "540:291": {
+      "601:326": {
          "name": "traps_spikedball",
          "type": 1,
          "flip": [
@@ -1236,11 +802,11 @@
          ],
          "z-index": 1,
          "values": [
-            "1",
+            "2",
             "1"
          ]
       },
-      "540:371": {
+      "601:389": {
          "name": "traps_spikedball",
          "type": 1,
          "flip": [
@@ -1249,16 +815,16 @@
          ],
          "z-index": 1,
          "values": [
-            "1",
             "2",
-            "120",
-            "4"
+            "2",
+            "150",
+            "5"
          ]
       }
    },
    "metal": {
-      "635:592": {
-         "name": "metal_3",
+      "466:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1267,8 +833,8 @@
          "z-index": 1,
          "values": []
       },
-      "683:592": {
-         "name": "metal_3",
+      "514:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1277,8 +843,8 @@
          "z-index": 1,
          "values": []
       },
-      "731:592": {
-         "name": "metal_3",
+      "562:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1287,8 +853,8 @@
          "z-index": 1,
          "values": []
       },
-      "811:592": {
-         "name": "metal_1",
+      "610:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1297,8 +863,8 @@
          "z-index": 1,
          "values": []
       },
-      "859:592": {
-         "name": "metal_1",
+      "658:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1307,8 +873,8 @@
          "z-index": 1,
          "values": []
       },
-      "907:592": {
-         "name": "metal_6",
+      "706:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1317,8 +883,8 @@
          "z-index": 1,
          "values": []
       },
-      "923:624": {
-         "name": "metal_1",
+      "754:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1327,8 +893,8 @@
          "z-index": 1,
          "values": []
       },
-      "971:624": {
-         "name": "metal_1",
+      "802:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1337,8 +903,8 @@
          "z-index": 1,
          "values": []
       },
-      "1019:624": {
-         "name": "metal_1",
+      "850:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1347,8 +913,8 @@
          "z-index": 1,
          "values": []
       },
-      "728:576": {
-         "name": "metal_1",
+      "898:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1357,8 +923,8 @@
          "z-index": 1,
          "values": []
       },
-      "776:576": {
-         "name": "metal_1",
+      "946:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1367,8 +933,8 @@
          "z-index": 1,
          "values": []
       },
-      "592:592": {
-         "name": "metal_1",
+      "994:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1377,8 +943,8 @@
          "z-index": 1,
          "values": []
       },
-      "544:592": {
-         "name": "metal_1",
+      "1042:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1387,8 +953,8 @@
          "z-index": 1,
          "values": []
       },
-      "496:592": {
-         "name": "metal_1",
+      "1090:614": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1397,8 +963,8 @@
          "z-index": 1,
          "values": []
       },
-      "448:592": {
-         "name": "metal_1",
+      "1073:399": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1407,8 +973,8 @@
          "z-index": 1,
          "values": []
       },
-      "400:592": {
-         "name": "metal_1",
+      "1088:399": {
+         "name": "metal_0",
          "type": 1,
          "flip": [
             false,
@@ -1417,7 +983,17 @@
          "z-index": 1,
          "values": []
       },
-      "580:576": {
+      "1072:399": {
+         "name": "metal_9",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "888:358": {
          "name": "metal_11",
          "type": 1,
          "flip": [
@@ -1427,208 +1003,8 @@
          "z-index": 1,
          "values": []
       },
-      "548:560": {
-         "name": "metal_13",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "723:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "771:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "819:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "867:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "915:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "963:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1011:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "1059:226": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "591:221": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "543:221": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "495:221": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "447:221": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "399:221": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "351:221": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "566:211": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "164:478": {
-         "name": "metal_0",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "108:445": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "108:397": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "108:349": {
-         "name": "metal_4",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "108:301": {
-         "name": "metal_4",
+      "517:464": {
+         "name": "metal_11",
          "type": 1,
          "flip": [
             false,
@@ -1638,10 +1014,9 @@
          "values": []
       }
    },
-   "block": {},
-   "wall": {
-      "1067:592": {
-         "name": "wall_0",
+   "block": {
+      "466:597": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1650,8 +1025,8 @@
          "z-index": 1,
          "values": []
       },
-      "-229:572": {
-         "name": "wall_0",
+      "466:580": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1660,8 +1035,8 @@
          "z-index": 1,
          "values": []
       },
-      "-423:599": {
-         "name": "wall_0",
+      "466:563": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1670,8 +1045,8 @@
          "z-index": 1,
          "values": []
       },
-      "-277:572": {
-         "name": "wall_0",
+      "466:546": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1680,8 +1055,8 @@
          "z-index": 1,
          "values": []
       },
-      "-325:572": {
-         "name": "wall_0",
+      "466:529": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1690,8 +1065,8 @@
          "z-index": 1,
          "values": []
       },
-      "-471:599": {
-         "name": "wall_0",
+      "466:512": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1700,8 +1075,8 @@
          "z-index": 1,
          "values": []
       },
-      "-373:572": {
-         "name": "wall_0",
+      "466:495": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1710,8 +1085,8 @@
          "z-index": 1,
          "values": []
       },
-      "-519:599": {
-         "name": "wall_0",
+      "466:478": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1720,8 +1095,8 @@
          "z-index": 1,
          "values": []
       },
-      "-567:599": {
-         "name": "wall_0",
+      "466:461": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1730,8 +1105,8 @@
          "z-index": 1,
          "values": []
       },
-      "-615:599": {
-         "name": "wall_0",
+      "466:444": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1740,8 +1115,8 @@
          "z-index": 1,
          "values": []
       },
-      "-663:599": {
-         "name": "wall_0",
+      "450:444": {
+         "name": "block_21",
          "type": 1,
          "flip": [
             false,
@@ -1750,8 +1125,8 @@
          "z-index": 1,
          "values": []
       },
-      "-711:599": {
-         "name": "wall_0",
+      "434:444": {
+         "name": "block_21",
          "type": 1,
          "flip": [
             false,
@@ -1760,8 +1135,8 @@
          "z-index": 1,
          "values": []
       },
-      "-908:619": {
-         "name": "wall_0",
+      "434:427": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1770,8 +1145,8 @@
          "z-index": 1,
          "values": []
       },
-      "-956:619": {
-         "name": "wall_0",
+      "434:410": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1780,8 +1155,8 @@
          "z-index": 1,
          "values": []
       },
-      "-908:571": {
-         "name": "wall_0",
+      "434:393": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1790,8 +1165,8 @@
          "z-index": 1,
          "values": []
       },
-      "-759:599": {
-         "name": "wall_0",
+      "434:376": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1800,8 +1175,8 @@
          "z-index": 1,
          "values": []
       },
-      "-807:599": {
-         "name": "wall_0",
+      "434:359": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1810,8 +1185,8 @@
          "z-index": 1,
          "values": []
       },
-      "-855:599": {
-         "name": "wall_0",
+      "434:342": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1820,8 +1195,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1004:619": {
-         "name": "wall_0",
+      "898:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1830,8 +1205,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1052:619": {
-         "name": "wall_0",
+      "915:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1840,8 +1215,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1100:619": {
-         "name": "wall_0",
+      "932:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1850,8 +1225,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1256:650": {
-         "name": "wall_0",
+      "949:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1860,8 +1235,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1304:650": {
-         "name": "wall_0",
+      "966:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1870,8 +1245,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1148:619": {
-         "name": "wall_0",
+      "983:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1880,8 +1255,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1196:619": {
-         "name": "wall_0",
+      "1000:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1890,8 +1265,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1244:619": {
-         "name": "wall_0",
+      "1017:326": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1900,8 +1275,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1352:650": {
-         "name": "wall_0",
+      "898:335": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1910,8 +1285,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1400:650": {
-         "name": "wall_0",
+      "898:344": {
+         "name": "block_1",
          "type": 1,
          "flip": [
             false,
@@ -1920,8 +1295,8 @@
          "z-index": 1,
          "values": []
       },
-      "-1448:650": {
-         "name": "wall_0",
+      "1137:486": {
+         "name": "block_11",
          "type": 1,
          "flip": [
             false,
@@ -1930,8 +1305,38 @@
          "z-index": 1,
          "values": []
       },
-      "-1496:650": {
-         "name": "wall_0",
+      "1137:518": {
+         "name": "block_11",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1137:550": {
+         "name": "block_11",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1137:582": {
+         "name": "block_11",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "906:358": {
+         "name": "block_22",
          "type": 1,
          "flip": [
             false,
@@ -1941,191 +1346,221 @@
          "values": []
       }
    },
-   "line": {
-      "653:496": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "652:444": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "653:402": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "650:349": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "656:301": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "655:255": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "588:159": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "590:103": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "596:45": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "599:-9": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "603:-62": {
-         "name": "line_0",
-         "type": 2,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      }
-   },
+   "wall": {},
+   "line": {},
    "items": {
-      "-330:492": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-298:492": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-266:492": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-234:492": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-202:492": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-170:492": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-138:492": {
-         "name": "items_apple",
-         "type": 1,
-         "flip": [
-            false,
-            false
-         ],
-         "z-index": 1,
-         "values": []
-      },
-      "-478:528": {
+      "1071:334": {
          "name": "items_checkpoint",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "785:529": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "510:529": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "482:526": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "506:426": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "454:396": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "594:478": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1092:529": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "939:530": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "981:528": {
+         "name": "items_apple",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "682:477": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "547:501": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "521:497": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "481:489": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "1091:493": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "981:497": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "934:487": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "839:526": {
+         "name": "items_bananas",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "882:527": {
+         "name": "items_cherries",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "816:533": {
+         "name": "items_cherries",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "747:526": {
+         "name": "items_melon",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "645:364": {
+         "name": "items_melon",
          "type": 1,
          "flip": [
             false,

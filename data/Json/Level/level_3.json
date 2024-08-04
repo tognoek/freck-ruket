@@ -181,6 +181,46 @@
          ],
          "z-index": 1,
          "values": []
+      },
+      "397:418": {
+         "name": "items_box2",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "451:418": {
+         "name": "items_box3",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "498:417": {
+         "name": "items_box1",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
+      },
+      "286:436": {
+         "name": "items_checkpoint",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": []
       }
    },
    "player": {
@@ -193,6 +233,62 @@
          ],
          "z-index": 1,
          "values": []
+      }
+   },
+   "traps": {
+      "411:305": {
+         "name": "traps_saw",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "2",
+            "1"
+         ]
+      },
+      "641:304": {
+         "name": "traps_saw",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "2",
+            "2"
+         ]
+      },
+      "547:319": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
+            "1"
+         ]
+      },
+      "551:421": {
+         "name": "traps_spikedball",
+         "type": 1,
+         "flip": [
+            false,
+            false
+         ],
+         "z-index": 1,
+         "values": [
+            "1",
+            "2",
+            "120",
+            "4"
+         ]
       }
    }
 }

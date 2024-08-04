@@ -25,13 +25,40 @@ class Save:
         with open(self.path_start) as file:
             data = json.load(file)
         return data["character"]
+    def get_life(self):
+        with open(self.path_start) as file:
+            data = json.load(file)
+        return int(data["life"])
     
+    def save_life(self, life):
+        with open(self.path_start, "r") as file:
+            data = json.load(file)
+        data["life"] = life
+        with open(self.path_start, "w") as file:
+            json.dump(data, file, indent=2)
+
+    def reset(self):
+        data = {}
+        data["01"] = False
+        for i in range(2, 51):
+            name = str(f"{i:02}")
+            data[name] = True
+        with open(self.path_locks, "w") as file:
+            json.dump(data, file, indent=4)
+
+        with open(self.path_start, "w") as file:
+            data = {}
+            data["level"] = 1
+            data["character"] = "Pink Man"
+            data["life"] = 5
+            json.dump(data, file, indent=2)
+
     def update_character(self, key):
         with open(self.path_start, "r") as file:
             data = json.load(file)
         data["character"] = key
         with open(self.path_start, "w") as file:
-            json.dump(data, file)
+            json.dump(data, file, indent=2)
     
     def update_start(self, key):
         with open(self.path_start, "r") as file:
@@ -42,7 +69,7 @@ class Save:
         if key_old < key:
             data["level"] = key
             with open(self.path_start, "w") as file:
-                json.dump(data, file)
+                json.dump(data, file, indent=2)
 
 class Data:
 

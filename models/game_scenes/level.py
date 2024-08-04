@@ -319,6 +319,16 @@ class Level:
                     if entity_map.name == "items_checkpoint":
                         self.next_level = entity_map.next_level
                     entity_map.render(surface, offset, pause)
+
+    def rend_mini_map(self, surface : pygame.Surface, offset, pos_player, max_len = 1200, ratio = 0.2):
+        size_mini = surface.get_size()
+        offet_mini = (int(size_mini[0] / 4), int(size_mini[1] / 4))
+        for entity in self.maps:
+            if entity.show(pos_player, max_len):
+                entity.render_mini_map(surface, offset, ratio / 2, offet_mini)
+        pygame.draw.rect(surface, (255, 0, 0), ((int(offet_mini[0] + (pos_player[0] + offset[0]) * (ratio / 2)),
+                                                  int(offet_mini[1] + (pos_player[1] + offset[1]) * (ratio / 2))), 
+                                                  (3, 3)))
     def start_pos_player(self):
         if "player" in self.data_json:
             key = list(self.data_json["player"].keys())

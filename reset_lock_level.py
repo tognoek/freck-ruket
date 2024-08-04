@@ -14,5 +14,6 @@ with open("data\Json\Level\lock_levels.json", "w") as file:
 with open("data\Json\Level\start.json", "w") as file:
     data = {}
     data["level"] = 1
-    data["character"] + "Pink Man"
+    data["character"] = "Pink Man"
+    data["life"] = 5
     json.dump(data, file)

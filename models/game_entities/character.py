@@ -119,7 +119,7 @@ class Character(Entity):
         self.pos = (self.pos[0] + self.speed[0], self.pos[1] + self.speed[1])
 
     def isDie(self):
-        return self.action == "Hit" and self.loop_frame > 10
+        return self.action == "Hit" and self.loop_frame > 5
 
     def isHit(self):
         return self.action == "Hit"

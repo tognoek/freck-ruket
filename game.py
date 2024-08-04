@@ -17,36 +17,21 @@ display = pygame.Surface(DISPLAY_SIZE)
 
 ratio = (DISPLAY_SIZE[0] / WINDOWS_SCREEN[0], DISPLAY_SIZE[1] / WINDOWS_SCREEN[1])
 
-
 class Game:
     def __init__(self):
-
         self.GameCanvas = GameCanvas(display=display, ratio=ratio)
+        self.running = True
     def run(self):
-        running = True
-
-        while running:
-            display.fill((10, 10, 100, 0.1))
+        while self.running:
             clock.tick(65)
-            self.GameCanvas.run(pygame.mouse.get_pos())
+            self.GameCanvas.run(pygame.mouse.get_pos(), clock.get_fps())
             
             for event in pygame.event.get():
                 if self.GameCanvas.event(event, pygame.mouse.get_pos()):
-                    running = False
+                    self.running = False
                     pygame.quit()
                     sys.exit()
-
-                if event.type == pygame.QUIT:
-                    running = False
-                    pygame.quit()
-                    sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        if self.GameCanvas.is_play:
-                            self.GameCanvas.is_pause = True
-                            self.GameCanvas.is_play = False
                     
-
             screen.blit(pygame.transform.scale(display, WINDOWS_SCREEN), (0, 0))
             pygame.display.update()
         

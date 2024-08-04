@@ -1,8 +1,9 @@
 import pygame
+import random
 from models.game_entities.character import Character
 from models.game_scenes.level import Level
 from models.game_scenes.camera import Camera
-from models.game_scenes.gackground import Background
+from models.game_scenes.background import Background
 from models.utils import Data, Image, Text
 from models.ui_components.string import String
 from models.game_scenes.screenmenu import ScreenMenu
@@ -10,22 +11,32 @@ from models.game_scenes.screenpause import ScreenPause
 from models.game_scenes.screenlevel import ScreenLevel
 from models.game_scenes.screenfigure import ScreenFigure
 from models.game_scenes.sceensetting import ScreenSetting
+from models.game_scenes.screenhit import ScreenHit
+from models.game_scenes.screeninfo import ScreenInfo
 from models.utils import Save
+
 MAXLEVEL = 50
+MAX_SIZE = 700
+MINI_MAP = 0.16
 
 class GameCanvas:
 
     def __init__(self, display : pygame.Surface, ratio):
         self.display = display
+        self.size_display = self.display.get_size()
         self.ratio = ratio
         self.image = Data()
         self.image_mouse = Data().load_mouse()
         self.Save = Save()
 
         self.Background = Background(self.image.load_background())
-        self.Background.create("Blue", (display.get_width(), display.get_height()))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+        self.Background.create("Blue", (self.display.get_width(), self.display.get_height()))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         self.Level = Level(-1, self.image)
         self.String = String(self.display)
+
+        self.MiniMap = pygame.Surface((int(self.size_display[0] * MINI_MAP), int(self.size_display[1] * MINI_MAP)))
+        self.size_minimap = self.MiniMap.get_size()
+        self.MiniMap.fill((255, 0, 0))
 
         self.ImageButton = Image().load_image("data/Images/Menu/Buttons/frame.png")
 
@@ -36,6 +47,7 @@ class GameCanvas:
         self.Text.create()
 
         self.name_character = self.Save.get_character()
+        self.life = self.Save.get_life()
 
         self.ScreenLevel = ScreenLevel(self.display)
         self.ScreenSetting = ScreenSetting(self.display)
@@ -43,6 +55,8 @@ class GameCanvas:
         self.ScreenMenu = ScreenMenu(self.display, self.ImageButton, self.Text)
         self.ScreenMenu.update_images_character(self.name_character)
         self.ScreenPause = ScreenPause(self.display, self.ImageButton, self.Text)
+        self.ScreenHit = ScreenHit(self.display, self.ImageButton, self.Text)
+        self.ScreenInfo = ScreenInfo(self.display)
 
         self.index_level = self.Save.get_start()
         self.is_pause = False
@@ -51,8 +65,12 @@ class GameCanvas:
         self.is_menu_level = False
         self.is_menu_figure = False
         self.is_menu_setting = False
+        self.is_menu_hit = False
 
         self.exit = False
+
+    def reset_all_game(self):
+        self.Save.reset()
 
     def load_player(self, name = "Pink Man"):
         images, y = self.image.load_images_main_character(name)
@@ -73,14 +91,17 @@ class GameCanvas:
         self.Level.run(self.index_level)
         self.load_player(self.name_character)
         self.create_camera()
+        self.Background.create(None, (self.display.get_width(), self.display.get_height()))
 
     def create_now(self, index):
         self.Level.run(index)
         self.index_level = index
         self.load_player(self.name_character)
         self.create_camera()
+        self.Background.create(None, (self.display.get_width(), self.display.get_height()))
 
-    def run(self, mouse = (0, 0)):
+    def run(self, mouse = (0, 0), fps = 65):
+        self.fps = int(fps)
         if self.is_play:
             self.update()
         self.render(mouse)
@@ -102,6 +123,16 @@ class GameCanvas:
         if not self.Player.isDie():
             self.Player.update_speed()
             self.Player.run(self.Level)
+        else:
+            self.life -= 1
+            if self.life < 1:
+                self.life = 5
+                self.reset_all_game()
+                self.create_now(1)
+            else:
+                self.is_menu_hit = True
+                self.Save.save_life(self.life)
+                self.is_play = False
 
         if not self.Player.isHit():
             self.Camera.update(self.Player.get_pos())
@@ -112,21 +143,36 @@ class GameCanvas:
             self.index_level += 1
             if self.index_level > MAXLEVEL:
                 self.index_level = MAXLEVEL
+            self.life += 5
+            if self.life > 50:
+                self.life = 50
+            self.Save.save_life(self.life)
             self.Save.save_lock(self.index_level)
             self.Save.update_start(self.index_level)
             self.create()
 
 
     def menu_play(self):
-        self.String.render_until(str(self.Player.rate_play), pos=(100, 100))
+        self.String.render_until(f"fps: {str(self.fps)}", pos=(20, 50), ratio=1)
+        self.String.render_until(f"life: {str(self.life)}", pos=(20, 63), ratio=1)
+        self.ScreenInfo.render(self.Player.rate_play)
+        self.MiniMap.fill((0, 0, 0))
+        sur_background = pygame.Surface((self.size_minimap[0] - 4, self.size_minimap[1] - 4))
+        sur_background.fill((206, 220, 186))
+        self.Level.rend_mini_map(sur_background, self.Camera.get_scroll(), self.Player.get_pos(), 1200, MINI_MAP)
+        self.MiniMap.blit(sur_background, (2, 2))
+        self.display.blit(self.MiniMap, (self.size_display[0] - self.size_minimap[0], 0))
+        pygame.draw.line(self.display, (0, 0, 0), (0, 0), (self.size_display[0], 0), 2)
+        pygame.draw.line(self.display, (0, 0, 0), (self.size_display[0] - 2, 0), (self.size_display[0] - 2, self.size_display[1]), 2)
+        pygame.draw.line(self.display, (0, 0, 0), (0, 0), (0, self.size_display[1]), 2)
+        pygame.draw.line(self.display, (0, 0, 0), (0, self.size_display[1] - 2), (self.size_display[0], self.size_display[1] - 2), 2)
 
     def render(self, mouse = (0, 0)):
         self.display.fill((142, 207, 210))
         if self.is_play:
             self.Background.render(self.display)
-            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), 900, False)
+            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), MAX_SIZE, False)
             self.Player.render(self.display, self.Camera.get_scroll(), False)
-            self.String.render_until(self.Player.action, pos=(100, 150))
             self.menu_play()
 
         if self.is_menu:
@@ -145,9 +191,15 @@ class GameCanvas:
 
         if self.is_pause:
             self.Background.render(self.display)
-            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), 900, True)
+            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), MAX_SIZE, True)
             self.Player.render(self.display, self.Camera.get_scroll(), False)
             self.ScreenPause.render()
+
+        if self.is_menu_hit:
+            self.Background.render(self.display)
+            self.Level.render(self.display, self.Camera.get_scroll(), self.Player.get_pos(), MAX_SIZE, True)
+            self.Player.render(self.display, self.Camera.get_scroll(), False)
+            self.ScreenHit.render()
 
         if not self.is_play:
             self.display.blit(self.image_mouse, (mouse[0] * self.ratio[0], mouse[1] * self.ratio[1]))
@@ -155,6 +207,13 @@ class GameCanvas:
             
 
     def event(self, event, mouse):
+        if self.is_pause:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.is_pause = False
+                    self.is_play = True
+                    return self.exit
+
         if self.is_play:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
@@ -172,6 +231,12 @@ class GameCanvas:
 
                 if event.key == pygame.K_RIGHT:
                     self.X = None
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    if self.is_play:
+                        self.is_pause = True
+                        self.is_play = False
 
         if event.type == pygame.MOUSEBUTTONUP:
             self.click_mouse(mouse[0] * self.ratio[0], mouse[1] * self.ratio[1], event.button)
@@ -202,7 +267,18 @@ class GameCanvas:
                 self.ScreenFigure.is_begin = True
             
             if name_click == "exit":
+                self.Save.save_life(self.life)
                 self.exit = True
+        
+        if self.is_menu_hit:
+            name_click = self.ScreenHit.click_mouse(x, y, z)
+            if name_click == "reset":
+                self.create()
+                self.is_menu_hit = False
+                self.is_play = True
+            if name_click == "home":
+                self.is_menu_hit = False
+                self.is_menu = True
 
         if self.is_pause:
             name_click = self.ScreenPause.click_mouse(x, y, z)
@@ -214,9 +290,10 @@ class GameCanvas:
                 self.is_menu = True
                 self.Save.update_start(self.index_level)
             if name_click == "reset":
-                self.create()
-                self.is_pause = False
-                self.is_play = True
+                if not self.Player.isHit():
+                    self.create()
+                    self.is_pause = False
+                    self.is_play = True
 
         if self.is_menu_level:
             name_click = self.ScreenLevel.click_mouse(x, y, z)

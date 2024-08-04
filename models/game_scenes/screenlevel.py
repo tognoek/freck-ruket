@@ -77,8 +77,6 @@ class ScreenLevel:
                 self.display.blit(i.image, i.pos)
         for i in self.buttons:
             i.render(self.display)
-        
-        
 
     def click_mouse(self, x, y, z):
         for i in self.buttons:
@@ -97,9 +95,10 @@ class ScreenLevel:
             page = 6
         is_check = True
         for i in range((page - 1) * 9, page * 9):
-            name = str(f"{i+1:02}")
-            if not self.data_lock_levels[name]:
-                is_check = False
-                break
+            if i < 50:
+                name = str(f"{i+1:02}")
+                if not self.data_lock_levels[name]:
+                    is_check = False
+                    break
         if not is_check:
             self.page = page

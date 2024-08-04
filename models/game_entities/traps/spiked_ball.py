@@ -8,6 +8,8 @@ class SpikedBall(Entity):
         super().__init__(name, pos, images, sound, flip, volume, frame, size_frame, type_entity, z_index)
         self.data = data
         self.pos = (self.data[1][1][0], self.data[1][1][1])
+        self.image_rotate = self.get_image()
+        self.pos_image = (0, 0)
     
     def collision_player(self, player : Character):
         for i in range(8):
