@@ -2,3 +2,4 @@
 ```python
 print("welcome tognoek")
 ```
+push .venv
