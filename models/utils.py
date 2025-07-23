@@ -1,12 +1,12 @@
-import pygame
+import pygame # type: ignore
 import json
 import os
 from ENV import PATH_CHARCTERS, PATH_MAPS, PATH_BACKGROUND, PATH_TRAPS, PATH_ITEMS, PATH_IMAGES_LEVELS, PATH_IMAGES_BUTTONS
 MAXLEVEL = 50
 class Save:
     def __init__(self):
-        self.path_locks = "data\Json\Level\lock_levels.json"
-        self.path_start = "data\Json\Level\start.json"
+        self.path_locks = "data/Json/Level/lock_levels.json"
+        self.path_start = "data/Json/Level/start.json"
     def save_lock(self, key):
         if key > MAXLEVEL:
             key = MAXLEVEL
@@ -233,7 +233,6 @@ class Image:
         pass
 
     def load_image(self, path : str):
-        path = path.replace("\\", "/")
         sur = pygame.image.load(path).convert_alpha()
         result = pygame.Surface((sur.get_width(),sur.get_height()))
         result.blit(sur, (0, 0))

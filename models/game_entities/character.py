@@ -1,4 +1,4 @@
-import pygame, random
+import pygame, random # type: ignore
 
 from models.game_entities.entity import Entity
 from models.game_entities.dust_particle import Dustparticle
